@@ -7,7 +7,7 @@ using namespace std;
 
 class DataEst {
 	private:
-		DTFecha fecNac;
+		DTFecha* fecNac;
 		string pais;
 	public:
 };

@@ -2,7 +2,7 @@
 #ifndef DATACURSO3_H
 #define DATACURSO3_H
 #include <string>
-#include "Dificultad.h"
+#include "Curso.h"
 using namespace std;
 
 class DataCurso3 {

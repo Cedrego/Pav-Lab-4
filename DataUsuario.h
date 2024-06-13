@@ -13,8 +13,8 @@ class DataUsuario {
 		string descripcion;
 		string nombre;
 		string contrasenia;
-		DataProfesor Profesores;
-		DataEst Estudiante;
+		DataProfesor* Profesores;
+		DataEst* Estudiante;
 	public:
 };
 

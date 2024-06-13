@@ -8,7 +8,7 @@ using namespace std;
 class DataInscripciones2 {
 	private:
 		string nomEstu;
-		DTFecha fechaInsc;
+		DTFecha* fechaInsc;
 	public:
 };
 

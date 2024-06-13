@@ -2,6 +2,7 @@
 #ifndef DATAEJECOMPLETAR_H
 #define DATAEJECOMPLETAR_H
 #include <string>
+#include "ICollection/interfaces/ICollection.h"
 using namespace std;
 
 class DataEjeCompletar {
@@ -9,7 +10,7 @@ class DataEjeCompletar {
 		string nomEjercicio;
 		string descripcion;
 		string fraseC;
-		//set<string> faltante;
+		ICollection* faltante;
 	public:
 };
 

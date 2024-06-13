@@ -1,7 +1,10 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
 int main(int argc, char *argv[]){
     char op;
-    set<Ninio*> conjuntoN; //conjunto de Ninios
-    set<Objeto*> conjuntoO; //conjunto de Objetos
     do{
 		system("cls");
         std::cout<<"Bienvenido al sistema [REDACTED]"<<endl;
@@ -20,7 +23,7 @@ int main(int argc, char *argv[]){
 		
         switch(op){
             case '0':{
-                }
+                
                 break;
             }
             case '1':{
