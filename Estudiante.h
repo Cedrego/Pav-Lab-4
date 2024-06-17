@@ -14,7 +14,11 @@ class Estudiante : public Usuario {
         Lecciones* UltimaLeccion;
         ICollection* EjerciciosAprov;
     public:
-
+    virtual ~Estudiante();
+    DTFecha* getfecNac();
+    IDictionary* getCursos();
+    Lecciones* getUltimaLeccion();
+    ICollection* getEjerciciosAprov();
 };
 
 #endif

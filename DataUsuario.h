@@ -16,6 +16,14 @@ class DataUsuario {
 		DataProfesor* Profesores;
 		DataEst* Estudiante;
 	public:
+		 virtual ~DataUsuario();
+		//DataUsuario()
+		std::string getnickname();
+		std::string getdescripcion();
+		std::string getnombre();
+		std::string getcontrasenia();
+		DataProfesor* getProfesor();
+		DataEst* getEstudiante(); 
 };
 
 #endif

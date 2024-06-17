@@ -10,6 +10,9 @@ class deTraduccion : public Ejercicio{
 		string fraseT;
 		string traduccion;
 	public:
+	virtual ~deTraducir();
+	std::string getfraseT();
+	std::string gettraduccion();
 };
 
 

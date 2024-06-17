@@ -10,6 +10,9 @@ class Ejercicio : public ICollectible{
 		string nomEjercicio;
 		string descripcion;
 	public:
+	virtual ~Ejercicio();
+	std::string getnomEjercicio();
+	std::string getdescripcion();
 };
 
 #endif
