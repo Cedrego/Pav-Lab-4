@@ -9,6 +9,8 @@ class DataProfesor {
 		string instituto;
 		string nomIdioma;
 	public:
+		string getInstituto;
+		string getNomIdioma;
 };
 
 #endif

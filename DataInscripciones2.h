@@ -10,6 +10,7 @@ class DataInscripciones2 {
 		string nomEstu;
 		DTFecha* fechaInsc;
 	public:
+	string getNomEstu;
 };
 
 #endif

@@ -12,6 +12,9 @@ class DataEjeCompletar {
 		string fraseC;
 		ICollection* faltante;
 	public:
+		string getNomEjercicio;
+		string getDescripcion;
+		string getFraseC;
 };
 
 #endif

@@ -11,6 +11,10 @@ class DataEjeTraduccion {
 		string fraseT;
 		string traduccion;
 	public:
+		string getNomEjercicio;
+		string getDescripcion;
+		string getFraseT;
+		string getTraduccion;
 };
 
 #endif

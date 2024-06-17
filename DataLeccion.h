@@ -9,6 +9,8 @@ class DataLeccion {
 		string tema;
 		string objetivo;
 	public:
+		string getTema;
+		string getObjetivo;
 };
 
 #endif
