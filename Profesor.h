@@ -9,6 +9,10 @@ class Profesor : public Usuario{
 		ICollection* Idiomas;
 		ICollection* Cursos;
 	public:
+	virtual ~Profesor();
+	std::string getinstituto();
+	ICollection* getIdiomas();
+	ICollection* getCursos();
 };
 
 #endif
