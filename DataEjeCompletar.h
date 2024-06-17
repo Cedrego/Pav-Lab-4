@@ -7,14 +7,17 @@ using namespace std;
 
 class DataEjeCompletar {
 	private:
-		string nomEjercicio;
-		string descripcion;
-		string fraseC;
+		std::string nomEjercicio;
+		std::string descripcion;
+		std::string fraseC;
 		ICollection* faltante;
 	public:
-		string getNomEjercicio;
-		string getDescripcion;
-		string getFraseC;
+	DataEjeCompletar(){};
+
+		virtual ~DataEjeCompletar;
+		std::string getNomEjercicio;
+		std::string getDescripcion;
+		std::string getFraseC;
 };
 
 #endif

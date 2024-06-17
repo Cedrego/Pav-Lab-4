@@ -8,11 +8,13 @@ using namespace std;
 
 class Lecciones : public ICollectible{
 	private:
-		string tema;
-		string objetivo;
+		std::string tema;
+		std::string objetivo;
 		IDictionary* deCompletar;
 		IDictionary* deTraducir;
 	public:
+		std::string getTema;
+		std::string getObjetivo;
 };
 
 #endif
