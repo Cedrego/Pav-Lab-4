@@ -9,11 +9,11 @@ class DataProfesor {
 		string instituto;
 		string nomIdioma;
 	public:
-	DataProfesor(){};
-
-		virtual ~DataProfesor;
-		string getInstituto;
-		string getNomIdioma;
+		DataProfesor(std::string institutoDT, std::string nomIdiomaDT);
+		DataProfesor();
+		virtual ~DataProfesor();
+		std::string getinstituto();
+		std::string getnomIdioma();
 };
 
 #endif
