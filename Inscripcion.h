@@ -10,11 +10,17 @@ class Inscripcion : public ICollectible {
 	private:
 		DTFecha* fechaInscr;
 		bool aprovado;
-		Estudiante* Estudiante;
-		Curso* Curso;
+		Estudiante* estudiante;
+		Curso* curso;
 	public:
-	
-		bool getAprovado;
+		Inscripcion(DTFecha* fechaInscrDT, bool aprovadoDT, Estudiante* estudianteDT, Curso* cursoDT);
+		Inscripcion();
+		virtual~Inscripcion();
+		DTFecha* getfechaInscr();
+		bool getaprovado();
+		Estudiante* getestudiante();
+		Curso* getcurso();
+		
 };
 
 #endif
