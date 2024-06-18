@@ -7,7 +7,6 @@ DataUsuario::DataUsuario(std::string nicknameDT, std::string descripcionDT, std:
     this->descripcion=descripcionDT;
     this->nombre=nombreDT;
     this->contrasenia=contraseniaDT;
-
     this->Estudiante=EstudianteDT;
     this->Profesores=ProfesorDT;
 };
