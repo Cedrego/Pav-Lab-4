@@ -9,6 +9,11 @@ class DataLeccion {
 		string tema;
 		string objetivo;
 	public:
+	DataLeccion(){};
+
+		virtual ~DataLeccion;
+		string getTema;
+		string getObjetivo;
 };
 
 #endif

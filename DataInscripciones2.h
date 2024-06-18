@@ -10,6 +10,10 @@ class DataInscripciones2 {
 		string nomEstu;
 		DTFecha* fechaInsc;
 	public:
+	DataInscripciones2(){};
+
+		virtual ~DataInscripciones2;
+		string getNomEstu;
 };
 
 #endif

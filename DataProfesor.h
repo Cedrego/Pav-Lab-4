@@ -9,6 +9,11 @@ class DataProfesor {
 		string instituto;
 		string nomIdioma;
 	public:
+	DataProfesor(){};
+
+		virtual ~DataProfesor;
+		string getInstituto;
+		string getNomIdioma;
 };
 
 #endif

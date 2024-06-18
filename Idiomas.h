@@ -7,8 +7,12 @@ using namespace std;
 
 class Idiomas : public ICollectible {
 	private:
-		string nomIdioma;
+		std::string nomIdioma;
 	public:
+	Idiomas(){};
+
+		virtual ~Idiomas;
+		std::string getNomIdioma;
 };
 
 #endif

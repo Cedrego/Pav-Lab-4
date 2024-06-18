@@ -10,6 +10,10 @@ class DataEst {
 		DTFecha* fecNac;
 		string pais;
 	public:
+	DataEst(){};
+
+		virtual ~DataEst;
+		string getPais;
 };
 
 #endif

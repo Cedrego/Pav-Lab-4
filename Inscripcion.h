@@ -13,6 +13,8 @@ class Inscripcion : public ICollectible {
 		Estudiante* Estudiante;
 		Curso* Curso;
 	public:
+	
+		bool getAprovado;
 };
 
 #endif
