@@ -1,7 +1,7 @@
 #include "Ejercicio.h"
-Ejercicio::Ejercicio(std::string nomEjercicioDT, std::string descripcionDT){
-    this->descripcion=descripcionDT;
-    this->nomEjercicio=nomEjercicioDT;
+Ejercicio::Ejercicio(std::string nomEjercicioI, std::string descripcionI){
+    this->descripcion=descripcionI;
+    this->nomEjercicio=nomEjercicioI;
 };
 
 Ejercicio::Ejercicio(){};

@@ -1,8 +1,8 @@
 #include "deTraducir.h"
 
-deTraducir::deTraducir(std::string fraseTDT, std::string traduccionDT){
-    this->fraseT=fraseTDT;
-    this->traduccion=traduccionDT;
+deTraducir::deTraducir(std::string fraseTI, std::string traduccionI){
+    this->fraseT=fraseTI;
+    this->traduccion=traduccionI;
 };
 
 deTraducir::deTraducir(){};

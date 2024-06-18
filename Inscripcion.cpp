@@ -1,10 +1,10 @@
 #include"Inscripcion.h"
 
-Inscripcion::Inscripcion(DTFecha* fechaInscrDT, bool aprovadoDT, Estudiante* estudianteDT, Curso* cursoDT){
-    this->fechaInscr=fechaInscrDT;
-    this->aprovado=aprovadoDT;
-    this->estudiante=estudianteDT;
-    this->curso=cursoDT;
+Inscripcion::Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estudianteI, Curso* cursoI){
+    this->fechaInscr=fechaInscrI;
+    this->aprovado=aprovadoI;
+    this->estudiante=estudianteI;
+    this->curso=cursoI;
 };
 Inscripcion::Inscripcion(){};
 

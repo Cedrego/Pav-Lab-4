@@ -1,7 +1,7 @@
 #include "Idiomas.h"
 
-Idiomas::Idiomas(std::string NomIdiomaDT){
-    this->nomIdioma=NomIdiomaDT;    
+Idiomas::Idiomas(std::string NomIdiomaI){
+    this->nomIdioma=NomIdiomaI;    
 };
 
 Idiomas::Idiomas(){};

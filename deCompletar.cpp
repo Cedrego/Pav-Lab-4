@@ -1,8 +1,8 @@
 #include "deCompletar.h"
 
-deCompletar::deCompletar(std::string fraseCDT, ICollection* faltanteDT){
-    this->fraseC=fraseCDT;
-    this->faltante=faltanteDT;
+deCompletar::deCompletar(std::string fraseCI, ICollection* faltanteI){
+    this->fraseC=fraseCI;
+    this->faltante=faltanteI;
 };
 
 deCompletar::~deCompletar(){};

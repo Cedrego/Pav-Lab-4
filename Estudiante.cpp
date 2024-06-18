@@ -1,9 +1,9 @@
 #include "Estudiante.h"
-Estudiante::Estudiante(DTFecha* fecNacDT, IDictionary* CursosDT, Lecciones* UltimaLeccionDT, ICollection* EjerciciosAprovDT){
-    this->fecNac=fecNacDT;
-    this->Cursos=CursosDT;
-    this->UltimaLeccion=UltimaLeccionDT;
-    this->EjerciciosAprov=EjerciciosAprovDT;
+Estudiante::Estudiante(DTFecha* fecNacI, IDictionary* CursosI, Lecciones* UltimaLeccionI, ICollection* EjerciciosAprovI){
+    this->fecNac=fecNacI;
+    this->Cursos=CursosI;
+    this->UltimaLeccion=UltimaLeccionI;
+    this->EjerciciosAprov=EjerciciosAprovI;
 };
 
 Estudiante::Estudiante(){};

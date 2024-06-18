@@ -10,7 +10,7 @@ class deTraducir : public Ejercicio{
 		string fraseT;
 		string traduccion;
 	public:
-	deTraducir(std::string fraseTDT, std::string traduccionDT);
+	deTraducir(std::string fraseTI, std::string traduccionI);
 	deTraducir();
 	virtual ~deTraducir();
 	std::string getfraseT();
