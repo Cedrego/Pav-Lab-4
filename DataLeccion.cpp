@@ -1,7 +1,7 @@
 #include"DataLeccion.h"
-DataLeccion::DataLeccion(std::string temaI, std::string objetivoI){
-    this->tema=temaI;
-    this->objetivo=objetivoI;
+DataLeccion::DataLeccion(std::string temaDT, std::string objetivoDT){
+    this->tema=temaDT;
+    this->objetivo=objetivoDT;
 };
 
 DataLeccion::DataLeccion(){};
