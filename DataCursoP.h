@@ -4,11 +4,16 @@
 #include <string>
 using namespace std;
 
-class DataCursosP {
+class DataCursoP {
 	private:
-		string NomCursoP;
+		std::string NomCursoP;
 		float Prom;
 	public:
+		DataCursoP(){};
+		DataCursoP(std::string NomCursoPDT, float PromDT);
+		virtual ~DataCursoP();
+		std::string getNomCurso();
+		float getProm();
 };
 
 #endif

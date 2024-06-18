@@ -24,7 +24,7 @@ class DataCurso2 {
 		DataInscripciones2* Inscrip;
 	public:
 		DataCurso2(){};
-		//constructor con parametros
+		//aca va el constructor con parametros
 		virtual ~DataCurso2();
 		std::string getNomCurso();
 		DIFICULTAD getDificultad();
