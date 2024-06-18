@@ -14,6 +14,8 @@ class Estudiante : public Usuario {
         Lecciones* UltimaLeccion;
         ICollection* EjerciciosAprov;
     public:
+    Estudiante(DTFecha* fecNacDT, IDictionary* CursosDT, Lecciones* UltimaLeccionDT, ICollection* EjerciciosAprovDT);
+    Estudiante();
     virtual ~Estudiante();
     DTFecha* getfecNac();
     IDictionary* getCursos();
