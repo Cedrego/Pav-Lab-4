@@ -11,13 +11,13 @@ class DataEjeTraduccion {
 		std::string fraseT;
 		std::string traduccion;
 	public:
-	DataEjeTraduccion(){};
-	
-		virtual ~DataEjeTraduccion;
-		std::string getNomEjercicio;
-		string getDescripcion;
-		string getFraseT;
-		string getTraduccion;
+		DataEjeTraduccion(){};
+		DataEjeTraduccion(std::string nomEjercicioT, std::string descripcionT, std::string fraseTT, std::string traduccionT);
+		virtual ~DataEjeTraduccion();
+		std::string getNomEjercicio();
+		string getDescripcion();
+		string getFraseT();
+		string getTraduccion();
 };
 
 #endif

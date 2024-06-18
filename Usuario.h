@@ -12,11 +12,14 @@ class Usuario : public ICollectible{
 		string nombre;
 		string contrasenia;
 	public:
-	virtual ~Usuario();
-	std::string getnickname();
-	std::string getdescripcion();
-	std::string getnombre();
-	std::string getcontrasenia();
+	//getters (constructores son innecesarios ya que trabajamos directamente con Profesor y Estudiante)
+	std::string getNickname();
+	std::string getDescripcion();
+	std::string getNombre();
+	std::string getContrasenia();
+	//
+
+	
 };
 
 #endif
