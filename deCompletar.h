@@ -12,7 +12,7 @@ class deCompletar : public Ejercicio{
 		ICollection* faltante;
 	public:
 	deCompletar(std::string fraseCDT, ICollection* faltanteDT);
-	deCompletar(){};
+	deCompletar();
 	virtual ~deCompletar();
 	std::string getfraseC();
 	ICollection* getfaltante();
