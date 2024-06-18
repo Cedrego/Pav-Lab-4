@@ -9,10 +9,10 @@ class Idiomas : public ICollectible {
 	private:
 		std::string nomIdioma;
 	public:
-	Idiomas(){};
-
-		virtual ~Idiomas;
-		std::string getNomIdioma;
+		Idiomas(std::string NomIdiomaDT);
+		Idiomas();
+		virtual ~Idiomas();
+		std::string getnomIdioma();
 };
 
 #endif
