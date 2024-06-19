@@ -2,6 +2,7 @@
 #ifndef PROFESOR_H
 #define PROFESOR_H
 #include "ICollection/interfaces/ICollection.h"
+#include "Usuario.h"
 
 class Profesor : public Usuario{
 	private:

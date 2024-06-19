@@ -12,9 +12,8 @@ class DataEjeCompletar {
 		std::string fraseC;
 		ICollection* faltante;
 	public:
-	DataEjeCompletar(){};
-
-		virtual ~DataEjeCompletar;
+		DataEjeCompletar();
+		virtual ~DataEjeCompletar();
 		std::string getNomEjercicio;
 		std::string getDescripcion;
 		std::string getFraseC;

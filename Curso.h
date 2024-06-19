@@ -1,4 +1,13 @@
 
+#ifndef DIFICULTAD_H
+#define DIFICULTAD_H
+
+enum DIFICULTAD{
+	principiante,medio,avanzado
+};
+
+#endif
+
 #ifndef CURSO_H
 #define CURSO_H
 #include "Lecciones.h"
@@ -26,12 +35,3 @@ class Curso : public ICollectible{
 
 #endif
 
-
-#ifndef DIFICULTAD_H
-#define DIFICULTAD_H
-
-enum DIFICULTAD{
-	principiante,medio,avanzado
-};
-
-#endif

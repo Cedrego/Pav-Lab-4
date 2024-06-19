@@ -1,8 +1,7 @@
-
+#include "Factory.h"
 #include <iostream>
 #include <string>
 #include "ICtrl.h"
-#include "Factory.h"
 using namespace std;
 
 int main(int argc, char *argv[]){

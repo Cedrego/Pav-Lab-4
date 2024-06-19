@@ -11,9 +11,9 @@ class DataProfesor {
 	public:
 	DataProfesor(){};
 
-		virtual ~DataProfesor;
-		string getInstituto;
-		string getNomIdioma;
+		virtual ~DataProfesor();
+		string getInstituto();
+		string getNomIdioma();
 };
 
 #endif

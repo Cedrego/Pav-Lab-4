@@ -11,7 +11,7 @@ class DataLeccion {
 	public:
 	DataLeccion(){};
 
-		virtual ~DataLeccion;
+		virtual ~DataLeccion();
 		string getTema;
 		string getObjetivo;
 };
