@@ -11,7 +11,7 @@ class DataEst {
 		std::string pais;
 	public:
 		DataEst(){};
-		DataEst(DTFecha* fecNacE, std::string paisE)
+		DataEst(DTFecha* fecNacE, std::string paisE);
 		virtual ~DataEst();
 		DTFecha* getFecNac();
 		std::string getPais();

@@ -6,7 +6,7 @@ DataCursoE::DataCursoE(std::string NomCursoPDT, float PAvanceDT){
     this->PAvance=PAvanceDT;
 };
 
-DataCursoE::~DataCursoE();
+DataCursoE::~DataCursoE(){};
 
 std::string DataCursoE::getNomCursoP(){
     return this->NomCursoP;
