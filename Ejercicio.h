@@ -10,9 +10,11 @@ class Ejercicio : public ICollectible{
 		string nomEjercicio;
 		string descripcion;
 	public:
-	//virtual ~Ejercicio();
-	//std::string getnomEjercicio();
-	//std::string getdescripcion();
+	Ejercicio(std::string nomEjercicioI, std::string descripcionI);
+	Ejercicio();
+	virtual ~Ejercicio();
+	std::string getnomEjercicio();
+	std::string getdescripcion();
 };
 
 #endif

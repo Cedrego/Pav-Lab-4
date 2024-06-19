@@ -13,8 +13,13 @@ class Lecciones : public ICollectible{
 		IDictionary* deCompletar;
 		IDictionary* deTraducir;
 	public:
-		std::string getTema;
-		std::string getObjetivo;
+		Lecciones(std::string temaI, std::string objetivoI, IDictionary* deCompletarI, IDictionary* deTraducirI);
+		Lecciones();
+		virtual~Lecciones();
+		std::string gettema();
+		std::string getobjetivo();
+		IDictionary* getdeCompletar();
+		IDictionary* getdeTraducir();
 };
 
 #endif

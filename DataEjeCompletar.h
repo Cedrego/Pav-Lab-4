@@ -12,11 +12,13 @@ class DataEjeCompletar {
 		std::string fraseC;
 		ICollection* faltante;
 	public:
-		DataEjeCompletar();
+		DataEjeCompletar(){};
+		DataEjeCompletar(std::string nomEjercicioC, std::string descripcionC, std::string fraseCC, ICollection* faltanteC);
 		virtual ~DataEjeCompletar();
-		std::string getNomEjercicio;
-		std::string getDescripcion;
-		std::string getFraseC;
+		std::string getNomEjercicio();
+		std::string getDescripcion();
+		std::string getFraseC();
+		ICollection* getFaltante();
 };
 
 #endif

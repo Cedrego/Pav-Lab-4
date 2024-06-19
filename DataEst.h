@@ -8,11 +8,13 @@ using namespace std;
 class DataEst {
 	private:
 		DTFecha* fecNac;
-		string pais;
+		std::string pais;
 	public:
-		DataEst();
+		DataEst(){};
+		DataEst(DTFecha* fecNacE, std::string paisE)
 		virtual ~DataEst();
-		string getPais;
+		DTFecha* getFecNac();
+		std::string getPais();
 };
 
 #endif

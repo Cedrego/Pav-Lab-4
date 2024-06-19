@@ -10,6 +10,8 @@ class Profesor : public Usuario{
 		ICollection* Idiomas;
 		ICollection* Cursos;
 	public:
+	Profesor(std::string institutoI, ICollection* IdiomasI, ICollection* CursosI);
+	Profesor();
 	virtual ~Profesor();
 	std::string getinstituto();
 	ICollection* getIdiomas();

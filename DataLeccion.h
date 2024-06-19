@@ -9,11 +9,11 @@ class DataLeccion {
 		string tema;
 		string objetivo;
 	public:
-	DataLeccion(){};
-
+		DataLeccion(std::string temaDT, std::string objetivoDT);
+		DataLeccion();
 		virtual ~DataLeccion();
-		string getTema;
-		string getObjetivo;
+		std::string gettema();
+		std::string getobjetivo();
 };
 
 #endif
