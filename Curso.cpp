@@ -1,6 +1,6 @@
 #include "Curso.h"
 
-
+//constructor y getters
 Curso::Curso(std::string nomCursoC, std::string desCursoC, DIFICULTAD dificultadC, bool habilitadoC, Idiomas* IdiomaC, Profesor* profesorC){
     this->nomCurso=nomCursoC;
     this->desCurso=desCursoC;
@@ -52,3 +52,22 @@ ICollection* Curso::getLecciones(){
 ICollection* Curso::getInscripciones(){
     return this->Inscripciones;
 };
+//
+
+//CU Agregar Ejercicio
+
+set<std::string> Curso::conseguirLecciones(){
+    set<std::string> listaLecciones;
+
+    for (Lecciones *leccion; this->Lecciones){
+        
+    }
+
+};
+
+//CU: Habilitar Curso
+
+void Curso::habilitar(){
+    this->habilitado=true;
+};
+

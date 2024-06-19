@@ -14,6 +14,7 @@ enum DIFICULTAD{
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/interfaces/ICollection.h"
 #include <string>
+#include <set>
 using namespace std;
 
 class Curso : public ICollectible{
@@ -26,7 +27,7 @@ class Curso : public ICollectible{
 		Profesor* profesor;
 		ICollection* MisPrevias;
 		ICollection* SoyPreviaDe;
-		ICollection* Lecciones;
+		ICollection* lecciones;
 		ICollection* Inscripciones;
 	public:
 		//constructores y getters
@@ -44,6 +45,12 @@ class Curso : public ICollectible{
 		ICollection* getLecciones();
 		ICollection* getInscripciones();
 		//
+
+		//CU: Agregar Ejercico
+		set<std::string> conseguirLecciones();
+
+		//CU: Habilitar Curso
+		void habilitar();
 
 };
 
