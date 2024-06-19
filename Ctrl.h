@@ -15,7 +15,6 @@ using namespace std;
 class Ctrl: public ICtrl{
     private:
         Ctrl();
-        Ctrl(const Ctrl& orig);
         static Ctrl* instance;
     public:
         

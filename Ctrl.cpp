@@ -13,5 +13,3 @@ ICtrl* Ctrl::getInstance() {
 
 Ctrl::Ctrl() {};
 Ctrl::~Ctrl() {};
-Ctrl::Ctrl(const Ctrl& orig) {};
-
