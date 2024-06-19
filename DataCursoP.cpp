@@ -2,8 +2,8 @@
 
 
 DataCursoP::DataCursoP(std::string NomCursoPDT, float PromDT){
-    this->nomCurso=NomCursoPDTP;
-    this->Prom=PromDTP;
+    this->NomCursoP=NomCursoPDT;
+    this->Prom=PromDT;
 };
 
 DataCursoP::~DataCursoP(){};
