@@ -25,8 +25,12 @@ class Ctrl: public ICtrl{
         virtual ~Ctrl();
         IDictionary* getCursos();
         //CU: Agregar Ejercicio
-        set<std::string> ListarCursosNoHabilitados();
         set<std::string> listarLecciones(std::string nCurso); 
+
+        //Agregar Leccion
+        Lecciones* ingresarLeccion(std::string NomTema, std::string Objetivo);//OK
+        //set<std::string> ListarCursosNoHabilitados();//OK de Enzo
+        Curso* SeleccionarCursoNoHabilitado(std::string nCurso);//OK
 };
 
 #endif

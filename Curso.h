@@ -53,7 +53,7 @@ class Curso : public ICollectible{
 		void habilitar();
 
 		//Agregar Leccion
-		Lecciones* CrearLeccion(string NomTema, string Objetivo);
+		Lecciones* CrearLeccion(string NomTema, string Objetivo);//OK
 };
 
 #endif

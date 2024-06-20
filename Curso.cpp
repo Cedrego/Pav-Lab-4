@@ -72,4 +72,11 @@ set<std::string> Curso::conseguirLecciones(){
 void Curso::habilitar(){
     this->habilitado=true;
 };
-
+//Agregar Leccion
+Lecciones* Curso::CrearLeccion(string NomTema, string Objetivo){
+    //Creamos la leccion
+   Lecciones* leccion=new Lecciones( NomTema, Objetivo,NULL,NULL);
+   //La leccion creada se agrega a la coleccion
+    this->lecciones->add((ICollectible*) leccion);
+    return leccion;
+};//OK

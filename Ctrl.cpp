@@ -13,53 +13,30 @@ ICtrl* Ctrl::getInstance() {
 
 Ctrl::Ctrl() {};
 Ctrl::~Ctrl() {};
+//Agregar Leccion
+Lecciones* ingresarLeccion(string NomTema, string Objetivo, Curso* c){
+    //c es una instancia de Curso 
+    return c->CrearLeccion(NomTema, Objetivo);
 
-IDictionary* Ctrl::getCursos(){
-    return this->Cursos;
-}
-
-//CU: Agregar Ejercicio
-set<std::string> Ctrl::ListarCursosNoHabilitados(){
-    //creo una lista de strings para retornar
-    set<std::string> CursosNH;
-    //consigo todos los Cursos en el Ctrl
-    IDictionary* cursosTotal=this->getCursos();
-    //y consigo un iterador en base a eso
-    IIterator* it=cursosTotal->getIterator();
-    
-    //itero dentro del diccionario
-    while(it->hasCurrent()){; 
-        //casteo el iterador a Curso y pregunto si esta habilitado
-        bool estaHabilitado=((Curso*)it->getCurrent())->getHabilitado();
-        //si no esta habilitado, lo agrego a la lista
-        if(!estaHabilitado){
-            CursosNH.insert(((Curso*)it->getCurrent())->getNomCurso());
-        };
-        it->next()
-    };
-    //borro el iterador y el diccionario
-    delete it;
-    delete cursosTotal;
-    //retorno la lista
-    return CursosNH;
 };
-
-set<std::string> Ctrl::listarLecciones(std::string nCurso){
-    //creo una lista para retornar
-    set<std::string> Lecciones;
-    //guardo el diccionario de los cursos del ctrl
-    IDictionary* Cursos=this->getCursos();
-    //declaro su IKey
-    IKey* KeyCurso=new String(nCurso.c_str());
-    //busco el curso mediante la IKey 
-    Curso* curso=(Curso*)(Cursos->find(KeyCurso));
-    //llamo a conseguirLecciones() y guardo su resultado en Lecciones
-    Lecciones=curso->conseguirLecciones();
-
-    //borro lo que no es necesario
-    delete curso;
-    delete Cursos;
-
-    //retorno la lista
-    return Lecciones;
-}; 
+/*
+set<std::string> Ctrl::ListarCursosNoHabilitados(){
+    //Pedimos iterador de cursos a Controlador
+    IIterator* itCurso=this->Cursos->getIterator();
+    set<std::string> NombreC;
+    while(itCurso->hasCurrent()){
+        Curso* c=(Curso*)itCurso->getCurrent();
+        bool Habi=c->getHabilitado();
+        if(Habi==false){
+            NombreC.insert(c->getNomCurso());
+        }
+        itCurso->next();
+    }
+    delete itCurso;
+    return NombreC;
+};
+*/
+Curso* Ctrl::SeleccionarCursoNoHabilitado(string nCurso){
+    IKey* IKC=new String(nCurso.c_str());
+    return (Curso*)this->Cursos->find(IKC);
+};//OK
