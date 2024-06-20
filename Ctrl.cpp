@@ -35,7 +35,7 @@ set<std::string> Ctrl::ListarCursosNoHabilitados(){
         if(!estaHabilitado){
             CursosNH.insert(((Curso*)it->getCurrent())->getNomCurso());
         };
-        it->next()
+        it->next();
     };
     //borro el iterador y el diccionario
     delete it;

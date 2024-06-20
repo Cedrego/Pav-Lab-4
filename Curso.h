@@ -28,7 +28,7 @@ class Curso : public ICollectible{
 		ICollection* MisPrevias;
 		ICollection* SoyPreviaDe;
 		ICollection* lecciones;
-		ICollection* Inscripciones;
+		IDictionary* Inscripciones; //nickname de Estudiante es IKey
 	public:
 		//constructores y getters
 		Curso(){};
