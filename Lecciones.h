@@ -16,8 +16,8 @@ class Lecciones : public ICollectible{
 		Lecciones(std::string temaI, std::string objetivoI, IDictionary* deCompletarI, IDictionary* deTraducirI);
 		Lecciones();
 		virtual~Lecciones();
-		std::string gettema();
-		std::string getobjetivo();
+		std::string getTema();
+		std::string getObjetivo();
 		IDictionary* getdeCompletar();
 		IDictionary* getdeTraducir();
 };

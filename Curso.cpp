@@ -47,7 +47,7 @@ ICollection* Curso::getSoyPreviaDe(){
 };
 
 ICollection* Curso::getLecciones(){
-    return this->Lecciones;
+    return this->lecciones;
 };
 ICollection* Curso::getInscripciones(){
     return this->Inscripciones;
@@ -57,12 +57,13 @@ ICollection* Curso::getInscripciones(){
 //CU Agregar Ejercicio
 
 set<std::string> Curso::conseguirLecciones(){
-    set<std::string> listaLecciones;
-
-    for (Lecciones *leccion; this->Lecciones){
-        
-    }
-
+    set<std::string> leccionesCurso;
+    ICollection* listaLecciones=this->getLecciones();
+    IIterator* it=listaLecciones->getIterator();
+    for (it->getCurrent(); it->hasCurrent(); it->next()){
+        leccionesCurso.insert(((Lecciones*)it->getCurrent())->getTema());
+    };
+    return leccionesCurso;
 };
 
 //CU: Habilitar Curso
