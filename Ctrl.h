@@ -2,6 +2,7 @@
 #define CTRL_H
 #include "ICtrl.h"
 #include "Curso.h"
+#include "Profesor.h"
 #include <string>
 #include <set>
 #include "ICollection/interfaces/IDictionary.h"
@@ -19,14 +20,24 @@ class Ctrl: public ICtrl{
         Ctrl();
         static Ctrl* instance;
         IDictionary* Cursos;
+        IDictionary* Profesores;
     public:
         
         static ICtrl* getInstance();
         virtual ~Ctrl();
         IDictionary* getCursos();
+        IDictionary* getProfesores();
+
+        //CU: Alta de Curso
+        set<std::string> ListarProfesores();
+        Curso* IngresoCurso(std::string nickP , std::string nomCurso, std::string descCurso, DIFICULTAD difCurso);
+
         //CU: Agregar Ejercicio
         set<std::string> ListarCursosNoHabilitados();
         set<std::string> listarLecciones(std::string nCurso); 
+
+        //CU: Habilitar Curso
+        void HabilitarCurso(std::string nCurso);
 };
 
 #endif

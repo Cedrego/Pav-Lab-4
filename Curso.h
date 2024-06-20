@@ -43,7 +43,7 @@ class Curso : public ICollectible{
 		ICollection* getMisPrevias();
 		ICollection* getSoyPreviaDe();
 		ICollection* getLecciones();
-		ICollection* getInscripciones();
+		IDictionary* getInscripciones();
 		//
 
 		//CU: Agregar Ejercico

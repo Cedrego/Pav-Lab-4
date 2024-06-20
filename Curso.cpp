@@ -49,7 +49,7 @@ ICollection* Curso::getSoyPreviaDe(){
 ICollection* Curso::getLecciones(){
     return this->lecciones;
 };
-ICollection* Curso::getInscripciones(){
+IDictionary* Curso::getInscripciones(){
     return this->Inscripciones;
 };
 //

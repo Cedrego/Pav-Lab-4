@@ -20,3 +20,12 @@ ICollection* Profesor::getIdiomas(){
 ICollection* Profesor::getCursos(){
     return this->Cursos;
 };
+
+
+//CU: Alta de Curso
+void Profesor::asignarCursoAProfesor(Curso* cursoNuevo){
+    this->Cursos.add(cursoNuevo); //Si queda en ICollection
+    
+    //IKey* KeyCurso = new String((cursoNuevo->getNomCurso()).c_str()); //si lo cambio a IDictionary
+    //this->Cursos.add(KeyCurso,cursoNuevo);
+};
