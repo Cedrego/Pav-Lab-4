@@ -47,7 +47,7 @@ ICollection* Curso::getSoyPreviaDe(){
 };
 
 ICollection* Curso::getLecciones(){
-    return this->Lecciones;
+    return this->lecciones;
 };
 ICollection* Curso::getInscripciones(){
     return this->Inscripciones;
@@ -59,9 +59,9 @@ ICollection* Curso::getInscripciones(){
 set<std::string> Curso::conseguirLecciones(){
     set<std::string> listaLecciones;
 
-    for (Lecciones *leccion; this->Lecciones){
+    for (Lecciones *leccion; this->lecciones){
         
-    }
+    };
 
 };
 
@@ -71,3 +71,10 @@ void Curso::habilitar(){
     this->habilitado=true;
 };
 
+//Agregar Leccion
+Lecciones* Curso::CrearLeccion(string NomTema, string Objetivo){
+    //Creamos la leccion
+   Lecciones* leccion=new Lecciones( NomTema, Objetivo,NULL,NULL);
+   //La leccion creada se agrega a la coleccion
+    this->lecciones->add((ICollectible*) leccion);
+};

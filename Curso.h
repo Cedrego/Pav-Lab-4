@@ -52,6 +52,8 @@ class Curso : public ICollectible{
 		//CU: Habilitar Curso
 		void habilitar();
 
+		//Agregar Leccion
+		Lecciones* CrearLeccion(string NomTema, string Objetivo);
 };
 
 #endif
