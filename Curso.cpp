@@ -60,8 +60,9 @@ set<std::string> Curso::conseguirLecciones(){
     set<std::string> leccionesCurso;
     ICollection* listaLecciones=this->getLecciones();
     IIterator* it=listaLecciones->getIterator();
-    for (it->getCurrent(); it->hasCurrent(); it->next()){
+    while(it->hasCurrent()){
         leccionesCurso.insert(((Lecciones*)it->getCurrent())->getTema());
+        it->next();
     };
     return leccionesCurso;
 };

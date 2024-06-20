@@ -28,13 +28,14 @@ set<std::string> Ctrl::ListarCursosNoHabilitados(){
     IIterator* it=cursosTotal->getIterator();
     
     //itero dentro del diccionario
-    for(it->getCurrent(); it->hasCurrent(); it->next()){
+    while(it->hasCurrent()){; 
         //casteo el iterador a Curso y pregunto si esta habilitado
         bool estaHabilitado=((Curso*)it->getCurrent())->getHabilitado();
         //si no esta habilitado, lo agrego a la lista
         if(!estaHabilitado){
             CursosNH.insert(((Curso*)it->getCurrent())->getNomCurso());
         };
+        it->next()
     };
     //borro el iterador y el diccionario
     delete it;
