@@ -57,12 +57,14 @@ ICollection* Curso::getInscripciones(){
 //CU Agregar Ejercicio
 
 set<std::string> Curso::conseguirLecciones(){
-    set<std::string> listaLecciones;
-
-    for (Lecciones *leccion; this->lecciones){
-        
+    set<std::string> leccionesCurso;
+    ICollection* listaLecciones=this->getLecciones();
+    IIterator* it=listaLecciones->getIterator();
+    while(it->hasCurrent()){
+        leccionesCurso.insert(((Lecciones*)it->getCurrent())->getTema());
+        it->next();
     };
-
+    return leccionesCurso;
 };
 
 //CU: Habilitar Curso
@@ -71,10 +73,3 @@ void Curso::habilitar(){
     this->habilitado=true;
 };
 
-//Agregar Leccion
-Lecciones* Curso::CrearLeccion(string NomTema, string Objetivo){
-    //Creamos la leccion
-   Lecciones* leccion=new Lecciones( NomTema, Objetivo,NULL,NULL);
-   //La leccion creada se agrega a la coleccion
-    this->lecciones->add((ICollectible*) leccion);
-};

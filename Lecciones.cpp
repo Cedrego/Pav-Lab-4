@@ -11,11 +11,11 @@ Lecciones::Lecciones(){};
 
 Lecciones::~Lecciones(){};
 
-string Lecciones::gettema(){
+string Lecciones::getTema(){
     return this->tema;
 };
 
-string Lecciones::getobjetivo(){
+string Lecciones::getObjetivo(){
     return this->objetivo;
 };
 

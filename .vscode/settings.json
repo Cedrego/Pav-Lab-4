@@ -45,7 +45,8 @@
         "typeinfo": "cpp",
         "cstdarg": "cpp",
         "optional": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "set": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

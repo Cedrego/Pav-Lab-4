@@ -27,7 +27,7 @@ bool DataCurso::getHabilitado(){
     return this->habilitado;
 };
 
-float DataCurso::getpromediT(){
+float DataCurso::getPromediT(){
     return this->promedioT;
 };
 

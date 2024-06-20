@@ -20,7 +20,7 @@ class DataCurso {
 		DIFICULTAD getDificultad();
 		std::string getDesCurso();
 		bool getHabilitado();
-		float getpromediT();
+		float getPromediT();
 };
 
 
