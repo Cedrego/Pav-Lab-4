@@ -32,6 +32,7 @@ IDictionary* Lecciones::getdeTraducir(){
 };
 
 //Agregar  Leccion
+/*
 Ejercicio* Lecciones::CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion){
    
     if(tipo=="Traducir"){
@@ -40,6 +41,8 @@ Ejercicio* Lecciones::CrearEjer(std::string NomEj, std::string tipo,std::string 
         this->DeTraducir->add(Ej,Ejer);
         return Ejer;
     }else{
+        deCompletar* Ejer=new deCompletar(NomEj,desc,frase,solucion);
 
     }
 };	
+*/
