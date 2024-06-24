@@ -48,25 +48,75 @@ Curso* Ctrl::IngresoCurso(std::string nickP , std::string nomCurso, std::string 
     //consigo los profesores
     IDictionary* profesoresCtrl=this->getProfesores();
     //hago una IKey
-    IKey* KeyProf = new String(nickP.c_str);
+    IKey* KeyProf = new String(nickP.c_str());
     //busco el profesor especifico
     Profesor * prof = (Profesor*)(profesoresCtrl->find(KeyProf));
     //creo un curso nuevo con los datos ingresados y el profesor encontrado, no tengo idioma asi que es NULL
-    Curso* cursoNuevo = new Curso::Curso(nomCurso, descCurso, difCurso, false, NULL, prof);
+    Curso* cursoNuevo = new Curso(nomCurso, descCurso, difCurso, false, NULL, prof);
     //llamo esta funcion para agregar el curso a la coleccion de cursos del profesor
     prof->asignarCursoAProfesor(cursoNuevo);
     //retorno el curso creado para usarlo en otras operaciones
     return cursoNuevo;
 };
 
+set<std::string> Ctrl::ListarIdiomas(Curso* cursoNuevo){
+    set<std::string> IdiomasProf;
+    Profesor* prof= (cursoNuevo->getProfesor());
+    IdiomasProf=prof->buscarIdioma(prof);
+    return IdiomasProf;
+};
+
+void Ctrl::SeleccionarIdiomaC(std::string idioma, Curso* cursoNuevo){
+    IKey* KeyIdioma = new String(idioma.c_str());
+    Idiomas* I= (Idiomas*)((this->idiomas)->find(KeyIdioma));
+    cursoNuevo->asignarIdiomaACurso(I);
+};
+
+set<std::string> Ctrl::ListarCursosHabilitados(){
+    //creo una lista de strings para retornar
+    set<std::string> CursosH;
+    //consigo todos los Cursos en el Ctrl y consigo un iterador en base a eso
+    IIterator* it=(this->Cursos)->getIterator();
+    
+    //itero dentro del diccionario
+    while(it->hasCurrent()){; 
+        //casteo el iterador a Curso y pregunto si esta habilitado
+        bool estaHabilitado=((Curso*)it->getCurrent())->getHabilitado();
+        //si no esta habilitado, lo agrego a la lista
+        if(estaHabilitado){
+            CursosH.insert(((Curso*)it->getCurrent())->getNomCurso());
+        };
+        it->next();
+    };
+    //borro el iterador
+    delete it;
+    //retorno la lista
+    return CursosH;
+};
+
+void Ctrl::SeleccionarPreviatura(std::string nCurso, Curso* cursoNuevo){
+    //Creo una key del curso que quiero seleccionar como previa
+    IKey* KeyCurso = new String(nCurso.c_str());
+    //Busco el curso que quiero seleccionar como previa
+    Curso* CursoPrevia = (Curso*)((this->Cursos)->find(KeyCurso));
+    //Asigno el curso previo como previa del curso nuevo
+    cursoNuevo->esPrevia(CursoPrevia);
+    //Asigno el curso nuevo como posterior del curso previo
+    CursoPrevia->miPrevia(cursoNuevo);
+};
+
+/* REVISAR DESPUES CON ENZO Y THIAGO
+Leccion* ingresarLeccion(NomTema string, Objetivo string){
+
+};
+*/
+
 //CU: Agregar Ejercicio
 set<std::string> Ctrl::ListarCursosNoHabilitados(){
     //creo una lista de strings para retornar
     set<std::string> CursosNH;
-    //consigo todos los Cursos en el Ctrl
-    IDictionary* cursosTotal=this->getCursos();
-    //y consigo un iterador en base a eso
-    IIterator* it=cursosTotal->getIterator();
+    //consigo todos los Cursos en el Ctrl y consigo un iterador en base a eso
+    IIterator* it=(this->Cursos)->getIterator();
     
     //itero dentro del diccionario
     while(it->hasCurrent()){; 
@@ -78,9 +128,8 @@ set<std::string> Ctrl::ListarCursosNoHabilitados(){
         };
         it->next();
     };
-    //borro el iterador y el diccionario
+    //borro el iterador
     delete it;
-    delete cursosTotal;
     //retorno la lista
     return CursosNH;
 };

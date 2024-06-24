@@ -52,7 +52,21 @@ ICollection* Curso::getLecciones(){
 IDictionary* Curso::getInscripciones(){
     return this->Inscripciones;
 };
-//
+
+//CU: Alta de Curso
+void Curso::asignarIdiomaACurso(Idiomas* I){
+    this->Idioma=I;
+};
+
+void Curso::esPrevia (Curso* CursoPrevia){
+    (this->MisPrevias)->add((ICollectible*)CursoPrevia);
+};
+
+void Curso::miPrevia (Curso* CursoNuevo){
+    (this->SoyPreviaDe)->add((ICollectible*)CursoNuevo);
+};
+
+
 
 //CU Agregar Ejercicio
 

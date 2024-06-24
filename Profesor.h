@@ -4,11 +4,12 @@
 #include "ICollection/interfaces/ICollection.h"
 #include"Usuario.h"
 #include "Curso.h"
+#include <set>
 class Profesor : public Usuario{
 	private:
 		string instituto;
-		ICollection* Idiomas;
-		ICollection* Cursos; //IDictionary?
+		ICollection* idiomas;
+		ICollection* cursos; //IDictionary?
 	public:
 	Profesor(std::string institutoI, ICollection* IdiomasI, ICollection* CursosI); //IDictionary curso?
 	Profesor();
@@ -19,6 +20,7 @@ class Profesor : public Usuario{
 
 	//CU: Alta de Curso
 	void asignarCursoAProfesor(Curso* cursoNuevo);
+	set<std::string> buscarIdioma(Profesor* prof);
 };
 
 #endif

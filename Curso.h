@@ -44,8 +44,11 @@ class Curso : public ICollectible{
 		ICollection* getSoyPreviaDe();
 		ICollection* getLecciones();
 		IDictionary* getInscripciones();
-		//
-
+		
+		//CU: Alta de Curso
+		void asignarIdiomaACurso(Idiomas* I);
+		void esPrevia (Curso* CursoPrevia);
+		void miPrevia (Curso* CursoNuevo);
 		//CU: Agregar Ejercico
 		set<std::string> conseguirLecciones();
 

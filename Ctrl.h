@@ -21,6 +21,7 @@ class Ctrl: public ICtrl{
         static Ctrl* instance;
         IDictionary* Cursos;
         IDictionary* Profesores;
+        IDictionary* idiomas; 
     public:
         
         static ICtrl* getInstance();
@@ -31,11 +32,16 @@ class Ctrl: public ICtrl{
         //CU: Alta de Curso
         set<std::string> ListarProfesores();
         Curso* IngresoCurso(std::string nickP , std::string nomCurso, std::string descCurso, DIFICULTAD difCurso);
-
+        set<std::string> ListarIdiomas(Curso* cursoNuevo);
+        void SeleccionarIdiomaC(std::string idioma, Curso* cursoNuevo);
+        set<std::string> ListarCursosHabilitados();
+        void SeleccionarPreviatura(std::string nCurso, Curso* cursoNuevo);
+        Leccion* ingresarLeccion(NomTema string, Objetivo string);
+        
         //CU: Agregar Ejercicio
         set<std::string> ListarCursosNoHabilitados();
         set<std::string> listarLecciones(std::string nCurso); 
-
+        
         //CU: Habilitar Curso
         void HabilitarCurso(std::string nCurso);
 };
