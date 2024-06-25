@@ -12,7 +12,7 @@ class deCompletar : public Ejercicio{
 		string fraseC;
 		set<std::string> faltante;
 	public:
-	deCompletar(std::string fraseCI, ICollection* faltanteI);
+	deCompletar(std::string NomEj,std::string desc,std::string fraseCI, set<std::string> faltanteI);
 	deCompletar();
 	virtual ~deCompletar();
 	std::string getfraseC();

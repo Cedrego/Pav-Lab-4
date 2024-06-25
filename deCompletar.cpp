@@ -1,6 +1,8 @@
 #include "deCompletar.h"
 
-deCompletar::deCompletar(std::string fraseCI, ICollection* faltanteI){
+deCompletar::deCompletar(std::string NomEj,std::string desc,std::string fraseCI, set<std::string> faltanteI){
+    this->nomEjercicio=NomEj;
+    this->descripcion=desc;
     this->fraseC=fraseCI;
     this->faltante=faltanteI;
 };
