@@ -15,6 +15,8 @@
 #include "ICollection/String.h"
 #include "ICollection/Integer.h"
 
+//class Inscripcion;
+
 class Estudiante : public Usuario {
     private:
         DTFecha* fecNac;

@@ -5,7 +5,10 @@
 #include "DTFecha.h"
 #include "Curso.h"
 #include "Estudiante.h"
-
+/*
+class Estudiante;
+class Curso;
+*/
 class Inscripcion : public ICollectible {
 	private:
 		DTFecha* fechaInscr;

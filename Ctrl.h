@@ -41,7 +41,7 @@ class Ctrl: public ICtrl{
         void SeleccionarIdiomaC(std::string idioma, Curso* cursoNuevo);
         set<std::string> ListarCursosHabilitados();
         void SeleccionarPreviatura(std::string nCurso, Curso* cursoNuevo);
-        //Lecciones* ingresarLeccion(NomTema string, Objetivo string);
+        //Lecciones* ingresarLeccion(std::string NomTema, std::string Objetivo); Usaremos el de Enzo, lo dejo para comodidad al momento de revisar cuantas op nos faltan
 
         //CU: Alta de Usuario
         void IngresoE(DTFecha* fecNac, std::string Nick , std::string Contrasenia , std::string Nom , std::string Desc , std::string Pais);
@@ -58,14 +58,10 @@ class Ctrl: public ICtrl{
         Curso* SeleccionarCursoNoHabilitado(std::string nCurso);//OK
         void CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH);//OK
         
-        //CU: Habilitar Curso
-        void HabilitarCurso(std::string nCurso);
-        
         //CU: Eliminar Curso
         set<std::string> ListCurso();
         void EliminarCurso(std::string NomCurso);
 
-        
         //CU: Habilitar Curso
         void HabilitarCurso(std::string nCurso);
 

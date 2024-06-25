@@ -17,7 +17,7 @@ enum DIFICULTAD{
 #include <string>
 #include <set>
 using namespace std;
-
+//class Profesor;
 class Curso : public ICollectible{
 	private:
 		std::string nomCurso;
