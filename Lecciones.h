@@ -25,6 +25,8 @@ class Lecciones : public ICollectible{
 
 		//CU: Eliminar Curso
 		void DeleteAllEjercicios();
+		//Agregar Leccion
+		void CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion);//OK
 };
 
 #endif

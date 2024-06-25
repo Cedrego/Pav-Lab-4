@@ -1,5 +1,11 @@
 #include"Lecciones.h"
-
+#include <string>
+#include "deTraducir.h"
+#include "deCompletar.h"
+#include "ICollection/String.h"
+#include "ICollection/collections/OrderedDictionary.h"
+#include <sstream> 
+#include <vector> 
 Lecciones::Lecciones(std::string temaI, std::string objetivoI, IDictionary* deCompletarI, IDictionary* deTraducirI){
     this->tema=temaI;
     this->objetivo=objetivoI;
@@ -42,3 +48,36 @@ void Lecciones::DeleteAllEjercicios(){
         itTraducir->next();
     }
 };
+//Agregar  Leccion
+
+void Lecciones::CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion){
+   
+    if(tipo=="Traducir"){
+        deTraducir* Ejer=new deTraducir(NomEj,desc,frase,solucion);//Creamos el ejercicio de traducir
+        IKey* Ej=new String(NomEj.c_str());//Creamos una llave
+        this->DeTraducir->add(Ej,Ejer);//Agregamos el ejercicio al dicionario con su llave creada
+    }else{
+        std::stringstream ss(solucion);// Crea un stringstream inicializado con la cadena solucion
+        std::vector<std::string> tokens;// Vector para almacenar los tokens
+        std::string delimiter = "---";// Delimitador para dividir la cadena
+        size_t pos = 0;  // Posición del delimitador
+        std::string token; // Variable para almacenar cada token
+         // Extraer tokens de la cadena solucion usando el delimitador "---"
+        while ((pos = solucion.find(delimiter)) != std::string::npos) {
+            token = solucion.substr(0, pos);// Extrae el token desde el inicio hasta pos
+            tokens.push_back(token);// Añade el token al vector tokens
+            solucion.erase(0, pos + delimiter.length());// Borra el token y el delimitador de solucion
+        }
+        // Añadir el último token
+        tokens.push_back(solucion);
+
+        std::set<std::string> Solc;// Conjunto para almacenar las soluciones únicas
+        // Insertar todos los tokens en el conjunto Solc para garantizar que sean únicos
+        for (const auto& Seg : tokens) {
+            Solc.insert(Seg);
+        }
+        deCompletar* Ejer = new deCompletar(NomEj, desc, frase, Solc);//Creamos el ejercicio de completar
+         IKey* Ej=new String(NomEj.c_str());//Creamos una llave
+        this->DeCompletar->add(Ej,Ejer);//Agregamos el ejercicio al dicionario con su llave creada
+    }
+};//OK

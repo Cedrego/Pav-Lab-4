@@ -46,7 +46,8 @@
         "cstdarg": "cpp",
         "optional": "cpp",
         "ranges": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "sstream": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -60,6 +60,9 @@ class Curso : public ICollectible{
 		//CU: Habilitar Curso
 		void habilitar();
 
+		//Agregar Leccion
+		Lecciones* CrearLeccion(string NomTema, string Objetivo);//OK
+		void AgregarEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Lecciones* leccionNH);//OK
 };
 
 #endif

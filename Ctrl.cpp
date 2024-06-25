@@ -14,9 +14,10 @@ ICtrl* Ctrl::getInstance() {
 Ctrl::Ctrl() {};
 Ctrl::~Ctrl() {};
 
-IDictionary* Ctrl::getCursos(){
-    return this->Cursos;
-}
+//Agregar Leccion
+Lecciones* ingresarLeccion(string NomTema, string Objetivo, Curso* c){
+    //c es una instancia de Curso 
+    return c->CrearLeccion(NomTema, Objetivo);
 
 IDictionary* Ctrl::getProfesores(){
     return this->Profesores;
@@ -264,3 +265,28 @@ void Ctrl::IngresaIdioma(std::string stringIdioma){
     //agrego el idioma casteado como ICollectible junto a su key
     (this->idiomas)->add(KeyIdioma,(ICollectible*)idiom);
 };
+};
+/*
+set<std::string> Ctrl::ListarCursosNoHabilitados(){
+    //Pedimos iterador de cursos a Controlador
+    IIterator* itCurso=this->Cursos->getIterator();
+    set<std::string> NombreC;
+    while(itCurso->hasCurrent()){
+        Curso* c=(Curso*)itCurso->getCurrent();
+        bool Habi=c->getHabilitado();
+        if(Habi==false){
+            NombreC.insert(c->getNomCurso());
+        }
+        itCurso->next();
+    }
+    delete itCurso;
+    return NombreC;
+};
+*/
+Curso* Ctrl::SeleccionarCursoNoHabilitado(string nCurso){
+    IKey* IKC=new String(nCurso.c_str());
+    return (Curso*)this->Cursos->find(IKC);
+};//OK
+void Ctrl::CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH){
+    cursoNH->AgregarEjercicio(NomEj,tipo,desc,frase,solucion,leccionNH);
+};//OK
