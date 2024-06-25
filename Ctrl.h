@@ -31,6 +31,7 @@ class Ctrl: public ICtrl{
         Lecciones* ingresarLeccion(std::string NomTema, std::string Objetivo);//OK
         //set<std::string> ListarCursosNoHabilitados();//OK de Enzo
         Curso* SeleccionarCursoNoHabilitado(std::string nCurso);//OK
+        void CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH);//OK
 };
 
 #endif

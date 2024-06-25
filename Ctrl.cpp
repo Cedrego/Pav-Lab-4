@@ -13,6 +13,7 @@ ICtrl* Ctrl::getInstance() {
 
 Ctrl::Ctrl() {};
 Ctrl::~Ctrl() {};
+
 //Agregar Leccion
 Lecciones* ingresarLeccion(string NomTema, string Objetivo, Curso* c){
     //c es una instancia de Curso 
@@ -39,4 +40,7 @@ set<std::string> Ctrl::ListarCursosNoHabilitados(){
 Curso* Ctrl::SeleccionarCursoNoHabilitado(string nCurso){
     IKey* IKC=new String(nCurso.c_str());
     return (Curso*)this->Cursos->find(IKC);
+};//OK
+void Ctrl::CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH){
+    cursoNH->AgregarEjercicio(NomEj,tipo,desc,frase,solucion,leccionNH);
 };//OK

@@ -80,3 +80,7 @@ Lecciones* Curso::CrearLeccion(string NomTema, string Objetivo){
     this->lecciones->add((ICollectible*) leccion);
     return leccion;
 };//OK
+void Curso::AgregarEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Lecciones* leccionNH){
+    leccionNH->CrearEjer(NomEj,tipo,desc,frase,solucion);
+};//OK
+

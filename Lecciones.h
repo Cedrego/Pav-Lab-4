@@ -23,7 +23,7 @@ class Lecciones : public ICollectible{
 		IDictionary* getdeTraducir();
 
 		//Agregar Leccion
-		Ejercicio* CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion);	
+		void CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion);//OK
 };
 
 #endif
