@@ -25,3 +25,10 @@ Estudiante* Inscripcion::getestudiante(){
 Curso* Inscripcion::getcurso(){
     return this->curso;
 };
+
+void Inscripcion::desligarEstudiante(){
+    //llamo a esta funcion para que el estudiante quite la inscripcion de su diccionario
+    this->estudiante->olvidarInscripcion(this);
+    //dejo el puntero al estudiante en NULL
+    this->estudiante=NULL;
+};

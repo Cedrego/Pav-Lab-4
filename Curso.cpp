@@ -67,6 +67,22 @@ void Curso::miPrevia (Curso* CursoNuevo){
 };
 
 
+//CU: Eliminar Curso
+void Curso::DeleteALLforCurso(){
+    IIterator* itLecciones=(this->lecciones)->getIterator();
+    while(itLecciones->hasCurrent()){
+        (((Lecciones*)itLecciones->getCurrent())->DeleteAllEjercicios());
+        itLecciones->next();
+    }
+    
+    IIterator* itInscripciones=(this->Inscripciones)->getIterator();
+    while(itInscripciones->hasCurrent()){
+        (((Inscripcion*)itInscripciones->getCurrent())->desligarEstudiante())
+        itInscripciones->nexxt();
+    }
+    //CONTINUAR
+};
+
 
 //CU Agregar Ejercicio
 

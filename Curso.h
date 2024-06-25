@@ -11,6 +11,7 @@ enum DIFICULTAD{
 #include "Lecciones.h"
 #include "Idiomas.h"
 #include "Profesor.h"
+#include "Inscripcion.h"
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/interfaces/ICollection.h"
 #include <string>
@@ -49,6 +50,10 @@ class Curso : public ICollectible{
 		void asignarIdiomaACurso(Idiomas* I);
 		void esPrevia (Curso* CursoPrevia);
 		void miPrevia (Curso* CursoNuevo);
+
+		//CU: Eliminar Curso
+		void DeleteALLforCurso();
+
 		//CU: Agregar Ejercico
 		set<std::string> conseguirLecciones();
 

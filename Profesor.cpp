@@ -1,10 +1,14 @@
 #include"Profesor.h"
 #include "Idiomas.h"
 
-Profesor::Profesor(std::string institutoI, ICollection* IdiomasI, ICollection* CursosI){
-    this->instituto=institutoI;
-    this->idiomas=IdiomasI;
-    this->cursos=CursosI;
+Profesor::Profesor(std::string nicknameP, std::string descripcionP, std::string nombreP, std::string contraseniaP, std::string institutoP){
+    this->nickname=nicknameP;
+    this->descripcion=descripcionP;
+    this->nombre=nombreP;
+    this->contrasenia=contraseniaP;
+    this->instituto=institutoP;
+    this->idiomas=NULL;
+    this->cursos=NULL;
 };
 
 Profesor::Profesor(){};
@@ -21,6 +25,11 @@ ICollection* Profesor::getIdiomas(){
 
 ICollection* Profesor::getCursos(){
     return this->cursos;
+};
+
+//CU: Alta de Usuario
+void Profesor::aniadirIdioma(Idiomas* idioma){
+    (this->idiomas)->add((ICollectible*)idioma);
 };
 
 

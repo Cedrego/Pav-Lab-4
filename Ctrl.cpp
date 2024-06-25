@@ -22,6 +22,9 @@ IDictionary* Ctrl::getProfesores(){
     return this->Profesores;
 };
 
+IDictionary* Ctrl::getEstudiantes(){
+    return this->estudiantes;
+};
 
 //CU: Alta de Curso
 set<std::string> Ctrl::ListarProfesores(){
@@ -53,6 +56,10 @@ Curso* Ctrl::IngresoCurso(std::string nickP , std::string nomCurso, std::string 
     Profesor * prof = (Profesor*)(profesoresCtrl->find(KeyProf));
     //creo un curso nuevo con los datos ingresados y el profesor encontrado, no tengo idioma asi que es NULL
     Curso* cursoNuevo = new Curso(nomCurso, descCurso, difCurso, false, NULL, prof);
+    //creo una key para el curso
+    IKey* KeyCurso = new String(nomCurso.c_str());
+    //agrego el curso al diccionario del controlador
+    (this->Cursos)->add(KeyCurso, (ICollectible*)cursoNuevo);
     //llamo esta funcion para agregar el curso a la coleccion de cursos del profesor
     prof->asignarCursoAProfesor(cursoNuevo);
     //retorno el curso creado para usarlo en otras operaciones
@@ -111,6 +118,84 @@ Leccion* ingresarLeccion(NomTema string, Objetivo string){
 };
 */
 
+//CU: Alta de Usuario
+void Ctrl::IngresoE(DTFecha* fecNac, std::string Nick , std::string Contrasenia , std::string Nom , std::string Desc , std::string Pais){
+    //creo una key para identificar al estudiante
+    IKey* KeyEstudiante = new String(Nick.c_str());
+    //creo una instancia de estudiante
+    Estudiante* estudianteNuevo = new Estudiante(Nick,Desc,Nom,Contrasenia,fecNac,Pais);
+    //la agrego a la coleccion del controlador
+    (this->estudiantes)->add(KeyEstudiante,(ICollectible*)estudianteNuevo);
+};
+
+
+Profesor* Ctrl::IngresoP(std::string Nick , std::string Contrasenia, std::string Nom, std::string Desc, std::string Instituto){
+    //creo una key para identificar al profesor
+    IKey* KeyProfesor = new String(Nick.c_str());
+    //creo una instancia de profesor
+    Profesor* profesorNuevo = new Profesor(Nick,Desc,Nom,Contrasenia,Instituto);
+    //la agrego a la coleccion del controlador
+    (this->Profesores)->add(KeyProfesor,(ICollectible*)profesorNuevo);
+    //retorno el puntero para usar despues
+    return profesorNuevo;
+};
+
+set<std::string> Ctrl::LisIdioma(){
+    //creo una lista
+    set<std::string> idiomasCtrl;
+    //consigo un iterador para los idiomas
+    IIterator* it=(this->idiomas)->getIterator();
+    //itero
+    while(it->hasCurrent()){
+        //por cada idioma inserto su nombre en la lista
+        idiomasCtrl.insert(((Idiomas*)it->getCurrent())->getNomIdioma());
+        //siguiente en la iteracion
+        it->next();
+    }
+    //borro el iterador
+    delete it;
+    //retorno la lista
+    return idiomasCtrl;
+};
+
+void Ctrl::SelecIdioma(std::string idioma, Profesor* profesorNuevo){
+    //hago una key para el idioma
+    IKey* KeyIdioma = new String(idioma.c_str());
+    //busco el idioma en el diccionario del controlador
+    Idiomas* idiom = (Idiomas*)(this->idiomas)->find(KeyIdioma);
+    //uso esta funcion para agregar el puntero del idioma al profesorNuevo
+    profesorNuevo->aniadirIdioma(idiom);
+};
+
+
+
+//CU: Eliminar Curso
+set<std::string> Ctrl::ListCurso(){
+    //creo una lista
+    set<std::string> cursosCtrl;
+    //consigo un iterador para los cursos
+    IIterator* it=(this->Cursos)->getIterator();
+    //itero
+    while(it->hasCurrent()){
+        //por cada curso inserto su nombre en la lista
+        cursosCtrl.insert(((Curso*)it->getCurrent())->getNomCurso());
+        //siguiente en la iteracion
+        it->next();
+    }
+    //borro el iterador
+    delete it;
+    //retorno la lista
+    return cursosCtrl;
+};
+
+void Ctrl::EliminarCurso(std::string NomCurso){
+    //hago una key para el idioma
+    IKey* KeyCurso = new String(NomCurso.c_str());
+    //busco el idioma en el diccionario del controlador
+    Curso* curso = (Curso*)(this->Cursos)->find(KeyCurso);
+    curso->DeleteALLforCurso();
+};
+
 //CU: Agregar Ejercicio
 set<std::string> Ctrl::ListarCursosNoHabilitados(){
     //creo una lista de strings para retornar
@@ -167,4 +252,15 @@ void Ctrl::HabilitarCurso(std::string nCurso){
     //borro lo que sobra
     delete Cursos;
     delete curso;
+};
+
+
+//CU: Alta de Idioma
+void Ctrl::IngresaIdioma(std::string stringIdioma){
+    //creo una instancia de idioma
+    Idiomas* idiom = new Idiomas(stringIdioma);
+    //creo una key en base a lo que ingresa
+    IKey* KeyIdioma = new String(stringIdioma.c_str());
+    //agrego el idioma casteado como ICollectible junto a su key
+    (this->idiomas)->add(KeyIdioma,(ICollectible*)idiom);
 };

@@ -3,6 +3,7 @@
 #define USUARIO_H
 #include "ICollection/interfaces/ICollectible.h"
 #include <string>
+#include <set>
 using namespace std;
 
 class Usuario : public ICollectible{
