@@ -2,19 +2,30 @@
 #ifndef PROFESOR_H
 #define PROFESOR_H
 #include "ICollection/interfaces/ICollection.h"
-#include"Usuario.h"
+#include "Usuario.h"
+#include "Curso.h"
+
 class Profesor : public Usuario{
 	private:
-		string instituto;
-		ICollection* Idiomas;
-		ICollection* Cursos;
+		std::string instituto;
+		ICollection* idiomas;
+		ICollection* cursos; //IDictionary?
 	public:
-	Profesor(std::string institutoI, ICollection* IdiomasI, ICollection* CursosI);
+	Profesor(std::string nicknameP, std::string descripcionP, std::string nombreP, std::string contraseniaP, std::string institutoP);
 	Profesor();
 	virtual ~Profesor();
 	std::string getinstituto();
 	ICollection* getIdiomas();
-	ICollection* getCursos();
+	ICollection* getCursos();//IDictionary?
+
+	//CU: Alta de Usuario
+	void aniadirIdioma(Idiomas* idioma);
+
+	//CU: Alta de Curso
+	void asignarCursoAProfesor(Curso* cursoNuevo);
+	set<std::string> buscarIdioma(Profesor* prof);
+
+	
 };
 
 #endif

@@ -12,7 +12,7 @@ class Idiomas : public ICollectible {
 		Idiomas(std::string NomIdiomaI);
 		Idiomas();
 		virtual ~Idiomas();
-		std::string getnomIdioma();
+		std::string getNomIdioma();
 };
 
 #endif

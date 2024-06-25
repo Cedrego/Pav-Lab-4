@@ -2,7 +2,8 @@
 #ifndef LECCIONES_H
 #define LECCIONES_H
 #include <string>
-#include "Ejercicio.h"
+#include "deCompletar.h"
+#include "deTraducir.h"
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/interfaces/IDictionary.h"
 using namespace std;
@@ -24,6 +25,8 @@ class Lecciones : public ICollectible{
 
 		//Agregar Leccion
 		void CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion);//OK
+		//CU: Eliminar Curso
+		void DeleteAllEjercicios();
 };
 
 #endif

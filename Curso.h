@@ -11,6 +11,7 @@ enum DIFICULTAD{
 #include "Lecciones.h"
 #include "Idiomas.h"
 #include "Profesor.h"
+#include "Inscripcion.h"
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/interfaces/ICollection.h"
 #include <string>
@@ -28,7 +29,7 @@ class Curso : public ICollectible{
 		ICollection* MisPrevias;
 		ICollection* SoyPreviaDe;
 		ICollection* lecciones;
-		ICollection* Inscripciones;
+		IDictionary* Inscripciones; //nickname de Estudiante es IKey
 	public:
 		//constructores y getters
 		Curso(){};
@@ -43,8 +44,15 @@ class Curso : public ICollectible{
 		ICollection* getMisPrevias();
 		ICollection* getSoyPreviaDe();
 		ICollection* getLecciones();
-		ICollection* getInscripciones();
-		//
+		IDictionary* getInscripciones();
+		
+		//CU: Alta de Curso
+		void asignarIdiomaACurso(Idiomas* I);
+		void esPrevia (Curso* CursoPrevia);
+		void miPrevia (Curso* CursoNuevo);
+
+		//CU: Eliminar Curso
+		void DeleteALLforCurso();
 
 		//CU: Agregar Ejercico
 		set<std::string> conseguirLecciones();

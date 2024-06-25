@@ -8,6 +8,6 @@ Idiomas::Idiomas(){};
 
 Idiomas::~Idiomas(){};
 
-string Idiomas::getnomIdioma(){
+string Idiomas::getNomIdioma(){
     return this->nomIdioma;
 };

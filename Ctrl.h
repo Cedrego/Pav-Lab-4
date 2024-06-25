@@ -3,6 +3,8 @@
 #include "ICtrl.h"
 #include "Curso.h"
 #include "Profesor.h"
+#include "Estudiante.h"
+#include "Idiomas.h"
 #include <string>
 #include <set>
 #include "ICollection/interfaces/IDictionary.h"
@@ -21,13 +23,16 @@ class Ctrl: public ICtrl{
         static Ctrl* instance;
         IDictionary* Cursos;
         IDictionary* Profesores;
+        IDictionary* estudiantes;
         IDictionary* idiomas; 
+
     public:
         
         static ICtrl* getInstance();
         virtual ~Ctrl();
         IDictionary* getCursos();
         IDictionary* getProfesores();
+        IDictionary* getEstudiantes();
 
         //CU: Alta de Curso
         set<std::string> ListarProfesores();
@@ -36,8 +41,14 @@ class Ctrl: public ICtrl{
         void SeleccionarIdiomaC(std::string idioma, Curso* cursoNuevo);
         set<std::string> ListarCursosHabilitados();
         void SeleccionarPreviatura(std::string nCurso, Curso* cursoNuevo);
-        Leccion* ingresarLeccion(NomTema string, Objetivo string);
-        
+        //Lecciones* ingresarLeccion(NomTema string, Objetivo string);
+
+        //CU: Alta de Usuario
+        void IngresoE(DTFecha* fecNac, std::string Nick , std::string Contrasenia , std::string Nom , std::string Desc , std::string Pais);
+        Profesor* IngresoP(std::string Nick , std::string Contrasenia, std::string Nom, std::string Desc, std::string Instituto);
+        set<std::string> LisIdioma();
+        void SelecIdioma(std::string idioma, Profesor* profesorNuevo);
+
         //CU: Agregar Ejercicio
         set<std::string> listarLecciones(std::string nCurso); 
 
@@ -49,6 +60,17 @@ class Ctrl: public ICtrl{
         
         //CU: Habilitar Curso
         void HabilitarCurso(std::string nCurso);
+        
+        //CU: Eliminar Curso
+        set<std::string> ListCurso();
+        void EliminarCurso(std::string NomCurso);
+
+        
+        //CU: Habilitar Curso
+        void HabilitarCurso(std::string nCurso);
+
+        //CU: Alta Idioma
+        void IngresaIdioma(std::string stringIdioma);
 };
 
 #endif

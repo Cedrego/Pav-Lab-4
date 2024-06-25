@@ -21,6 +21,8 @@ class Inscripcion : public ICollectible {
 		Estudiante* getestudiante();
 		Curso* getcurso();
 		
+		//CU: Eliminar Curso
+		void desligarEstudiante();
 };
 
 #endif
