@@ -5,7 +5,7 @@
 #include "Usuario.h"
 #include "Lecciones.h"
 #include "Curso.h"
-#include "Inscripcion.h"
+class Inscripcion;
 #include "ICollection/interfaces/IDictionary.h"
 #include "ICollection/interfaces/ICollection.h"
 #include "ICollection/collections/OrderedDictionary.h"

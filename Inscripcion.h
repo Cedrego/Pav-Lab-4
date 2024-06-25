@@ -4,7 +4,7 @@
 #include "ICollection/interfaces/ICollectible.h"
 #include "DTFecha.h"
 #include "Curso.h"
-#include "Estudiante.h"
+class Estudiante;
 
 class Inscripcion : public ICollectible {
 	private:
