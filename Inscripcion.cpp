@@ -1,4 +1,5 @@
 #include"Inscripcion.h"
+#include "Curso.h"
 
 Inscripcion::Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estudianteI, Curso* cursoI){
     this->fechaInscr=fechaInscrI;

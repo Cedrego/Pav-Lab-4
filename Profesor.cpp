@@ -1,6 +1,7 @@
 #include"Profesor.h"
 #include "Idiomas.h"
 
+
 Profesor::Profesor(std::string nicknameP, std::string descripcionP, std::string nombreP, std::string contraseniaP, std::string institutoP){
     this->nickname=nicknameP;
     this->descripcion=descripcionP;

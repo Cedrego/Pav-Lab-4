@@ -16,7 +16,7 @@ class deCompletar : public Ejercicio{
 	deCompletar();
 	virtual ~deCompletar();
 	std::string getfraseC();
-	ICollection* getfaltante();
+	set<std::string> getfaltante();
 };
 
 #endif

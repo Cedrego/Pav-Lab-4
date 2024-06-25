@@ -1,4 +1,5 @@
 #include "Curso.h"
+#include "Profesor.h"
 
 //constructor y getters
 Curso::Curso(std::string nomCursoC, std::string desCursoC, DIFICULTAD dificultadC, bool habilitadoC, Idiomas* IdiomaC, Profesor* profesorC){
@@ -77,8 +78,8 @@ void Curso::DeleteALLforCurso(){
     
     IIterator* itInscripciones=(this->Inscripciones)->getIterator();
     while(itInscripciones->hasCurrent()){
-        (((Inscripcion*)itInscripciones->getCurrent())->desligarEstudiante())
-        itInscripciones->nexxt();
+        (((Inscripcion*)itInscripciones->getCurrent())->desligarEstudiante());
+        itInscripciones->next();
     }
     //CONTINUAR
 };

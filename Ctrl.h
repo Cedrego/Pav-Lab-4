@@ -61,6 +61,9 @@ class Ctrl: public ICtrl{
         //CU: Eliminar Curso
         set<std::string> ListCurso();
         void EliminarCurso(std::string NomCurso);
+        
+        //CU: Agregar Ejercicio
+        set<std::string> ListarCursosNoHabilitados();
 
         //CU: Habilitar Curso
         void HabilitarCurso(std::string nCurso);

@@ -3,11 +3,11 @@
 #define INSCRIPCION_H
 #include "ICollection/interfaces/ICollectible.h"
 #include "DTFecha.h"
-#include "Curso.h"
+class Curso;
 #include "Estudiante.h"
 /*
 class Estudiante;
-class Curso;
+
 */
 class Inscripcion : public ICollectible {
 	private:

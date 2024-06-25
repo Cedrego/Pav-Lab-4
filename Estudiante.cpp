@@ -1,4 +1,7 @@
 #include "Estudiante.h"
+#include "Inscripcion.h"
+#include "Curso.h"
+
 Estudiante::Estudiante(string nicknameE, string descripcionE, string nombreE, string contraseniaE, DTFecha* fecNacE, std::string PaisE){
     this->nickname=nicknameE;
     this->descripcion=descripcionE;
@@ -6,7 +9,7 @@ Estudiante::Estudiante(string nicknameE, string descripcionE, string nombreE, st
     this->contrasenia=contraseniaE;
     this->fecNac=fecNacE;
     this->Pais=PaisE;
-    this->Cursos=NULL;
+    this->Inscripciones=NULL;
     this->UltimaLeccion=NULL;
     this->EjerciciosAprov=NULL;
 };
@@ -23,7 +26,7 @@ std::string Estudiante::getPais(){
     return this->Pais;
 };
 
-IDictionary* Estudiante::getCursos(){
+IDictionary* Estudiante::getInscripciones(){
     return this->Inscripciones;
 };
 
@@ -39,7 +42,7 @@ ICollection* Estudiante::getEjerciciosAprov(){
 //CU: Eliminar Curso
 void Estudiante::olvidarInscripcion(Inscripcion* insc){
     //consigo key de la inscripcion
-    IKey* keyInsc = new String((insc->curso)->getNomCurso().c_str());
+    IKey* keyInsc = new String((insc->getcurso())->getNomCurso().c_str());
     //la remuevo de la coleccion
     this->Inscripciones->remove(keyInsc);
 };

@@ -10,7 +10,7 @@ enum DIFICULTAD{
 #define CURSO_H
 #include "Lecciones.h"
 #include "Idiomas.h"
-#include "Profesor.h"
+class Profesor;
 #include "Inscripcion.h"
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/interfaces/ICollection.h"
