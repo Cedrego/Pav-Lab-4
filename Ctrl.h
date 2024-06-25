@@ -2,6 +2,7 @@
 #define CTRL_H
 #include "ICtrl.h"
 #include "Curso.h"
+#include "Profesor.h"
 #include <string>
 #include <set>
 #include "ICollection/interfaces/IDictionary.h"
@@ -19,11 +20,24 @@ class Ctrl: public ICtrl{
         Ctrl();
         static Ctrl* instance;
         IDictionary* Cursos;
+        IDictionary* Profesores;
+        IDictionary* idiomas; 
     public:
         
         static ICtrl* getInstance();
         virtual ~Ctrl();
         IDictionary* getCursos();
+        IDictionary* getProfesores();
+
+        //CU: Alta de Curso
+        set<std::string> ListarProfesores();
+        Curso* IngresoCurso(std::string nickP , std::string nomCurso, std::string descCurso, DIFICULTAD difCurso);
+        set<std::string> ListarIdiomas(Curso* cursoNuevo);
+        void SeleccionarIdiomaC(std::string idioma, Curso* cursoNuevo);
+        set<std::string> ListarCursosHabilitados();
+        void SeleccionarPreviatura(std::string nCurso, Curso* cursoNuevo);
+        Leccion* ingresarLeccion(NomTema string, Objetivo string);
+        
         //CU: Agregar Ejercicio
         set<std::string> listarLecciones(std::string nCurso); 
 
@@ -32,6 +46,9 @@ class Ctrl: public ICtrl{
         //set<std::string> ListarCursosNoHabilitados();//OK de Enzo
         Curso* SeleccionarCursoNoHabilitado(std::string nCurso);//OK
         void CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH);//OK
+        
+        //CU: Habilitar Curso
+        void HabilitarCurso(std::string nCurso);
 };
 
 #endif
