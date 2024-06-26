@@ -53,7 +53,7 @@ class Curso : public ICollectible{
 
 		//CU: Eliminar Curso
 		void DeleteALLforCurso();
-
+		void desligarDePrevia(Curso* cursoBorrar);
 		//CU: Agregar Ejercico
 		set<std::string> conseguirLecciones();
 

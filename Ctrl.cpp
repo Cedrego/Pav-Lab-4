@@ -212,7 +212,12 @@ void Ctrl::EliminarCurso(std::string NomCurso){
     IKey* KeyCurso = new String(NomCurso.c_str());
     //busco el idioma en el diccionario del controlador
     Curso* curso = (Curso*)(this->Cursos)->find(KeyCurso);
+    //esta operacion desliga/borra todo lo relacionado al curso
     curso->DeleteALLforCurso();
+
+    delete KeyCurso;
+    //destruyo el curso
+    curso->~Curso();
 };
 
 //CU: Agregar Ejercicio

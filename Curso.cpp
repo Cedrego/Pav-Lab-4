@@ -69,19 +69,51 @@ void Curso::miPrevia (Curso* CursoNuevo){
 
 
 //CU: Eliminar Curso
+void Curso::desligarDePrevia(Curso* cursoBorrar){
+    //remuevo el curso que quiero borrar de las previas de este curso (que es posterior al que quiero borrar)
+    (this->MisPrevias)->remove((ICollectible*)cursoBorrar);
+};
+
 void Curso::DeleteALLforCurso(){
+
+    //itero entre las lecciones y borro todos sus ejercicios
     IIterator* itLecciones=(this->lecciones)->getIterator();
     while(itLecciones->hasCurrent()){
         (((Lecciones*)itLecciones->getCurrent())->DeleteAllEjercicios());
         itLecciones->next();
     }
     
+    //itero entre todos los estudiantes diciendoles que olviden sus inscripciones a este curso
+    //y luego borro la inscripcion
     IIterator* itInscripciones=(this->Inscripciones)->getIterator();
     while(itInscripciones->hasCurrent()){
         (((Inscripcion*)itInscripciones->getCurrent())->desligarEstudiante());
+        (((Inscripcion*)itInscripciones->getCurrent())->~Inscripcion());
         itInscripciones->next();
     }
-    //CONTINUAR
+    
+    //le digo al profesor que se olvide del curso
+    (this->profesor)->desligarProfesor(this);
+    
+    //itero entre las posteriores y les digo que olviden a este curso como previa
+    IIterator* itSoyPrevia=(this->SoyPreviaDe)->getIterator();
+    while(itSoyPrevia->hasCurrent()){
+        (((Curso*)itSoyPrevia->getCurrent())->desligarDePrevia(this));
+        itSoyPrevia->next();
+    }
+
+    //itero entre las previas de este curso y les digo que lo olviden como posterior 
+    IIterator* itMisPrevias=(this->MisPrevias)->getIterator();
+    while(itMisPrevias->hasCurrent()){
+        ((((Curso*)itMisPrevias->getCurrent())->SoyPreviaDe)->remove((ICollectible*)this));
+        itMisPrevias->next();
+    }
+
+    //borro todos los iteradores recien creados
+    delete itLecciones;
+    delete itInscripciones;
+    delete itSoyPrevia;
+    delete itMisPrevias;
 };
 
 

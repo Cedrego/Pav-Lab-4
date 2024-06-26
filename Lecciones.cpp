@@ -80,4 +80,6 @@ void Lecciones::DeleteAllEjercicios(){
         (((deTraducir*)itTraducir->getCurrent())->~deTraducir()); //REVISAR DESTROY DESPUES
         itTraducir->next();
     }
+    delete itCompletar;
+    delete itTraducir;
 };
