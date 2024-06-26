@@ -33,21 +33,6 @@ IDictionary* Lecciones::getdeTraducir(){
     return this->DeTraducir;
 };
 
-
-//CU: Eliminar Curso
-void Lecciones::DeleteAllEjercicios(){
-    IIterator* itCompletar=(this->DeCompletar)->getIterator();
-    IIterator* itTraducir=(this->DeTraducir)->getIterator();
-
-    while(itCompletar->hasCurrent()){
-        (((deCompletar*)itCompletar->getCurrent())->~deCompletar()); //REVISAR DESTROY DESPUES
-        itCompletar->next();
-    }
-    while(itTraducir->hasCurrent()){
-        (((deTraducir*)itTraducir->getCurrent())->~deTraducir()); //REVISAR DESTROY DESPUES
-        itTraducir->next();
-    }
-};
 //Agregar  Leccion
 
 void Lecciones::CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion){
@@ -81,3 +66,18 @@ void Lecciones::CrearEjer(std::string NomEj, std::string tipo,std::string desc,s
         this->DeCompletar->add(Ej,Ejer);//Agregamos el ejercicio al dicionario con su llave creada
     }
 };//OK
+
+//CU: Eliminar Curso
+void Lecciones::DeleteAllEjercicios(){
+    IIterator* itCompletar=(this->DeCompletar)->getIterator();
+    IIterator* itTraducir=(this->DeTraducir)->getIterator();
+
+    while(itCompletar->hasCurrent()){
+        (((deCompletar*)itCompletar->getCurrent())->~deCompletar()); //REVISAR DESTROY DESPUES
+        itCompletar->next();
+    }
+    while(itTraducir->hasCurrent()){
+        (((deTraducir*)itTraducir->getCurrent())->~deTraducir()); //REVISAR DESTROY DESPUES
+        itTraducir->next();
+    }
+};

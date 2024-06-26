@@ -19,13 +19,35 @@ Lecciones* ingresarLeccion(string NomTema, string Objetivo, Curso* c){
     //c es una instancia de Curso 
     return c->CrearLeccion(NomTema, Objetivo);
 
+};
+/*
+set<std::string> Ctrl::ListarCursosNoHabilitados(){
+    //Pedimos iterador de cursos a Controlador
+    IIterator* itCurso=this->Cursos->getIterator();
+    set<std::string> NombreC;
+    while(itCurso->hasCurrent()){
+        Curso* c=(Curso*)itCurso->getCurrent();
+        bool Habi=c->getHabilitado();
+        if(Habi==false){
+            NombreC.insert(c->getNomCurso());
+        }
+        itCurso->next();
+    }
+    delete itCurso;
+    return NombreC;
+};
+*/
+Curso* Ctrl::SeleccionarCursoNoHabilitado(string nCurso){
+    IKey* IKC=new String(nCurso.c_str());
+    return (Curso*)this->Cursos->find(IKC);
+};//OK
+void Ctrl::CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH){
+    cursoNH->AgregarEjercicio(NomEj,tipo,desc,frase,solucion,leccionNH);
+};//OK
 IDictionary* Ctrl::getProfesores(){
     return this->Profesores;
 };
 
-IDictionary* Ctrl::getEstudiantes(){
-    return this->estudiantes;
-};
 
 //CU: Alta de Curso
 set<std::string> Ctrl::ListarProfesores(){
@@ -57,10 +79,6 @@ Curso* Ctrl::IngresoCurso(std::string nickP , std::string nomCurso, std::string 
     Profesor * prof = (Profesor*)(profesoresCtrl->find(KeyProf));
     //creo un curso nuevo con los datos ingresados y el profesor encontrado, no tengo idioma asi que es NULL
     Curso* cursoNuevo = new Curso(nomCurso, descCurso, difCurso, false, NULL, prof);
-    //creo una key para el curso
-    IKey* KeyCurso = new String(nomCurso.c_str());
-    //agrego el curso al diccionario del controlador
-    (this->Cursos)->add(KeyCurso, (ICollectible*)cursoNuevo);
     //llamo esta funcion para agregar el curso a la coleccion de cursos del profesor
     prof->asignarCursoAProfesor(cursoNuevo);
     //retorno el curso creado para usarlo en otras operaciones
@@ -265,28 +283,3 @@ void Ctrl::IngresaIdioma(std::string stringIdioma){
     //agrego el idioma casteado como ICollectible junto a su key
     (this->idiomas)->add(KeyIdioma,(ICollectible*)idiom);
 };
-};
-/*
-set<std::string> Ctrl::ListarCursosNoHabilitados(){
-    //Pedimos iterador de cursos a Controlador
-    IIterator* itCurso=this->Cursos->getIterator();
-    set<std::string> NombreC;
-    while(itCurso->hasCurrent()){
-        Curso* c=(Curso*)itCurso->getCurrent();
-        bool Habi=c->getHabilitado();
-        if(Habi==false){
-            NombreC.insert(c->getNomCurso());
-        }
-        itCurso->next();
-    }
-    delete itCurso;
-    return NombreC;
-};
-*/
-Curso* Ctrl::SeleccionarCursoNoHabilitado(string nCurso){
-    IKey* IKC=new String(nCurso.c_str());
-    return (Curso*)this->Cursos->find(IKC);
-};//OK
-void Ctrl::CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH){
-    cursoNH->AgregarEjercicio(NomEj,tipo,desc,frase,solucion,leccionNH);
-};//OK

@@ -23,10 +23,10 @@ class Lecciones : public ICollectible{
 		IDictionary* getdeCompletar();
 		IDictionary* getdeTraducir();
 
-		//CU: Eliminar Curso
-		void DeleteAllEjercicios();
 		//Agregar Leccion
 		void CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion);//OK
+		//CU: Eliminar Curso
+		void DeleteAllEjercicios();
 };
 
 #endif

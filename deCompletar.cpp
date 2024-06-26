@@ -15,6 +15,6 @@ string deCompletar::getfraseC(){
     return this->fraseC;
 };
 
-ICollection* deCompletar::getfaltante(){
-    return faltante;
+set<std::string> deCompletar::getfaltante(){
+    return this->faltante;
 };

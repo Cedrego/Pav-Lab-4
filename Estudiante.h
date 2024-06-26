@@ -4,7 +4,7 @@
 #include "DTFecha.h"
 #include "Usuario.h"
 #include "Lecciones.h"
-#include "Curso.h"
+class Curso;
 class Inscripcion;
 #include "ICollection/interfaces/IDictionary.h"
 #include "ICollection/interfaces/ICollection.h"
@@ -14,6 +14,8 @@ class Inscripcion;
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/String.h"
 #include "ICollection/Integer.h"
+
+//class Inscripcion;
 
 class Estudiante : public Usuario {
     private:
