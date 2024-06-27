@@ -106,7 +106,7 @@ void Curso::habilitar(){
 //Agregar Leccion
 Lecciones* Curso::CrearLeccion(string NomTema, string Objetivo){
     //Creamos la leccion
-   Lecciones* leccion=new Lecciones( NomTema, Objetivo,NULL,NULL);
+   Lecciones* leccion=new Lecciones( NomTema, Objetivo,NULL,NULL);//MIRARARARARRARAR
    //La leccion creada se agrega a la coleccion
     this->lecciones->add((ICollectible*) leccion);
     return leccion;
@@ -139,6 +139,16 @@ DataCurso3* Curso::getDataCurso3(){
     
     return new DataCurso3(this->nomCurso, this->dificultad, this->desCurso, cantL, cantE);
 };
+void Curso::agregarInscripcionCurso(Inscripcion* I){
+    std::string nomE=I->getestudiante()->getNickname();
+    IKey* IKE= new String(nomE.c_str());
+    (this->Inscripciones)->add(IKE,(ICollectible*)I);//Curso agrega la coleccion a I
+
+   /* IIterator* itL=this->lecciones->getIterator();
+    Lecciones* PL=(Lecciones*)itL->getCurrent();//PL es la primera Leccion
+    */
+};
+
 //CU:Consultar Estadisticas
 float Curso::getPromedioT(){
     float percIns = 0;

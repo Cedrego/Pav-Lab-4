@@ -74,8 +74,10 @@ class Ctrl: public ICtrl{
 
         //CU: Alta Idioma
         void IngresaIdioma(std::string stringIdioma);
+
         //CU: Inscribirse Curso
-        set<DataCurso3*> ListarCursosDisponibles(std::string Nickname);
+        set<DataCurso3*> ListarCursosDisponibles(std::string Nickname,Estudiante* &E);
+        void SeleccionarCurso(std::string nomCurso,Estudiante* E);
 
         //CU: Consultar Estadisticas
         set<std::string>ListEstudiantes();
@@ -84,7 +86,7 @@ class Ctrl: public ICtrl{
         set<DataCursoP*>ListCursosP(std::string Nick);
         set<std::string>ListCursos();
         DataCurso*verInfoCurso(std::string NomCurso);
-        void SeleccionarCurso(std::string nomCurso);
+        
 
         //CU: Realizar Ejericio
         //-> en progreso | subida pendiente

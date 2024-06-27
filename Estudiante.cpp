@@ -60,7 +60,11 @@ bool Estudiante::haCursado(std::string nomCurso){//Verificar con Thiago
     }
     return false;
 };
-
+void Estudiante::agregarInscripcionEstudiante(Inscripcion* I){
+    std::string nomC=I->getcurso()->getNomCurso();//Consigo el nombre del curso que sera la Key
+    IKey* IKC= new String(nomC.c_str());
+    (this->Inscripciones)->add(IKC,(ICollectible*)I);//Curso agrega la coleccion a I
+};
 bool Estudiante::estanDisponibles(set<std::string> Previas){
     IIterator* itI=(this->Inscripciones)->getIterator();
     while(itI->hasCurrent()){//Punto 1

@@ -284,14 +284,14 @@ void Ctrl::IngresaIdioma(std::string stringIdioma){
     (this->idiomas)->add(KeyIdioma,(ICollectible*)idiom);
 };
 //CU: Inscribirse Curso
-set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname){
+set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname,Estudiante* &E ){
     std::set<DataCurso3*> dataCursos;//Data que retornaremos
     //Creamos la llave para Estudiante
     IKey* IKE = new String(Nickname.c_str());
     IDictionary* Estudian= this->getEstudiantes();
     //Estud tiene la instancia del estudiante con Nickname
     Estudiante* Estud=(Estudiante*)(Estudian->find(IKE));//Punto 1
-
+    E=Estud;
     //consigo todos los Cursos en el Ctrl y consigo un iterador en base a eso
     IIterator* itC=(this->Cursos)->getIterator();
     while(itC->hasCurrent()){//Punto 2
@@ -319,6 +319,16 @@ set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname){
    return dataCursos;
 
 }
+void Ctrl::SeleccionarCurso(std::string nomCurso,Estudiante* E){
+    IKey* IKC=new String(nomCurso.c_str());
+    IDictionary* cursos=this->getCursos();
+    Curso* C=(Curso*)(cursos->find(IKC));
+    Inscripcion* I=new Inscripcion(NULL,NULL,E,C);
+
+    C->agregarInscripcionCurso(I);//Falta arreglar
+    E->agregarInscripcionEstudiante(I);
+
+};
 //CU: Consultar Estadisticas
 set<std::string>Ctrl::ListEstudiantes(){
     set<std::string> Est;
