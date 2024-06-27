@@ -126,3 +126,18 @@ set<std::string> Curso::DamePrevias(){
     }
     return Previas;
 };
+//CU:Consultar Estadisticas
+float Curso::getPromedioT(){
+    float percIns = 0;
+    IIterator* iti =this->Inscripciones->getIterator();
+    while(iti->hasCurrent()){
+        percIns += ((Inscripcion*)iti->getCurrent())->getPromedio();
+        iti->next();
+    }
+    delete iti;
+    return percIns/(this->Inscripciones->getSize());
+};
+
+DataCurso* Curso::getDataCurso(){
+    return new DataCurso(this->nomCurso,this->dificultad,this->desCurso,this->habilitado,this->getPromedioT());
+};

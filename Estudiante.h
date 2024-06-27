@@ -4,6 +4,7 @@
 #include "DTFecha.h"
 #include "Usuario.h"
 #include "Lecciones.h"
+#include "DataCursoE.h"
 class Curso;
 class Inscripcion;
 #include "ICollection/interfaces/IDictionary.h"
@@ -40,6 +41,8 @@ class Estudiante : public Usuario {
         //CU: Inscribirse a Curso
         bool haCursado(std::string nomCurso);
         bool estanDisponibles(set<std::string> Previas);
+        //CU: Consultar Estadisticas
+        set<DataCursoE*>cursosEstudiante();
 };
 
 #endif

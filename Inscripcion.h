@@ -2,6 +2,7 @@
 #ifndef INSCRIPCION_H
 #define INSCRIPCION_H
 #include "ICollection/interfaces/ICollectible.h"
+#include "ICollection/interfaces/IDictionary.h"
 #include "DTFecha.h"
 class Curso;
 #include "Estudiante.h"
@@ -15,10 +16,13 @@ class Inscripcion : public ICollectible {
 		bool aprovado;
 		Estudiante* estudiante;
 		Curso* curso;
+		ICollection* EjerCompletados;
 	public:
 		Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estudianteI, Curso* cursoI);
 		Inscripcion();
 		virtual~Inscripcion();
+		
+		//getters
 		DTFecha* getfechaInscr();
 		bool getaprovado();
 		Estudiante* getestudiante();
@@ -29,5 +33,9 @@ class Inscripcion : public ICollectible {
 		//CU: Inscribirse Curso
 		bool verificarInscripcion(std::string NomCurso);
 };
+
+		//CU: Consultar Estadisticas
+		float getPromedio();
+};	
 
 #endif

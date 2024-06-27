@@ -4,6 +4,7 @@
 #include "ICollection/interfaces/ICollection.h"
 #include "Usuario.h"
 #include "Curso.h"
+#include "DataCursoP.h"
 
 class Profesor : public Usuario{
 	private:
@@ -25,6 +26,8 @@ class Profesor : public Usuario{
 	void asignarCursoAProfesor(Curso* cursoNuevo);
 	set<std::string> buscarIdioma(Profesor* prof);
 
+	//CU: Consultar Estadistica
+	set<DataCursoP*>cursosProfesor();
 	
 };
 
