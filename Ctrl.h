@@ -91,7 +91,9 @@ class Ctrl: public ICtrl{
         //-> en progreso | subida pendiente
 
         //CU: Consultar Idioma
-        void muestroIdioma();//Muestrea TODOS los Idiomas exsistentes
+       set<std::string> muestroIdioma();//Muestrea TODOS los Idiomas exsistentes
+
+       //CU: Consultar Usuario
 };
 
 #endif

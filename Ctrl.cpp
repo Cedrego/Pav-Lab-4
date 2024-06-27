@@ -371,14 +371,16 @@ DataCurso*Ctrl::verInfoCurso(std::string NomCurso){
     
     return ((Curso*)this->Cursos->find(new String(NomCurso.c_str())))->getDataCurso();
 }
+
 //CU: Consultar Idioma
-#include <iostream>
-void Ctrl::muestroIdioma(){
+set<std::string> Ctrl::muestroIdioma(){
+    set<std::string> nomIdomas;
     IIterator* itI=this->idiomas->getIterator();
     Idiomas* Idi;
     while(itI->hasCurrent()){
         Idi=(Idiomas*)itI->getCurrent();
-        cout << "Nombre del idioma: " << Idi->getNomIdioma() << endl;
+        nomIdomas.insert(Idi->getNomIdioma());
         itI->next();
     }
-};//Muestrea TODOS los Idiomas exsistentes
+    return nomIdomas;
+};
