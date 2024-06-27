@@ -87,9 +87,11 @@ class Ctrl: public ICtrl{
         set<std::string>ListCursos();
         DataCurso*verInfoCurso(std::string NomCurso);
         
-
         //CU: Realizar Ejericio
         //-> en progreso | subida pendiente
+
+        //CU: Consultar Idioma
+        void muestroIdioma();//Muestrea TODOS los Idiomas exsistentes
 };
 
 #endif
