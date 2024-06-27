@@ -81,6 +81,9 @@ class Ctrl: public ICtrl{
         set<DataCursoP*>ListCursosP(std::string Nick);
         set<std::string>ListCursos();
         DataCurso*verInfoCurso(std::string NomCurso);
+
+        //CU: Realizar Ejericio
+        //-> en progreso | subida pendiente
 };
 
 #endif
