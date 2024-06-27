@@ -32,7 +32,6 @@ class Inscripcion : public ICollectible {
 		void desligarEstudiante();
 		//CU: Inscribirse Curso
 		bool verificarInscripcion(std::string NomCurso);
-};
 
 		//CU: Consultar Estadisticas
 		float getPromedio();

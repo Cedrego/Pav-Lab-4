@@ -11,6 +11,7 @@ enum DIFICULTAD{
 #include "Lecciones.h"
 #include "Idiomas.h"
 #include "DataCurso.h"
+#include "DataCurso3.h"
 class Profesor;
 #include "Inscripcion.h"
 #include "ICollection/interfaces/ICollectible.h"
@@ -67,6 +68,7 @@ class Curso : public ICollectible{
 
 		//CU: Inscribirse Curse
 		set<std::string> DamePrevias();
+		DataCurso3* getDataCurso3();
 		//CU: Consultar Estadisticas
 		float getPromedioT();
 		DataCurso* getDataCurso();

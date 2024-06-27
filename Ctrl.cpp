@@ -285,6 +285,7 @@ void Ctrl::IngresaIdioma(std::string stringIdioma){
 };
 //CU: Inscribirse Curso
 set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname){
+    std::set<DataCurso3*> dataCursos;//Data que retornaremos
     //Creamos la llave para Estudiante
     IKey* IKE = new String(Nickname.c_str());
     IDictionary* Estudian= this->getEstudiantes();
@@ -301,13 +302,23 @@ set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname){
             set<std::string> Previas=C->DamePrevias();//Punto 5
            bool Disponibles=Estud->estanDisponibles(Previas);//Punto 6
             if(Disponibles){
-                //7* [disponible] getDataCurso3():DataCurso3
+                
+                 // Obtener el DataCurso3 del curso actual
+                DataCurso3* dataCurso = C->getDataCurso3(); // Asumiendo que getDataCurso3 devuelve un puntero a DataCurso3
+
+                 // Insertar el DataCurso3 en el conjunto
+                dataCursos.insert(dataCurso); // Insertar el objeto apuntado por dataCurso en el conjunto
+
+                 // Liberar la memoria del objeto dataCurso si es necesario
+                delete dataCurso;
             }
         }
-       
+        itC->next();
     }
+    delete IKE;
+   return dataCursos;
 
-
+}
 //CU: Consultar Estadisticas
 set<std::string>Ctrl::ListEstudiantes(){
     set<std::string> Est;

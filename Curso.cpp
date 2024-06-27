@@ -126,6 +126,19 @@ set<std::string> Curso::DamePrevias(){
     }
     return Previas;
 };
+DataCurso3* Curso::getDataCurso3(){
+    IIterator* itLec=(this->lecciones)->getIterator();
+    int cantL=0;
+    int cantE=0;
+    while(itLec->hasCurrent()){
+        Lecciones* L=(Lecciones*) itLec->getCurrent();
+        cantL=cantL+1;
+        cantE=cantE+L->sumarEjercicio(); //Le tendria que pasar un puntero a la laccion de la que estoy hablando?
+        itLec->next();
+    }
+    
+    return new DataCurso3(this->nomCurso, this->dificultad, this->desCurso, cantL, cantE);
+};
 //CU:Consultar Estadisticas
 float Curso::getPromedioT(){
     float percIns = 0;
