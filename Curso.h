@@ -63,6 +63,9 @@ class Curso : public ICollectible{
 		//Agregar Leccion
 		Lecciones* CrearLeccion(string NomTema, string Objetivo);//OK
 		void AgregarEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Lecciones* leccionNH);//OK
+
+		//CU: Inscribirse Curse
+		set<std::string> DamePrevias();
 };
 
 #endif

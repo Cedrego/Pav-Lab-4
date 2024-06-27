@@ -1,5 +1,5 @@
 #include "Ctrl.h"
-#include <string>
+
 using namespace std;
 
 Ctrl* Ctrl::instance = nullptr;
@@ -283,3 +283,27 @@ void Ctrl::IngresaIdioma(std::string stringIdioma){
     //agrego el idioma casteado como ICollectible junto a su key
     (this->idiomas)->add(KeyIdioma,(ICollectible*)idiom);
 };
+//CU: Inscribirse Curso
+set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname){
+    //Creamos la llave para Estudiante
+    IKey* IKE = new String(Nickname.c_str());
+    IDictionary* Estudian= this->getEstudiantes();
+    //Estud tiene la instancia del estudiante con Nickname
+    Estudiante* Estud=(Estudiante*)(Estudian->find(IKE));//Punto 1
+
+    //consigo todos los Cursos en el Ctrl y consigo un iterador en base a eso
+    IIterator* itC=(this->Cursos)->getIterator();
+    while(itC->hasCurrent()){//Punto 2
+        Curso* C= (Curso*)itC->getCurrent();
+        std::string nomCurso=C->getNomCurso();//Punto 3 Del DC
+        bool curzado=Estud->haCursado(nomCurso);//Punto 4
+        if(!curzado){
+            set<std::string> Previas=C->DamePrevias();//Punto 5
+           bool Disponibles=Estud->estanDisponibles(Previas);//Punto 6
+            if(Disponibles){
+                //7* [disponible] getDataCurso3():DataCurso3
+            }
+        }
+       
+    }
+}

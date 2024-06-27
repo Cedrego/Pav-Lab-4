@@ -115,3 +115,14 @@ void Curso::AgregarEjercicio(std::string NomEj, std::string tipo,std::string des
     leccionNH->CrearEjer(NomEj,tipo,desc,frase,solucion);
 };//OK
 
+//CU: Inscribirse Curse
+set<std::string> Curso::DamePrevias(){
+    set<std::string> Previas;
+    IIterator* itMP=(this->MisPrevias)->getIterator();
+    while(itMP->hasCurrent()){
+        //Inserto en el set Previas los nombres de los cursos en la coleccion de MisPrevias
+        Previas.insert(((Curso*)itMP->getCurrent())->getNomCurso());
+        itMP->next();
+    }
+    return Previas;
+};

@@ -46,3 +46,34 @@ void Estudiante::olvidarInscripcion(Inscripcion* insc){
     //la remuevo de la coleccion
     this->Inscripciones->remove(keyInsc);
 };
+//CU: Inscribirse a Curso
+bool Estudiante::haCursado(std::string nomCurso){//Verificar con Thiago
+    //consigo todos las inscripciones en el Estuidante y consigo un iterador en base a eso
+    IIterator* itI=(this->Inscripciones)->getIterator();
+    while(itI->hasCurrent()){//Punto 1
+        Inscripcion* I=(Inscripcion*) itI->getCurrent();
+        //Si es verdadero quiere decir que el estudiante si estuvo inscripto a ese curso
+        if(I->verificarInscripcion(nomCurso)==true){
+            return true;
+        }
+        itI->next();
+    }
+    return false;
+};
+
+bool Estudiante::estanDisponibles(set<std::string> Previas){
+    IIterator* itI=(this->Inscripciones)->getIterator();
+    while(itI->hasCurrent()){//Punto 1
+        Inscripcion* I= (Inscripcion*)(itI->getCurrent());
+        for(std::set<std::string>::iterator it = Previas.begin(); it != Previas.end(); ++it){
+            if(I->getcurso()->getNomCurso() == *it){//Esto es para preguntar si la previa en donde estoy y el nombre de la previa del Set son iguales asi pregunto si esta aprobado
+                if(I->getaprovado()==false){//Si el curso donde estoy parado no esta aprovado directamente devuelvo false;
+                    return false;
+                }
+               break;//Salir del bucle for, ya que encontramos el curso en Previas
+            }
+        }
+        itI->next();    
+    }
+    return true;
+};

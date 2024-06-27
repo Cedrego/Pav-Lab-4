@@ -33,3 +33,10 @@ void Inscripcion::desligarEstudiante(){
     //dejo el puntero al estudiante en NULL
     this->estudiante=NULL;
 };
+//CU: Inscribirse Curso
+bool Inscripcion::verificarInscripcion(std::string NomCurso){
+    if(this->curso->getNomCurso() == NomCurso){
+        return true;
+    }
+    return false;
+};

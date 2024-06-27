@@ -26,6 +26,8 @@ class Inscripcion : public ICollectible {
 		
 		//CU: Eliminar Curso
 		void desligarEstudiante();
+		//CU: Inscribirse Curso
+		bool verificarInscripcion(std::string NomCurso);
 };
 
 #endif
