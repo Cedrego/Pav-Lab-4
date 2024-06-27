@@ -51,3 +51,16 @@ set<std::string> Profesor::buscarIdioma(Profesor* prof){
     }
     return idiomas;
 };
+
+//CU: Consultar Estadistica
+set<DataCursoP*>Profesor::cursosProfesor(){
+    IIterator* itc = this->cursos->getIterator();
+    set<DataCursoP*> DCP;
+    while(itc->hasCurrent()){
+        float prom = ((Curso*)itc->getCurrent())->getPromedioT();
+        string ncurso =((Curso*)itc->getCurrent())->getNomCurso();
+        DCP.insert(new DataCursoP(ncurso,prom));
+    }
+    delete itc;
+    return DCP;
+}

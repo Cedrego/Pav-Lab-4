@@ -4,6 +4,7 @@
 #include "DTFecha.h"
 #include "Usuario.h"
 #include "Lecciones.h"
+#include "DataCursoE.h"
 class Curso;
 class Inscripcion;
 #include "ICollection/interfaces/IDictionary.h"
@@ -36,6 +37,9 @@ class Estudiante : public Usuario {
 
         //CU: Eliminar Curso
         void olvidarInscripcion(Inscripcion* insc);
+
+        //CU: Consultar Estadisticas
+        set<DataCursoE*>cursosEstudiante();
 };
 
 #endif

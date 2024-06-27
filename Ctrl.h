@@ -5,6 +5,9 @@
 #include "Profesor.h"
 #include "Estudiante.h"
 #include "Idiomas.h"
+#include "DataCursoE.h"
+#include "DataCursoP.h"
+#include "DataCurso.h"
 #include <string>
 #include <set>
 #include "ICollection/interfaces/IDictionary.h"
@@ -70,6 +73,14 @@ class Ctrl: public ICtrl{
 
         //CU: Alta Idioma
         void IngresaIdioma(std::string stringIdioma);
+
+        //CU: Consultar Estadisticas
+        set<std::string>ListEstudiantes();
+        set<DataCursoE*>ListCursosE(std::string Nick);
+        //Se usa ListarProfesores de CU Alta Curso
+        set<DataCursoP*>ListCursosP(std::string Nick);
+        set<std::string>ListCursos();
+        DataCurso*verInfoCurso(std::string NomCurso);
 };
 
 #endif

@@ -10,6 +10,7 @@ enum DIFICULTAD{
 #define CURSO_H
 #include "Lecciones.h"
 #include "Idiomas.h"
+#include "DataCurso.h"
 class Profesor;
 #include "Inscripcion.h"
 #include "ICollection/interfaces/ICollectible.h"
@@ -63,6 +64,10 @@ class Curso : public ICollectible{
 		//Agregar Leccion
 		Lecciones* CrearLeccion(string NomTema, string Objetivo);//OK
 		void AgregarEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Lecciones* leccionNH);//OK
+
+		//CU: Consultar Estadisticas
+		float getPromedioT();
+		DataCurso* getDataCurso();
 };
 
 #endif

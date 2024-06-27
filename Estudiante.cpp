@@ -46,3 +46,16 @@ void Estudiante::olvidarInscripcion(Inscripcion* insc){
     //la remuevo de la coleccion
     this->Inscripciones->remove(keyInsc);
 };
+
+//CU: Consultar Estadistica
+set<DataCursoE*>Estudiante::cursosEstudiante(){
+    IIterator* iti = this->Inscripciones->getIterator();
+    set<DataCursoE*> DTCE;
+    while(iti->hasCurrent()){
+        float PCurso = ((Inscripcion*)iti->getCurrent())->getPromedio();
+        string NCurso =(((Inscripcion*)iti->getCurrent())->getcurso())->getNomCurso();
+        DTCE.insert(new DataCursoE(NCurso,PCurso));
+    }
+    delete iti;
+    return DTCE;
+}

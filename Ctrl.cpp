@@ -283,3 +283,47 @@ void Ctrl::IngresaIdioma(std::string stringIdioma){
     //agrego el idioma casteado como ICollectible junto a su key
     (this->idiomas)->add(KeyIdioma,(ICollectible*)idiom);
 };
+
+
+//CU: Consultar Estadisticas
+set<std::string>Ctrl::ListEstudiantes(){
+    set<std::string> Est;
+    IIterator* ite = this->estudiantes->getIterator();
+    while(ite->hasCurrent()){
+        Est.insert(((Estudiante*)ite->getCurrent())->getNickname());
+        ite->next();
+    }
+    delete ite;
+    return Est;
+};
+
+set<DataCursoE*>Ctrl::ListCursosE(std::string Nick){
+    IKey* ike = new String(Nick.c_str());
+    Estudiante* est = (Estudiante*)this->estudiantes->find(ike);
+    set<DataCursoE*> listaCursos = est->cursosEstudiante();
+    delete ike;
+    return listaCursos;
+}
+
+set<DataCursoP*>Ctrl::ListCursosP(std::string Nick){
+    IKey* ikp = new String(Nick.c_str());
+    Profesor* prof = (Profesor*)this->Profesores->find(ikp);
+    delete ikp;
+    return prof->cursosProfesor();
+}
+
+set<std::string>Ctrl::ListCursos(){
+    set<std::string> Curs;
+    IIterator* itc = this->Cursos->getIterator();
+    while(itc->hasCurrent()){
+        Curs.insert(((Curso*)itc->getCurrent())->getNomCurso());
+        itc->next();
+    }
+    delete itc;
+    return Curs;
+}
+
+DataCurso*Ctrl::verInfoCurso(std::string NomCurso){
+    
+    return ((Curso*)this->Cursos->find(new String(NomCurso.c_str())))->getDataCurso();
+}
