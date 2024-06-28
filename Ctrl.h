@@ -9,6 +9,8 @@
 #include "DataCursoE.h"
 #include "DataCursoP.h"
 #include "DataCurso.h"
+#include "DataUsuario.h"
+#include "Usuario.h"
 #include "Lecciones.h"
 #include <string>
 #include <set>
@@ -103,6 +105,8 @@ class Ctrl: public ICtrl{
        set<std::string> muestroIdioma();//Muestrea TODOS los Idiomas exsistentes
 
        //CU: Consultar Usuario
+       set<std::string> ListNickUsuarios();
+       DataUsuario* DatosUser(std::string nick);
 };
 
 #endif

@@ -400,3 +400,55 @@ set<std::string> Ctrl::muestroIdioma(){
     }
     return nomIdomas;
 };
+//CU: Consultar Usuario
+set<std::string> Ctrl::ListNickUsuarios(){//Consigo los nicks de todos los usuarios
+    set<std::string> nickUser;//set que contendra los nick tanto de profesor como de estudiante
+    IIterator* itE=this->estudiantes->getIterator();
+    IIterator* itP=this->Profesores->getIterator();
+    Estudiante* nickE;
+    Profesor* nickP;
+    while(itE->hasCurrent()){
+        nickE=(Estudiante*)itE->getCurrent();
+        nickUser.insert(nickE->getNickname());
+        itE->next();
+    }
+    delete nickE;
+    delete itE;
+    while(itP->hasCurrent()){
+        nickP=(Profesor*)itP->getCurrent();
+        nickUser.insert(nickP->getNickname());
+        itP->next();
+    }
+    delete nickP;
+    delete itP;
+    return nickUser;
+};
+DataUsuario* Ctrl::DatosUser(std::string nick){
+    // Buscar el usuario en la colección de estudiantes
+    IIterator* itE=estudiantes->getIterator();
+    while (itE->hasCurrent()) {
+        DataUsuario* dataUser=(DataUsuario*)(itE->getCurrent());
+        if (dataUser->getnickname()==nick) {//Si el nick del User en el que estoy es == nick
+            DataEst* dataEst=dataUser->getEstudiante();
+            DataUsuario* newDataUser=new DataUsuario(dataUser->getnickname(), dataUser->getdescripcion(), dataUser->getnombre(), dataUser->getcontrasenia(), nullptr, dataEst);
+            delete itE;
+            return newDataUser;
+        }
+        itE->next();
+    }
+    delete itE;
+     // Buscar el usuario en la colección de profesores
+    IIterator* itP=Profesores->getIterator();
+    while (itP->hasCurrent()) {
+        DataUsuario* dataUser=(DataUsuario*)(itP->getCurrent());
+        if (dataUser->getnickname()==nick) {//Si el nick del User en el que estoy es == nick
+            DataProfesor* dataProf=dataUser->getProfesor();
+            DataUsuario* newDataUser=new DataUsuario(dataUser->getnickname(), dataUser->getdescripcion(), dataUser->getnombre(), dataUser->getcontrasenia(), dataProf, nullptr);
+            delete itP;
+            return newDataUser;
+        }
+        itP->next();
+    }
+    delete itP;
+    return nullptr;
+};
