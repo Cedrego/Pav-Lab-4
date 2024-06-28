@@ -5,6 +5,7 @@
 #include "Profesor.h"
 #include "Estudiante.h"
 #include "Idiomas.h"
+#include "DataCurso3.h"
 #include "DataCursoE.h"
 #include "DataCursoP.h"
 #include "DataCurso.h"
@@ -75,6 +76,10 @@ class Ctrl: public ICtrl{
         //CU: Alta Idioma
         void IngresaIdioma(std::string stringIdioma);
 
+        //CU: Inscribirse Curso
+        set<DataCurso3*> ListarCursosDisponibles(std::string Nickname,Estudiante* &E);
+        void SeleccionarCurso(std::string nomCurso,Estudiante* E);
+
         //CU: Consultar Estadisticas
         set<std::string> ListEstudiantes();
         set<DataCursoE*> ListCursosE(std::string Nick);
@@ -90,6 +95,14 @@ class Ctrl: public ICtrl{
         set<std::string> ListarEjercicios(std::string nCurso, Estudiante* e);
         set<std::string> PlantearProblema(std::string nomEjercicio, std::string nCurso, Estudiante* e);
         bool IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e);
+        set<DataCursoP*>ListCursosP(std::string Nick);
+        set<std::string>ListCursos();
+        DataCurso*verInfoCurso(std::string NomCurso);
+
+        //CU: Consultar Idioma
+       set<std::string> muestroIdioma();//Muestrea TODOS los Idiomas exsistentes
+
+       //CU: Consultar Usuario
 };
 
 #endif

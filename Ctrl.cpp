@@ -1,5 +1,5 @@
 #include "Ctrl.h"
-#include <string>
+
  
 using namespace std;
 
@@ -284,8 +284,52 @@ void Ctrl::IngresaIdioma(std::string stringIdioma){
     //agrego el idioma casteado como ICollectible junto a su key
     (this->idiomas)->add(KeyIdioma,(ICollectible*)idiom);
 };
+//CU: Inscribirse Curso
+set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname,Estudiante* &E ){
+    std::set<DataCurso3*> dataCursos;//Data que retornaremos
+    //Creamos la llave para Estudiante
+    IKey* IKE = new String(Nickname.c_str());
+    IDictionary* Estudian= this->getEstudiantes();
+    //Estud tiene la instancia del estudiante con Nickname
+    Estudiante* Estud=(Estudiante*)(Estudian->find(IKE));//Punto 1
+    E=Estud;
+    //consigo todos los Cursos en el Ctrl y consigo un iterador en base a eso
+    IIterator* itC=(this->Cursos)->getIterator();
+    while(itC->hasCurrent()){//Punto 2
+        Curso* C= (Curso*)itC->getCurrent();
+        std::string nomCurso=C->getNomCurso();//Punto 3 Del DC
+        bool curzado=Estud->haCursado(nomCurso);//Punto 4
+        if(!curzado){
+            set<std::string> Previas=C->DamePrevias();//Punto 5
+           bool Disponibles=Estud->estanDisponibles(Previas);//Punto 6
+            if(Disponibles){
+                
+                 // Obtener el DataCurso3 del curso actual
+                DataCurso3* dataCurso = C->getDataCurso3(); // Asumiendo que getDataCurso3 devuelve un puntero a DataCurso3
 
+                 // Insertar el DataCurso3 en el conjunto
+                dataCursos.insert(dataCurso); // Insertar el objeto apuntado por dataCurso en el conjunto
 
+                 // Liberar la memoria del objeto dataCurso si es necesario
+                delete dataCurso;
+            }
+        }
+        itC->next();
+    }
+    delete IKE;
+   return dataCursos;
+
+}
+void Ctrl::SeleccionarCurso(std::string nomCurso,Estudiante* E){
+    IKey* IKC=new String(nomCurso.c_str());
+    IDictionary* cursos=this->getCursos();
+    Curso* C=(Curso*)(cursos->find(IKC));
+    Inscripcion* I=new Inscripcion(NULL,NULL,E,C);
+
+    C->agregarInscripcionCurso(I);//Falta arreglar
+    E->agregarInscripcionEstudiante(I);
+
+};
 //CU: Consultar Estadisticas
 set<std::string>Ctrl::ListEstudiantes(){
     set<std::string> Est;
@@ -345,4 +389,17 @@ set<std::string>Ctrl::PlantearProblema(std::string nomEjercicio, std::string nCu
 
 bool IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e){
     return e->IngresarSolucionE(solucionDeUsuario,nomEjercicio,nCurso);
+};
+
+//CU: Consultar Idioma
+set<std::string> Ctrl::muestroIdioma(){
+    set<std::string> nomIdomas;
+    IIterator* itI=this->idiomas->getIterator();
+    Idiomas* Idi;
+    while(itI->hasCurrent()){
+        Idi=(Idiomas*)itI->getCurrent();
+        nomIdomas.insert(Idi->getNomIdioma());
+        itI->next();
+    }
+    return nomIdomas;
 };

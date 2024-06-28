@@ -27,6 +27,8 @@ class Lecciones : public ICollectible{
 		void CrearEjer(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion);//OK
 		//CU: Eliminar Curso
 		void DeleteAllEjercicios();
+		//CU: Inscribirse Curso
+		int sumarEjercicio();
 };
 
 #endif

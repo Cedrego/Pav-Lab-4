@@ -81,3 +81,19 @@ void Lecciones::DeleteAllEjercicios(){
         itTraducir->next();
     }
 };
+
+//CU: Inscribirse Curso
+int Lecciones::sumarEjercicio(){
+    int Total=0;
+    IIterator* itLC=(this->DeCompletar)->getIterator();
+    while(itLC->hasCurrent()){//Sumara cada que alla un ejercicio de completar
+        Total=Total+1;
+    }
+    delete itLC;
+    IIterator* itLT=(this->DeTraducir)->getIterator();
+    while(itLT->hasCurrent()){//Sumara cada que alla un ejercicio de traducir
+        Total=Total+1;
+    }
+    delete itLT;
+    return Total;
+};
