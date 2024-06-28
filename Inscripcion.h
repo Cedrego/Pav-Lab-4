@@ -16,6 +16,7 @@ class Inscripcion : public ICollectible {
 		bool aprovado;
 		Estudiante* estudiante;
 		Curso* curso;
+		Lecciones* UltimaLec;
 		ICollection* EjerCompletados;
 	public:
 		Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estudianteI, Curso* cursoI);
