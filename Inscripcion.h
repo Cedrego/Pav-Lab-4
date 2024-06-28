@@ -4,6 +4,7 @@
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/interfaces/IDictionary.h"
 #include "DTFecha.h"
+#include "Lecciones.h"
 class Curso;
 #include "Estudiante.h"
 /*
@@ -23,6 +24,9 @@ class Inscripcion : public ICollectible {
 		Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estudianteI, Curso* cursoI);
 		Inscripcion();
 		virtual~Inscripcion();
+		
+		// Setter para UltimaLec
+    	void asignarUltimaLec(Lecciones* leccion);
 		
 		//getters
 		DTFecha* getfechaInscr();

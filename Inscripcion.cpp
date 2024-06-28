@@ -9,6 +9,10 @@ Inscripcion::Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estud
     this->estudiante=estudianteI;
     this->curso=cursoI;
 };
+// Implementación del setter para UltimaLec
+void Inscripcion::asignarUltimaLec(Lecciones* leccion) {
+    UltimaLec = leccion;
+};
 Inscripcion::Inscripcion(){};
 
 Inscripcion::~Inscripcion(){};

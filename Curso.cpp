@@ -144,9 +144,12 @@ void Curso::agregarInscripcionCurso(Inscripcion* I){
     IKey* IKE= new String(nomE.c_str());
     (this->Inscripciones)->add(IKE,(ICollectible*)I);//Curso agrega la coleccion a I
 
-   /* IIterator* itL=this->lecciones->getIterator();
+    IIterator* itL=this->lecciones->getIterator();
     Lecciones* PL=(Lecciones*)itL->getCurrent();//PL es la primera Leccion
-    */
+    I->asignarUltimaLec(PL);
+    delete itL;
+    delete IKE;
+    delete PL;
 };
 
 //CU:Consultar Estadisticas

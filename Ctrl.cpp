@@ -303,13 +303,10 @@ set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname,Estudiante* 
             set<std::string> Previas=C->DamePrevias();//Punto 5
            bool Disponibles=Estud->estanDisponibles(Previas);//Punto 6
             if(Disponibles){
-                
                  // Obtener el DataCurso3 del curso actual
                 DataCurso3* dataCurso = C->getDataCurso3(); // Asumiendo que getDataCurso3 devuelve un puntero a DataCurso3
-
                  // Insertar el DataCurso3 en el conjunto
                 dataCursos.insert(dataCurso); // Insertar el objeto apuntado por dataCurso en el conjunto
-
                  // Liberar la memoria del objeto dataCurso si es necesario
                 delete dataCurso;
             }
@@ -326,7 +323,7 @@ void Ctrl::SeleccionarCurso(std::string nomCurso,Estudiante* E){
     Curso* C=(Curso*)(cursos->find(IKC));
     Inscripcion* I=new Inscripcion(NULL,NULL,E,C);
 
-    C->agregarInscripcionCurso(I);//Falta arreglar
+    C->agregarInscripcionCurso(I);//Listo
     E->agregarInscripcionEstudiante(I);
 
 };
