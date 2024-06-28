@@ -33,3 +33,18 @@ void Inscripcion::desligarEstudiante(){
     //dejo el puntero al estudiante en NULL
     this->estudiante=NULL;
 };
+
+
+
+
+//cargar datos
+void Inscripcion::aprobadoAutomatico(deTraducir* DT, deCompletar* DC){
+    if(DT!=NULL){
+        this->ejerCompletados->add((ICollectible*)DT);
+    } else{
+        this->ejerCompletados->add((ICollectible*)DC);
+    }
+};
+void Inscripcion::aprobarInsc(){
+    this->aprovado=true;
+};

@@ -147,3 +147,14 @@ void Curso::AgregarEjercicio(std::string NomEj, std::string tipo,std::string des
     leccionNH->CrearEjer(NomEj,tipo,desc,frase,solucion);
 };//OK
 
+
+
+//cargar datos
+void Curso::aniadirInscripcionCurso(Inscripcion* insc){
+    //consigo key de la inscripcion
+    IKey* keyInsc = new String((insc->getestudiante())->getNickname().c_str());
+    //la aniado a la coleccion
+    this->Inscripciones->add(keyInsc, (ICollectible*)insc);
+
+    delete keyInsc;
+};

@@ -36,6 +36,10 @@ class Estudiante : public Usuario {
 
         //CU: Eliminar Curso
         void olvidarInscripcion(Inscripcion* insc);
+
+
+        //cargar datos
+        void aniadirInscripcion(Inscripcion* insc);
 };
 
 #endif

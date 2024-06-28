@@ -48,3 +48,15 @@ void Estudiante::olvidarInscripcion(Inscripcion* insc){
 
     delete keyInsc;
 };
+
+
+
+//cargar datos
+void Estudiante::aniadirInscripcion(Inscripcion* insc){
+    //consigo key de la inscripcion
+    IKey* keyInsc = new String((insc->getcurso())->getNomCurso().c_str());
+    //la aniado a la coleccion
+    this->Inscripciones->add(keyInsc, (ICollectible*)insc);
+
+    delete keyInsc;
+};

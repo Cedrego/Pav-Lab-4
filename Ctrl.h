@@ -70,6 +70,9 @@ class Ctrl: public ICtrl{
 
         //CU: Alta Idioma
         void IngresaIdioma(std::string stringIdioma);
+
+        //cargar datos
+        void UnlimitedVoid();
 };
 
 #endif

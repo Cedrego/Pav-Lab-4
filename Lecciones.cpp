@@ -83,3 +83,16 @@ void Lecciones::DeleteAllEjercicios(){
     delete itCompletar;
     delete itTraducir;
 };
+
+
+
+
+//cargar datos
+deTraducir* Lecciones::conseguirDT(IKey* keyDT){
+    deTraducir* dt=this->DeTraducir->find(keyDT);
+    return dt;
+};
+deCompletar* Lecciones::conseguirDC(IKey* keyDC){
+    deCompletar* dc=this->DeCompletar->find(keyDC);
+    return dc;
+};

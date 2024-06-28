@@ -15,6 +15,7 @@ class Inscripcion : public ICollectible {
 		bool aprovado;
 		Estudiante* estudiante;
 		Curso* curso;
+		ICollection* ejerCompletados;
 	public:
 		Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estudianteI, Curso* cursoI);
 		Inscripcion();
@@ -26,6 +27,11 @@ class Inscripcion : public ICollectible {
 		
 		//CU: Eliminar Curso
 		void desligarEstudiante();
+
+
+		//cargar datos
+		void aprobadoAutomatico(deTraducir* DT, deCompletar* DC);
+		void aprobarInsc();
 };
 
 #endif
