@@ -8,6 +8,7 @@
 #include "DataCursoE.h"
 #include "DataCursoP.h"
 #include "DataCurso.h"
+#include "Lecciones.h"
 #include <string>
 #include <set>
 #include "ICollection/interfaces/IDictionary.h"
@@ -75,15 +76,20 @@ class Ctrl: public ICtrl{
         void IngresaIdioma(std::string stringIdioma);
 
         //CU: Consultar Estadisticas
-        set<std::string>ListEstudiantes();
-        set<DataCursoE*>ListCursosE(std::string Nick);
+        set<std::string> ListEstudiantes();
+        set<DataCursoE*> ListCursosE(std::string Nick);
         //Se usa ListarProfesores de CU Alta Curso
-        set<DataCursoP*>ListCursosP(std::string Nick);
-        set<std::string>ListCursos();
-        DataCurso*verInfoCurso(std::string NomCurso);
+        set<DataCursoP*> ListCursosP(std::string Nick);
+        set<std::string> ListCursos();
+        DataCurso* verInfoCurso(std::string NomCurso);
 
         //CU: Realizar Ejericio
         //-> en progreso | subida pendiente
+        //ListCursosE de CU Consultar Estadistica
+        Estudiante* SeleccionarEst(std::string Unick);
+        set<std::string> ListarEjercicios(std::string nCurso, Estudiante* e);
+        set<std::string> PlantearProblema(std::string nomEjercicio, std::string nCurso, Estudiante* e);
+        bool IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e);
 };
 
 #endif

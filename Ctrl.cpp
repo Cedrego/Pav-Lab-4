@@ -1,5 +1,6 @@
 #include "Ctrl.h"
 #include <string>
+ 
 using namespace std;
 
 Ctrl* Ctrl::instance = nullptr;
@@ -303,14 +304,14 @@ set<DataCursoE*>Ctrl::ListCursosE(std::string Nick){
     set<DataCursoE*> listaCursos = est->cursosEstudiante();
     delete ike;
     return listaCursos;
-}
+};
 
 set<DataCursoP*>Ctrl::ListCursosP(std::string Nick){
     IKey* ikp = new String(Nick.c_str());
     Profesor* prof = (Profesor*)this->Profesores->find(ikp);
     delete ikp;
     return prof->cursosProfesor();
-}
+};
 
 set<std::string>Ctrl::ListCursos(){
     set<std::string> Curs;
@@ -321,9 +322,27 @@ set<std::string>Ctrl::ListCursos(){
     }
     delete itc;
     return Curs;
-}
+};
 
 DataCurso*Ctrl::verInfoCurso(std::string NomCurso){
     
     return ((Curso*)this->Cursos->find(new String(NomCurso.c_str())))->getDataCurso();
-}
+};
+
+//CU: Realizar Ejercicio
+Estudiante*Ctrl::SeleccionarEst(std::string Unick){
+    return (Estudiante*)this->estudiantes->find(new String(Unick.c_str()));
+};
+
+set<std::string>Ctrl::ListarEjercicios(std::string nCurso, Estudiante* e){
+    return((Inscripcion*)e->getInscripciones()->find(new String(nCurso.c_str())))->conseguirEjerPendientes();
+
+};
+
+set<std::string>Ctrl::PlantearProblema(std::string nomEjercicio, std::string nCurso, Estudiante* e){
+    return e->PlantearProblemaE(nomEjercicio,nCurso);
+};
+
+bool IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e){
+    return e->IngresarSolucionE(solucionDeUsuario,nomEjercicio,nCurso);
+};

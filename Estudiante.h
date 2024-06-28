@@ -40,6 +40,11 @@ class Estudiante : public Usuario {
 
         //CU: Consultar Estadisticas
         set<DataCursoE*>cursosEstudiante();
+
+        //CU:Realizar Ejercicio
+        //Inscripcion*EncontrarInscripcion(std::string nCurso);
+        set<std::string>PlantearProblemaE(std::string nomEjercicio, std::string nCurso);
+        bool IngresarSolucionE(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso);
 };
 
 #endif

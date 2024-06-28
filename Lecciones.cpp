@@ -63,7 +63,7 @@ void Lecciones::CrearEjer(std::string NomEj, std::string tipo,std::string desc,s
         }
         deCompletar* Ejer = new deCompletar(NomEj, desc, frase, Solc);//Creamos el ejercicio de completar
          IKey* Ej=new String(NomEj.c_str());//Creamos una llave
-        this->DeCompletar->add(Ej,Ejer);//Agregamos el ejercicio al dicionario con su llave creada
+         this->DeCompletar->add(Ej,Ejer);//Agregamos el ejercicio al dicionario con su llave creada
     }
 };//OK
 

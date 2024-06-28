@@ -16,7 +16,9 @@ class Inscripcion : public ICollectible {
 		bool aprovado;
 		Estudiante* estudiante;
 		Curso* curso;
-		ICollection* EjerCompletados;
+		Lecciones* UltimaLec;
+		IDictionary* EjerCompletados;
+
 	public:
 		Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estudianteI, Curso* cursoI);
 		Inscripcion();
@@ -33,6 +35,11 @@ class Inscripcion : public ICollectible {
 
 		//CU: Consultar Estadisticas
 		float getPromedio();
+
+		//CU:Realizar Ejercicio
+		set<std::string>conseguirEjerPendientes();
+		set<std::string>PlantearProblemaI(std::string nomEjercicio);
+		bool IngresarSolucionI(std::string solucionDeUsuario,std::string nomEjercicio);
 };	
 
 #endif
