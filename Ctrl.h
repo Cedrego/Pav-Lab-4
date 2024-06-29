@@ -42,7 +42,7 @@ class Ctrl: public ICtrl{
         IDictionary* getCursos();
         IDictionary* getProfesores();
         IDictionary* getEstudiantes();
-
+        void clearSys():
         //CU: Alta de Curso
         set<std::string> ListarProfesores();
         Curso* IngresoCurso(std::string nickP , std::string nomCurso, std::string descCurso, DIFICULTAD difCurso);
@@ -96,15 +96,12 @@ class Ctrl: public ICtrl{
         DataCurso* verInfoCurso(std::string NomCurso);
 
         //CU: Realizar Ejericio
-        //-> en progreso | subida pendiente
         //ListCursosE de CU Consultar Estadistica
         Estudiante* SeleccionarEst(std::string Unick);
         set<std::string> ListarEjercicios(std::string nCurso, Estudiante* e);
         set<std::string> PlantearProblema(std::string nomEjercicio, std::string nCurso, Estudiante* e);
         bool IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e);
-        set<DataCursoP*> ListCursosP(std::string Nick);
-        set<std::string> ListCursos();
-        DataCurso* verInfoCurso(std::string NomCurso);
+
 
         //CU: Consultar Idioma
        set<std::string> muestroIdioma();//Muestrea TODOS los Idiomas exsistentes

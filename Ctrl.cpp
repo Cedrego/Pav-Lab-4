@@ -14,6 +14,20 @@ ICtrl* Ctrl::getInstance() {
 
 Ctrl::Ctrl() {};
 Ctrl::~Ctrl() {};
+IDictionary* Ctrl::getProfesores(){
+    return this->Profesores;
+};
+IDictionary* Ctrl::getCursos(){
+    return this->Cursos;
+};
+
+IDictionary* Ctrl::getEstudiantes(){
+    return this->estudiantes;
+};
+
+void Ctrl::clearSys(){
+    system("clear");
+}
 
 //Agregar Leccion
 Lecciones* Ctrl::ingresarLeccion(string NomTema, string Objetivo, Curso* c){
@@ -22,7 +36,6 @@ Lecciones* Ctrl::ingresarLeccion(string NomTema, string Objetivo, Curso* c){
 
 };
 
-
 Curso* Ctrl::SeleccionarCursoNoHabilitado(string nCurso){
     IKey* IKC=new String(nCurso.c_str());
     return (Curso*)this->Cursos->find(IKC);
@@ -30,10 +43,6 @@ Curso* Ctrl::SeleccionarCursoNoHabilitado(string nCurso){
 void Ctrl::CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH){
     cursoNH->AgregarEjercicio(NomEj,tipo,desc,frase,solucion,leccionNH);
 };//OK
-IDictionary* Ctrl::getProfesores(){
-    return this->Profesores;
-};
-
 
 //CU: Alta de Curso
 set<std::string> Ctrl::ListarProfesores(){
@@ -406,7 +415,7 @@ set<std::string>Ctrl::PlantearProblema(std::string nomEjercicio, std::string nCu
     return e->PlantearProblemaE(nomEjercicio,nCurso);
 };
 
-bool IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e){
+bool Ctrl::IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e){
     return e->IngresarSolucionE(solucionDeUsuario,nomEjercicio,nCurso);
 };
 
