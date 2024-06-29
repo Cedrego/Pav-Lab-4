@@ -4,6 +4,7 @@
 #include "DTFecha.h"
 #include "Usuario.h"
 #include "Lecciones.h"
+#include "DataCursoE.h"
 class Curso;
 class Inscripcion;
 #include "ICollection/interfaces/IDictionary.h"
@@ -40,6 +41,17 @@ class Estudiante : public Usuario {
 
         //cargar datos
         void aniadirInscripcion(Inscripcion* insc);
+        //CU: Inscribirse a Curso
+        bool haCursado(std::string nomCurso);
+        bool estanDisponibles(set<std::string> Previas);
+        void agregarInscripcionEstudiante(Inscripcion* I);
+        //CU: Consultar Estadisticas
+        set<DataCursoE*>cursosEstudiante();
+
+        //CU:Realizar Ejercicio
+        //Inscripcion*EncontrarInscripcion(std::string nCurso);
+        set<std::string>PlantearProblemaE(std::string nomEjercicio, std::string nCurso);
+        bool IngresarSolucionE(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso);
 };
 
 #endif

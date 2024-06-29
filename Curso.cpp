@@ -138,7 +138,7 @@ void Curso::habilitar(){
 //Agregar Leccion
 Lecciones* Curso::CrearLeccion(string NomTema, string Objetivo){
     //Creamos la leccion
-   Lecciones* leccion=new Lecciones( NomTema, Objetivo,NULL,NULL);
+   Lecciones* leccion=new Lecciones( NomTema, Objetivo,NULL,NULL);//MIRARARARARRARAR
    //La leccion creada se agrega a la coleccion
     this->lecciones->add((ICollectible*) leccion);
     return leccion;
@@ -191,4 +191,56 @@ void Curso::aniadirInscripcionCurso(Inscripcion* insc){
     this->Inscripciones->add(keyInsc, (ICollectible*)insc);
 
     delete keyInsc;
+};
+//CU: Inscribirse Curse
+set<std::string> Curso::DamePrevias(){
+    set<std::string> Previas;
+    IIterator* itMP=(this->MisPrevias)->getIterator();
+    while(itMP->hasCurrent()){
+        //Inserto en el set Previas los nombres de los cursos en la coleccion de MisPrevias
+        Previas.insert(((Curso*)itMP->getCurrent())->getNomCurso());
+        itMP->next();
+    }
+    return Previas;
+};
+DataCurso3* Curso::getDataCurso3(){
+    IIterator* itLec=(this->lecciones)->getIterator();
+    int cantL=0;
+    int cantE=0;
+    while(itLec->hasCurrent()){
+        Lecciones* L=(Lecciones*) itLec->getCurrent();
+        cantL=cantL+1;
+        cantE=cantE+L->sumarEjercicio(); //Le tendria que pasar un puntero a la laccion de la que estoy hablando?
+        itLec->next();
+    }
+    
+    return new DataCurso3(this->nomCurso, this->dificultad, this->desCurso, cantL, cantE);
+};
+void Curso::agregarInscripcionCurso(Inscripcion* I){
+    std::string nomE=I->getestudiante()->getNickname();
+    IKey* IKE= new String(nomE.c_str());
+    (this->Inscripciones)->add(IKE,(ICollectible*)I);//Curso agrega la coleccion a I
+
+    IIterator* itL=this->lecciones->getIterator();
+    Lecciones* PL=(Lecciones*)itL->getCurrent();//PL es la primera Leccion
+    I->asignarUltimaLec(PL);
+    delete itL;
+    delete IKE;
+    delete PL;
+};
+
+//CU:Consultar Estadisticas
+float Curso::getPromedioT(){
+    float percIns = 0;
+    IIterator* iti =this->Inscripciones->getIterator();
+    while(iti->hasCurrent()){
+        percIns += ((Inscripcion*)iti->getCurrent())->getPromedio();
+        iti->next();
+    }
+    delete iti;
+    return percIns/(this->Inscripciones->getSize());
+};
+
+DataCurso* Curso::getDataCurso(){
+    return new DataCurso(this->nomCurso,this->dificultad,this->desCurso,this->habilitado,this->getPromedioT());
 };

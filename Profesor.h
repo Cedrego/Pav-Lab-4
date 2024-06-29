@@ -4,6 +4,7 @@
 #include "ICollection/interfaces/ICollection.h"
 #include "Usuario.h"
 #include "Curso.h"
+#include "DataCursoP.h"
 
 class Profesor : public Usuario{
 	private:
@@ -27,6 +28,9 @@ class Profesor : public Usuario{
 
 	//CU: Eliminar Curso
 	void desligarProfesor(Curso* cursoBorrar);
+	//CU: Consultar Estadistica
+	set<DataCursoP*>cursosProfesor();
+	
 };
 
 #endif

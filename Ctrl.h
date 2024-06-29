@@ -7,6 +7,13 @@
 #include "Idiomas.h"
 #include "DataCurso2.h"
 #include "DataLeccion.h"
+#include "DataCurso3.h"
+#include "DataCursoE.h"
+#include "DataCursoP.h"
+#include "DataCurso.h"
+#include "DataUsuario.h"
+#include "Usuario.h"
+#include "Lecciones.h"
 #include <string>
 #include <set>
 #include "ICollection/interfaces/IDictionary.h"
@@ -43,7 +50,7 @@ class Ctrl: public ICtrl{
         void SeleccionarIdiomaC(std::string idioma, Curso* cursoNuevo);
         set<std::string> ListarCursosHabilitados();
         void SeleccionarPreviatura(std::string nCurso, Curso* cursoNuevo);
-        //Lecciones* ingresarLeccion(std::string NomTema, std::string Objetivo); Usaremos el de Enzo, lo dejo para comodidad al momento de revisar cuantas op nos faltan
+        
 
         //CU: Alta de Usuario
         void IngresoE(DTFecha* fecNac, std::string Nick , std::string Contrasenia , std::string Nom , std::string Desc , std::string Pais);
@@ -55,8 +62,7 @@ class Ctrl: public ICtrl{
         set<std::string> listarLecciones(std::string nCurso); 
 
         //Agregar Leccion
-        Lecciones* ingresarLeccion(std::string NomTema, std::string Objetivo);//OK
-        //set<std::string> ListarCursosNoHabilitados();//OK de Enzo
+        Lecciones* ingresarLeccion(string NomTema, string Objetivo, Curso* c);//OK
         Curso* SeleccionarCursoNoHabilitado(std::string nCurso);//OK
         void CrearEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Curso* cursoNH, Lecciones* leccionNH);//OK
         
@@ -76,7 +82,42 @@ class Ctrl: public ICtrl{
         //CU: Consultar Curso
         DataCurso2* listarInfoCurso(std::string nomCurso);
 
-        //cargar datos
+        
+        //CU: Inscribirse Curso
+        set<DataCurso3*> ListarCursosDisponibles(std::string Nickname,Estudiante* &E);
+        void SeleccionarCurso(std::string nomCurso,Estudiante* E);
+
+        //CU: Consultar Estadisticas
+        set<std::string> ListEstudiantes();
+        set<DataCursoE*> ListCursosE(std::string Nick);
+        //Se usa ListarProfesores de CU Alta Curso
+        set<DataCursoP*> ListCursosP(std::string Nick);
+        set<std::string> ListCursos();
+        DataCurso* verInfoCurso(std::string NomCurso);
+
+        //CU: Realizar Ejericio
+        //-> en progreso | subida pendiente
+        //ListCursosE de CU Consultar Estadistica
+        Estudiante* SeleccionarEst(std::string Unick);
+        set<std::string> ListarEjercicios(std::string nCurso, Estudiante* e);
+        set<std::string> PlantearProblema(std::string nomEjercicio, std::string nCurso, Estudiante* e);
+        bool IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e);
+        set<DataCursoP*> ListCursosP(std::string Nick);
+        set<std::string> ListCursos();
+        DataCurso* verInfoCurso(std::string NomCurso);
+
+        //CU: Consultar Idioma
+       set<std::string> muestroIdioma();//Muestrea TODOS los Idiomas exsistentes
+
+       //CU: Consultar Usuario
+       set<std::string> ListNickUsuarios();
+       DataUsuario* DatosUser(std::string nick);
+
+       
+       
+       
+       
+       
         void UnlimitedVoid();
 };
 

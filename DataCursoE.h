@@ -3,7 +3,7 @@
 #define DATACURSOSE_H
 #include <string>
 using namespace std;
-
+//
 class DataCursoE {
 	private:
 		std::string NomCursoP;
@@ -13,7 +13,7 @@ class DataCursoE {
 		DataCursoE(std::string NomCursoPDT, float PAvanceDT);
 		virtual ~DataCursoE();
 		std::string getNomCursoP();
-		float getPAvance();
+		float getPAvance(); //porcentaje
 };
 
 #endif

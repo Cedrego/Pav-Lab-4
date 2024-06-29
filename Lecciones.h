@@ -37,6 +37,8 @@ class Lecciones : public ICollectible{
 		//cargar datos
 		deTraducir* conseguirDT(IKey* keyDT);
 		deCompletar* conseguirDC(IKey* keyDC);
+		//CU: Inscribirse Curso
+		int sumarEjercicio();
 };
 
 #endif

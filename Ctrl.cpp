@@ -1,5 +1,6 @@
 #include "Ctrl.h"
-#include <string>
+
+ 
 using namespace std;
 
 Ctrl* Ctrl::instance = nullptr;
@@ -15,28 +16,13 @@ Ctrl::Ctrl() {};
 Ctrl::~Ctrl() {};
 
 //Agregar Leccion
-Lecciones* ingresarLeccion(string NomTema, string Objetivo, Curso* c){
+Lecciones* Ctrl::ingresarLeccion(string NomTema, string Objetivo, Curso* c){
     //c es una instancia de Curso 
     return c->CrearLeccion(NomTema, Objetivo);
 
 };
-/*
-set<std::string> Ctrl::ListarCursosNoHabilitados(){
-    //Pedimos iterador de cursos a Controlador
-    IIterator* itCurso=this->Cursos->getIterator();
-    set<std::string> NombreC;
-    while(itCurso->hasCurrent()){
-        Curso* c=(Curso*)itCurso->getCurrent();
-        bool Habi=c->getHabilitado();
-        if(Habi==false){
-            NombreC.insert(c->getNomCurso());
-        }
-        itCurso->next();
-    }
-    delete itCurso;
-    return NombreC;
-};
-*/
+
+
 Curso* Ctrl::SeleccionarCursoNoHabilitado(string nCurso){
     IKey* IKC=new String(nCurso.c_str());
     return (Curso*)this->Cursos->find(IKC);
@@ -130,12 +116,6 @@ void Ctrl::SeleccionarPreviatura(std::string nCurso, Curso* cursoNuevo){
     //Asigno el curso nuevo como posterior del curso previo
     CursoPrevia->miPrevia(cursoNuevo);
 };
-
-/* REVISAR DESPUES CON ENZO Y THIAGO
-Leccion* ingresarLeccion(NomTema string, Objetivo string){
-
-};
-*/
 
 //CU: Alta de Usuario
 void Ctrl::IngresoE(DTFecha* fecNac, std::string Nick , std::string Contrasenia , std::string Nom , std::string Desc , std::string Pais){
@@ -326,6 +306,167 @@ DataCurso2* Ctrl::listarInfoCurso(std::string nomCurso){
     return dataRetornar;
 };
 
+//CU: Inscribirse Curso
+set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname,Estudiante* &E ){
+    std::set<DataCurso3*> dataCursos;//Data que retornaremos
+    //Creamos la llave para Estudiante
+    IKey* IKE = new String(Nickname.c_str());
+    IDictionary* Estudian= this->getEstudiantes();
+    //Estud tiene la instancia del estudiante con Nickname
+    Estudiante* Estud=(Estudiante*)(Estudian->find(IKE));//Punto 1
+    E=Estud;
+    //consigo todos los Cursos en el Ctrl y consigo un iterador en base a eso
+    IIterator* itC=(this->Cursos)->getIterator();
+    while(itC->hasCurrent()){//Punto 2
+        Curso* C= (Curso*)itC->getCurrent();
+        std::string nomCurso=C->getNomCurso();//Punto 3 Del DC
+        bool curzado=Estud->haCursado(nomCurso);//Punto 4
+        if(!curzado){
+            set<std::string> Previas=C->DamePrevias();//Punto 5
+           bool Disponibles=Estud->estanDisponibles(Previas);//Punto 6
+            if(Disponibles){
+                 // Obtener el DataCurso3 del curso actual
+                DataCurso3* dataCurso = C->getDataCurso3(); // Asumiendo que getDataCurso3 devuelve un puntero a DataCurso3
+                 // Insertar el DataCurso3 en el conjunto
+                dataCursos.insert(dataCurso); // Insertar el objeto apuntado por dataCurso en el conjunto
+                 // Liberar la memoria del objeto dataCurso si es necesario
+                delete dataCurso;
+            }
+        }
+        itC->next();
+    }
+    delete IKE;
+   return dataCursos;
+
+}
+void Ctrl::SeleccionarCurso(std::string nomCurso,Estudiante* E){
+    IKey* IKC=new String(nomCurso.c_str());
+    IDictionary* cursos=this->getCursos();
+    Curso* C=(Curso*)(cursos->find(IKC));
+    Inscripcion* I=new Inscripcion(NULL,NULL,E,C);
+
+    C->agregarInscripcionCurso(I);//Listo
+    E->agregarInscripcionEstudiante(I);
+
+};
+//CU: Consultar Estadisticas
+set<std::string>Ctrl::ListEstudiantes(){
+    set<std::string> Est;
+    IIterator* ite = this->estudiantes->getIterator();
+    while(ite->hasCurrent()){
+        Est.insert(((Estudiante*)ite->getCurrent())->getNickname());
+        ite->next();
+    }
+    delete ite;
+    return Est;
+};
+
+set<DataCursoE*>Ctrl::ListCursosE(std::string Nick){
+    IKey* ike = new String(Nick.c_str());
+    Estudiante* est = (Estudiante*)this->estudiantes->find(ike);
+    set<DataCursoE*> listaCursos = est->cursosEstudiante();
+    delete ike;
+    return listaCursos;
+};
+
+set<DataCursoP*>Ctrl::ListCursosP(std::string Nick){
+    IKey* ikp = new String(Nick.c_str());
+    Profesor* prof = (Profesor*)this->Profesores->find(ikp);
+    delete ikp;
+    return prof->cursosProfesor();
+};
+
+set<std::string>Ctrl::ListCursos(){
+    set<std::string> Curs;
+    IIterator* itc = this->Cursos->getIterator();
+    while(itc->hasCurrent()){
+        Curs.insert(((Curso*)itc->getCurrent())->getNomCurso());
+        itc->next();
+    }
+    delete itc;
+    return Curs;
+};
+
+DataCurso*Ctrl::verInfoCurso(std::string NomCurso){
+    
+    return ((Curso*)this->Cursos->find(new String(NomCurso.c_str())))->getDataCurso();
+};
+
+//CU: Realizar Ejercicio
+Estudiante*Ctrl::SeleccionarEst(std::string Unick){
+    return (Estudiante*)this->estudiantes->find(new String(Unick.c_str()));
+};
+
+set<std::string>Ctrl::ListarEjercicios(std::string nCurso, Estudiante* e){
+    return((Inscripcion*)e->getInscripciones()->find(new String(nCurso.c_str())))->conseguirEjerPendientes();
+
+};
+
+set<std::string>Ctrl::PlantearProblema(std::string nomEjercicio, std::string nCurso, Estudiante* e){
+    return e->PlantearProblemaE(nomEjercicio,nCurso);
+};
+
+bool IngresarSolucion(std::string solucionDeUsuario,std::string nomEjercicio, std::string nCurso, Estudiante* e){
+    return e->IngresarSolucionE(solucionDeUsuario,nomEjercicio,nCurso);
+};
+
+//CU: Consultar Idioma
+set<std::string> Ctrl::muestroIdioma(){
+    set<std::string> nomIdomas;
+    IIterator* itI=this->idiomas->getIterator();
+    Idiomas* Idi;
+    while(itI->hasCurrent()){
+        Idi=(Idiomas*)itI->getCurrent();
+        nomIdomas.insert(Idi->getNomIdioma());
+        itI->next();
+    }
+    return nomIdomas;
+};
+//CU: Consultar Usuario
+set<std::string> Ctrl::ListNickUsuarios(){//Consigo los nicks de todos los usuarios
+    set<std::string> nickUser;//set que contendra los nick tanto de profesor como de estudiante
+    IIterator* itE=this->estudiantes->getIterator();
+    IIterator* itP=this->Profesores->getIterator();
+    Estudiante* nickE;
+    Profesor* nickP;
+    while(itE->hasCurrent()){
+        nickE=(Estudiante*)itE->getCurrent();
+        nickUser.insert(nickE->getNickname());
+        itE->next();
+    }
+    delete nickE;
+    delete itE;
+    while(itP->hasCurrent()){
+        nickP=(Profesor*)itP->getCurrent();
+        nickUser.insert(nickP->getNickname());
+        itP->next();
+    }
+    delete nickP;
+    delete itP;
+    return nickUser;
+};
+
+DataUsuario* Ctrl::DatosUser(std::string nick){
+    // Buscar el estudiantes
+    IKey* IKE=new String(nick.c_str());
+    Estudiante* E=(Estudiante*)(estudiantes->find(IKE));
+    if(E!=NULL){
+        DataEst* dataE= new DataEst(E->getfecNac(),E->getPais());
+        DataUsuario* newDataUser=new DataUsuario(E->getNickname(), E->getDescripcion(), E->getNombre(), E->getContrasenia(), nullptr, dataE);
+        delete IKE;
+        return newDataUser;
+    }else{
+        IKey* IKP=new String(nick.c_str());
+        Profesor* P=(Profesor*)(Profesores->find(IKP));
+         if(P!=NULL){
+            DataProfesor* dataP= new DataProfesor(P->getinstituto(), P->getIdiomas());
+            DataUsuario* newDataUser=new DataUsuario(P->getNickname(), P->getDescripcion(), P->getNombre(), P->getContrasenia(), dataP, nullptr);
+            delete IKP;
+            return newDataUser;
+         }
+    }
+    return nullptr;
+};
 
 //cargar datos
 void Ctrl::UnlimitedVoid(){
@@ -592,4 +733,4 @@ void Ctrl::UnlimitedVoid(){
     delete keyE6;
     delete keyE7;
     delete keyE8;
-};
+}

@@ -63,7 +63,7 @@ void Lecciones::CrearEjer(std::string NomEj, std::string tipo,std::string desc,s
         }
         deCompletar* Ejer = new deCompletar(NomEj, desc, frase, Solc);//Creamos el ejercicio de completar
          IKey* Ej=new String(NomEj.c_str());//Creamos una llave
-        this->DeCompletar->add(Ej,Ejer);//Agregamos el ejercicio al dicionario con su llave creada
+         this->DeCompletar->add(Ej,Ejer);//Agregamos el ejercicio al dicionario con su llave creada
     }
 };//OK
 
@@ -140,4 +140,19 @@ deTraducir* Lecciones::conseguirDT(IKey* keyDT){
 deCompletar* Lecciones::conseguirDC(IKey* keyDC){
     deCompletar* dc=(deCompletar*)((this->DeCompletar)->find(keyDC));
     return dc;
+};
+//CU: Inscribirse Curso
+int Lecciones::sumarEjercicio(){
+    int Total=0;
+    IIterator* itLC=(this->DeCompletar)->getIterator();
+    while(itLC->hasCurrent()){//Sumara cada que alla un ejercicio de completar
+        Total=Total+1;
+    }
+    delete itLC;
+    IIterator* itLT=(this->DeTraducir)->getIterator();
+    while(itLT->hasCurrent()){//Sumara cada que alla un ejercicio de traducir
+        Total=Total+1;
+    }
+    delete itLT;
+    return Total;
 };
