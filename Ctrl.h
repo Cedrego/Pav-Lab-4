@@ -91,7 +91,6 @@ class Ctrl: public ICtrl{
         DataCurso* verInfoCurso(std::string NomCurso);
 
         //CU: Realizar Ejericio
-        //-> en progreso | subida pendiente
         //ListCursosE de CU Consultar Estadistica
         Estudiante* SeleccionarEst(std::string Unick);
         set<std::string> ListarEjercicios(std::string nCurso, Estudiante* e);
