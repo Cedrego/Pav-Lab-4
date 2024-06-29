@@ -5,8 +5,8 @@
 #include "Profesor.h"
 #include "Estudiante.h"
 #include "Idiomas.h"
-class DataCurso2;
-class DataLeccion;
+#include "DataCurso2.h"
+#include "DataLeccion.h"
 #include <string>
 #include <set>
 #include "ICollection/interfaces/IDictionary.h"

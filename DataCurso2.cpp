@@ -1,6 +1,6 @@
 #include "DataCurso2.h"
 
-DataCurso2::DataCurso2(std::string nomCursoDT, DIFICULTAD dificultadDT, std::string desCursoDT,std::string nomIdiomaDT, std::string nomProfDT, bool habilitadoDT, DataLeccion* LeccionDT, DataEjeCompletar* EjeCompDT, DataEjeTraduccion* EjeTradDT, DataInscripciones2* InscripDT){
+DataCurso2::DataCurso2(std::string nomCursoDT, DIFICULTAD dificultadDT, std::string desCursoDT,std::string nomIdiomaDT, std::string nomProfDT, bool habilitadoDT, set<DataLeccion*> LeccionDT, set<DataInscripciones2*> InscripDT){
     this->nomCurso=nomCursoDT;
 	this->ificultad=dificultadDT;
 	this->desCurso=desCursoDT;
@@ -8,8 +8,6 @@ DataCurso2::DataCurso2(std::string nomCursoDT, DIFICULTAD dificultadDT, std::str
 	this->nomProf=nomProfDT;
 	this->habilitado=habilitadoDT;
 	this->Leccion=LeccionDT;
-	this->EjeComp=EjeCompDT;
-	this->EjeTrad=EjeTradDT;
 	this->Inscrip=InscripDT;
 }
 

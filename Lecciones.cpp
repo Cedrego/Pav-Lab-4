@@ -84,15 +84,60 @@ void Lecciones::DeleteAllEjercicios(){
     delete itTraducir;
 };
 
-
+set<DataEjeCompletar*> Lecciones::conseguirDataEjeComp(){
+    set<DataEjeCompletar*> setRetornar;
+    std::string nombreEj;
+    std::string descEJ;
+    std::string fraseEj;
+    set<std::string> faltanteEJ;
+    if(this->DeCompletar!=NULL){
+        IIterator* it=(this->DeCompletar)->getIterator();
+        while (it->hasCurrent()){
+            nombreEj=(((deCompletar*)it->getCurrent())->getnomEjercicio());
+            descEJ=(((deCompletar*)it->getCurrent())->getdescripcion());
+            fraseEj=(((deCompletar*)it->getCurrent())->getfraseC());
+            faltanteEJ=(((deCompletar*)it->getCurrent())->getfaltante());
+            DataEjeCompletar* dataComp = new DataEjeCompletar(nombreEj,descEJ,fraseEj,faltanteEJ);
+            setRetornar.insert(dataComp);
+            it->next();
+        }
+        delete it;
+    }else{
+        setRetornar.clear();
+    }
+    return setRetornar;
+};
+set<DataEjeTraduccion*> Lecciones::conseguirDataEjeTrad(){
+    set<DataEjeTraduccion*> setRetornar;
+    std::string nombreEj;
+    std::string descEJ;
+    std::string fraseEj;
+    std::string traduccionEJ;
+    if(this->DeTraducir!=NULL){
+        IIterator* it=(this->DeCompletar)->getIterator();
+        while (it->hasCurrent()){
+            nombreEj=(((deTraducir*)it->getCurrent())->getnomEjercicio());
+            descEJ=(((deTraducir*)it->getCurrent())->getdescripcion());
+            fraseEj=(((deTraducir*)it->getCurrent())->getfraseT());
+            traduccionEJ=(((deTraducir*)it->getCurrent())->gettraduccion());
+            DataEjeTraduccion* dataComp = new DataEjeTraduccion(nombreEj,descEJ,fraseEj,traduccionEJ);
+            setRetornar.insert(dataComp);
+            it->next();
+        }
+        delete it;
+    } else{
+        setRetornar.clear();
+    }
+    return setRetornar;
+};
 
 
 //cargar datos
 deTraducir* Lecciones::conseguirDT(IKey* keyDT){
-    deTraducir* dt=this->DeTraducir->find(keyDT);
+    deTraducir* dt=(deTraducir*)((this->DeTraducir)->find(keyDT));
     return dt;
 };
 deCompletar* Lecciones::conseguirDC(IKey* keyDC){
-    deCompletar* dc=this->DeCompletar->find(keyDC);
+    deCompletar* dc=(deCompletar*)((this->DeCompletar)->find(keyDC));
     return dc;
 };

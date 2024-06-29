@@ -68,7 +68,7 @@ class Curso : public ICollectible{
 
 		//CU: Consultar Curso
 		set<DataLeccion*> conseguirDataLeccion();
-		set<DataInscripciones2> conseguirDataInsc2();
+		set<DataInscripciones2*> conseguirDataInsc2();
 		
 		//cargar datos
 		void aniadirInscripcionCurso(Inscripcion* insc);

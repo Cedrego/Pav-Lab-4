@@ -308,19 +308,22 @@ DataCurso2* Ctrl::listarInfoCurso(std::string nomCurso){
 
     bool habilitadoC=cursoDT->getHabilitado();
 
+    set<DataLeccion*> dataLec;
+    dataLec.clear();
+    //DataLeccion incluye sets de los datatypes de cada ejercicio de la leccion tambien 
     if(cursoDT->getLecciones()!=NULL){
         set<DataLeccion*> dataLec = cursoDT->conseguirDataLeccion();
-    } else{
-        set<DataLeccion*> dataLec = NULL;
     }
 
-
-
+    set<DataInscripciones2*> dataInsc;
+    dataInsc.clear();
     if(cursoDT->getInscripciones()!=NULL){
         set<DataInscripciones2*> dataInsc = cursoDT->conseguirDataInsc2();
-    } else{
-        set<DataInscripciones2*> dataInsc = NULL;
-    }
+    }  
+    
+
+    DataCurso2* dataRetornar= new DataCurso2(nombreC,difC,descC,idiomaC,profC,habilitadoC,dataLec,dataInsc);
+    return dataRetornar;
 };
 
 

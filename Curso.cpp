@@ -149,13 +149,17 @@ void Curso::AgregarEjercicio(std::string NomEj, std::string tipo,std::string des
 
 set<DataLeccion*> Curso::conseguirDataLeccion(){
     set<DataLeccion*> setRetornar;
+    set<DataEjeCompletar*> setDTC;
+    set<DataEjeTraduccion*> setDTT;
     std::string temaLec;
     std::string objetivoLec;
     IIterator* it=this->lecciones->getIterator();
     while(it->hasCurrent()){
         temaLec=((Lecciones*)it->getCurrent())->getTema();
         objetivoLec=((Lecciones*)it->getCurrent())->getObjetivo();
-        DataLeccion* datLec = new DataLeccion(temaLec,objetivoLec);
+        setDTC = ((Lecciones*)it->getCurrent())->conseguirDataEjeComp();
+        setDTT = ((Lecciones*)it->getCurrent())->conseguirDataEjeTrad();
+        DataLeccion* datLec = new DataLeccion(temaLec,objetivoLec, setDTC, setDTT);
         setRetornar.insert(datLec);
         it->next();
     }
@@ -163,7 +167,7 @@ set<DataLeccion*> Curso::conseguirDataLeccion(){
     return setRetornar;
 };
 
-set<DataInscripciones2> Curso::conseguirDataInsc2(){
+set<DataInscripciones2*> Curso::conseguirDataInsc2(){
     set<DataInscripciones2*> setRetornar;
     std::string nomEstu;
     DTFecha* fechaInsc;
