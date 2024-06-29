@@ -34,7 +34,10 @@ void Inscripcion::desligarEstudiante(){
     this->estudiante=NULL;
 };
 
-
+//CU: Consultar Curso
+std::string Inscripcion::devolverNomEstudiante(){
+    return (this->estudiante)->getNombre();
+};
 
 
 //cargar datos

@@ -290,6 +290,40 @@ void Ctrl::IngresaIdioma(std::string stringIdioma){
 };
 
 
+
+//CU: Consultar Curso
+DataCurso2* Ctrl::listarInfoCurso(std::string nomCurso){
+    IKey* keyCurso= new String(nomCurso.c_str());
+    Curso* cursoDT=(Curso*)((this->Cursos)->find(keyCurso));
+    
+    std::string nombreC=cursoDT->getNomCurso();
+    DIFICULTAD difC=cursoDT->getDificultad();
+    std::string descC=cursoDT->getDesCurso();
+    
+    Idiomas* idi=cursoDT->getIdioma();
+    std::string idiomaC=idi->getNomIdioma();
+
+    Profesor* prof = cursoDT->getProfesor();
+    std::string profC=prof->getNombre();
+
+    bool habilitadoC=cursoDT->getHabilitado();
+
+    if(cursoDT->getLecciones()!=NULL){
+        set<DataLeccion*> dataLec = cursoDT->conseguirDataLeccion();
+    } else{
+        set<DataLeccion*> dataLec = NULL;
+    }
+
+
+
+    if(cursoDT->getInscripciones()!=NULL){
+        set<DataInscripciones2*> dataInsc = cursoDT->conseguirDataInsc2();
+    } else{
+        set<DataInscripciones2*> dataInsc = NULL;
+    }
+};
+
+
 //cargar datos
 void Ctrl::UnlimitedVoid(){
 

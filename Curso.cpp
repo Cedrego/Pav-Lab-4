@@ -147,7 +147,37 @@ void Curso::AgregarEjercicio(std::string NomEj, std::string tipo,std::string des
     leccionNH->CrearEjer(NomEj,tipo,desc,frase,solucion);
 };//OK
 
+set<DataLeccion*> Curso::conseguirDataLeccion(){
+    set<DataLeccion*> setRetornar;
+    std::string temaLec;
+    std::string objetivoLec;
+    IIterator* it=this->lecciones->getIterator();
+    while(it->hasCurrent()){
+        temaLec=((Lecciones*)it->getCurrent())->getTema();
+        objetivoLec=((Lecciones*)it->getCurrent())->getObjetivo();
+        DataLeccion* datLec = new DataLeccion(temaLec,objetivoLec);
+        setRetornar.insert(datLec);
+        it->next();
+    }
+    delete it;
+    return setRetornar;
+};
 
+set<DataInscripciones2> Curso::conseguirDataInsc2(){
+    set<DataInscripciones2*> setRetornar;
+    std::string nomEstu;
+    DTFecha* fechaInsc;
+    IIterator* it =this->Inscripciones->getIterator();
+    while (it->hasCurrent()){
+        nomEstu=((Inscripcion*)it->getCurrent())->devolverNomEstudiante();
+        fechaInsc=((Inscripcion*)it->getCurrent())->getfechaInscr();
+        DataInscripciones2* dataIncs = new DataInscripciones2(nomEstu,fechaInsc);
+        setRetornar.insert(dataIncs);
+        it->next();
+    }
+    delete it;
+    return setRetornar;
+};
 
 //cargar datos
 void Curso::aniadirInscripcionCurso(Inscripcion* insc){

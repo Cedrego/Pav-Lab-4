@@ -28,6 +28,8 @@ class Inscripcion : public ICollectible {
 		//CU: Eliminar Curso
 		void desligarEstudiante();
 
+		//CU: Consultar Curso
+		std::string devolverNomEstudiante();
 
 		//cargar datos
 		void aprobadoAutomatico(deTraducir* DT, deCompletar* DC);
