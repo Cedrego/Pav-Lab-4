@@ -20,6 +20,8 @@ class DataLeccion {
 		virtual ~DataLeccion();
 		std::string gettema();
 		std::string getobjetivo();
+		set<DataEjeCompletar*> getDataEjeComp();
+		set<DataEjeTraduccion*> getDataEjeTrad();
 };
 
 #endif
