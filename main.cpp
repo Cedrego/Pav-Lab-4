@@ -225,7 +225,7 @@ int main(int argc, char *argv[]){
                 string nick;
                 bool esta;
                 do{
-                std::cout<<"Ingrese el Nickname del usuario"<<endl;
+                std::cout<<"Ingrese el Nickname del Estudiante"<<endl;
                 cin>>nick;
                 IKey* IKN=new String(nick.c_str());
                 esta= ctrl->getEstudiantes()->member(IKN);
@@ -259,12 +259,22 @@ int main(int argc, char *argv[]){
                 }
                 }while(esta!=true);
                 ctrl->SeleccionarCurso(nomCurso,E);
+                std::cout<<"Estudian Inscripto correctamente"<<endl;
+                std::cout<<"Precione enter para continuar"<<endl;
+                getchar();
                 break;
             }
             case 8:{
                 break;
             }
             case 9:{
+                set<std::string> Idiomas= ctrl->muestroIdioma();
+                std::cout << "Idiomas"<< endl;
+                for (const auto& idioma : Idiomas) {
+                    std::cout << idioma <<endl;
+                }
+                std::cout<<"Precione enter para continuar"<<endl;
+                getchar();
                 break;
             }
             case 10:{
