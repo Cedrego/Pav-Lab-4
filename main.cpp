@@ -222,6 +222,43 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 7:{
+                string nick;
+                bool esta;
+                do{
+                std::cout<<"Ingrese el Nickname del usuario"<<endl;
+                cin>>nick;
+                IKey* IKN=new String(nick.c_str());
+                esta= ctrl->getEstudiantes()->member(IKN);
+                if(esta!=true){
+                    std::cout<<"Error, el Nickname ingresado no existe"<<endl;
+                    std::cout<<"Vuelva a Intentarlo"<<endl;
+                    getchar();
+                }
+                }while(esta!=true);
+                Estudiante* E=nullptr;
+                set<DataCurso3*> DT= ctrl->ListarCursosDisponibles(nick,E);
+                std::cout << "Cursos disponibles:"<<endl;
+                for (const auto& curso : DT) {
+                   std::cout << "Nombre del Curso: " << curso->getNomCurso() << ", Dificultad: " << curso->getDificultad()<<",Descripcion"<<curso->getDesCurso()<<",Cantidad de Lecciones"<<curso->getLecciones()<<",Cantidad de Ejercicios"<<curso->getEjercicios() <<endl;
+                }
+                string nomCurso;
+                do{
+                std::cout<<"Ingrese el Nombre del Curso al cual e desea inscribir: "<<endl;
+                cin>>nomCurso;
+                esta=false;
+                for (const auto& curso : DT){ 
+                   if (curso->getNomCurso() == nomCurso){
+                        esta=true;
+                        break;
+                   }
+                }
+                if(esta!=true){
+                    std::cout<<"Error, el Nombre del Curso ingresado no existe"<<endl;
+                    std::cout<<"Vuelva a Intentarlo"<<endl;
+                    getchar();
+                }
+                }while(esta!=true);
+                ctrl->SeleccionarCurso(nomCurso,E);
                 break;
             }
             case 8:{
