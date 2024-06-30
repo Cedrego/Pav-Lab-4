@@ -51,6 +51,23 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 2:{
+                std::string nomIdioma; 
+                bool esta;
+                do{
+                std::cout<<"Ingrese el nuevo Idioma"<<endl;
+                cin>>nomIdioma;
+                IKey* IKI=new String(nomIdioma.c_str());
+                esta= ctrl->getIdiomas()->member(IKI);
+                if(esta==true){
+                    std::cout<<"Error, el Idioma ingresado ya existe"<<endl;
+                    std::cout<<"Vuelva a Intentarlo"<<endl;
+                    getchar();
+                }
+                }while(esta==true);
+                ctrl->IngresaIdioma(nomIdioma);
+                std::cout<<"Idioma ingresado correctamente"<<endl;
+                std::cout<<"Precione enter para continuar"<<endl;
+                getchar();
                 break;
             }
             case 3:{
