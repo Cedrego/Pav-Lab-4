@@ -2,6 +2,10 @@
 #include <string>
 #include "ICtrl.h"
 #include "Factory.h"
+#include "DataCursoE.h"
+#include "DataCursoP.h"
+#include "DataCurso.h"
+
 
 using namespace std;
 
@@ -225,12 +229,132 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 8:{
+                cout<<"Ingrese nick del Estudiante"<<endl<<"> ";
+                std::string nick;
+                std::string nCurso;
+                std::string nomEjer;
+                std::string solUsuario;
+                getline(std::cin,nick);
+                if(ctrl->getEstudiantes()->member(new String(nick.c_str()))){
+                    set<DataCursoE*>Csos = ctrl->ListCursosE(nick);
+                    for (DataCursoE* DTCE : Csos) {
+                        cout<<"Curso: "<<DTCE->getNomCursoP()<<endl;
+                        cout<<"(%)Avance: "<<DTCE->getPAvance();
+                    }
+                    cout<<"Ingrese nombre del Curso: "<<endl<<"> ";
+                    getline(std::cin,nCurso);
+                    if(ctrl->getCursos()->member(new String(nCurso.c_str()))){
+                        set<std::string>Ejercicios = ctrl->ListarEjercicios(nCurso,(Estudiante*)ctrl->getEstudiantes()->find(new String(nick.c_str())));
+                        for(const std::string& ejer : Ejercicios){
+                            cout<<ejer<<endl;
+                        }
+                        cout<<"Ingrese nombre del Ejercicio: "<<endl<<"> ";
+                        getline(std::cin,nomEjer);
+                        ctrl->clearSys();
+                        set<std::string>Problema = ctrl->PlantearProblema(nomEjer,nCurso,(Estudiante*)ctrl->getEstudiantes()->find(new String(nick.c_str())));
+                        if(Problema.empty()==false){
+                            for(const std::string& probE : Problema){
+                                cout<<probE<<endl;
+                            }
+                            cout<<endl<<"Ingrese solucion: "<<endl<<"> ";
+                            getline(std::cin,solUsuario);
+                            if(ctrl->IngresarSolucion(solUsuario,nomEjer,nCurso,(Estudiante*)ctrl->getEstudiantes()->find(new String(nick.c_str())))){
+                                cout<<"La solucion es CORRECTA!"<<endl;
+                            }
+                            else{
+                                cout<<"La solucion es INCORRECTA!"<<endl;
+                            }
+                        }
+                    }
+                }
+                else{
+                    ctrl->clearSys();
+                    cout<<"Opcion no valida"<<endl;
+                    getchar();
+                }
                 break;
             }
             case 9:{
                 break;
             }
             case 10:{
+                char opt;
+                string nick;
+                cout<<"Que estadistica desea?:"<<endl;
+                cout<<"1- Estudiantea"<<endl;
+                cout<<"2- Profesores"<<endl;
+                cout<<"3- Cursos"<<endl;
+                cin>>opt;
+                getchar();
+                ctrl->clearSys();
+                switch(opt){
+                    case '1':{
+                        cout<<"Estudiantes: "<<endl;
+                        set<std::string>estu=ctrl->ListEstudiantes();
+                        for (const std::string& palabra : estu) {
+                            cout<<palabra<<endl;
+                        }
+                        cout<<"Selecione un estudiante: "<<endl;
+                        getline(std::cin,nick);
+                        ctrl->clearSys();
+                        set<DataCursoE*>CursosE=ctrl->ListCursosE(nick);
+                        for (DataCursoE* CE : CursosE) {
+                            cout<<"Curso: "<<CE->getNomCursoP()<<endl;
+                            cout<<"(%)Avance: "<<CE->getPAvance();
+                        }
+                        break;
+                    }
+                    case '2':{
+                        cout<<"Profesores: "<<endl;
+                        set<std::string>Profs=ctrl->ListarProfesores();
+                        for (const std::string& palabra : Profs) {
+                            cout<<palabra<<endl;
+                        };
+                        cout<<"Selecione un Profesor: "<<endl;
+                        getline(std::cin,nick);
+                        ctrl->clearSys();
+                        set<DataCursoP*>CursosP=ctrl->ListCursosP(nick);
+                        for (DataCursoP* CP : CursosP) {
+                            cout<<"Curso: "<<CP->getNomCurso()<<endl;
+                            cout<<"(%)Promedio de avance: "<<CP->getProm();
+                        };
+                        break;
+                    }
+                    case '3':{
+                        cout<<"Cursos: "<<endl;
+                        set<std::string>Curs=ctrl->ListCurso();
+                        for (const std::string& palabra : Curs) {
+                            cout<<palabra<<endl;
+                        };
+                        cout<<"Selecione un Curso: "<<endl;
+                        getline(std::cin,nick);
+                        ctrl->clearSys();
+                        DataCurso* CI=ctrl->verInfoCurso(nick);
+                            cout<<"Curso: "<<CI->getNomCurso()<<endl;
+                            cout<<"Descripcion: "<<CI->getDesCurso()<<endl;
+                            cout<<"habilitado?: "<<CI->getHabilitado();
+                            cout<<"Dificultad: ";
+                            switch(CI->getDificultad()){
+                                case 0:{
+                                    cout<<"principiante"<<endl;
+                                    break;
+                                }
+                                case 1:{
+                                    cout<<"medio"<<endl;
+                                    break;
+                                }
+                                default:{
+                                    cout<<"avanzado"<<endl;
+                                }
+                            };
+                            cout<<"(%)Promedio de avance Total: "<<CI->getPromediT();
+                        break;
+                    }
+                    default:{
+                        cout<<"Opcion no valida"<<endl;
+                        getchar();
+                    }
+                }
                 break;
             }
             case 11:{
