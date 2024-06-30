@@ -18,13 +18,11 @@ class DataCurso2 {
 		std::string nomIdioma;
 		std::string nomProf;
 		bool habilitado;
-		DataLeccion* Leccion;
-		DataEjeCompletar* EjeComp;
-		DataEjeTraduccion* EjeTrad;
-		DataInscripciones2* Inscrip;
+		set<DataLeccion*> Leccion;
+		set<DataInscripciones2*> Inscrip;
 	public:
 		DataCurso2(){};
-		//aca va el constructor con parametros
+		DataCurso2(std::string nomCursoDT, DIFICULTAD dificultadDT, std::string desCursoDT,std::string nomIdiomaDT, std::string nomProfDT, bool habilitadoDT, set<DataLeccion*> LeccionDT, set<DataInscripciones2*> InscripDT);
 		virtual ~DataCurso2();
 		std::string getNomCurso();
 		DIFICULTAD getDificultad();

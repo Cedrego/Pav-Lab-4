@@ -22,6 +22,6 @@ std::string DataEjeCompletar::getFraseC(){
     return this->fraseC;
 };
 
-ICollection* DataEjeCompletar::getFaltante(){
+set<std::string> DataEjeCompletar::getFaltante(){
     return this->faltante;
 };

@@ -69,19 +69,51 @@ void Curso::miPrevia (Curso* CursoNuevo){
 
 
 //CU: Eliminar Curso
+void Curso::desligarDePrevia(Curso* cursoBorrar){
+    //remuevo el curso que quiero borrar de las previas de este curso (que es posterior al que quiero borrar)
+    (this->MisPrevias)->remove((ICollectible*)cursoBorrar);
+};
+
 void Curso::DeleteALLforCurso(){
+
+    //itero entre las lecciones y borro todos sus ejercicios
     IIterator* itLecciones=(this->lecciones)->getIterator();
     while(itLecciones->hasCurrent()){
         (((Lecciones*)itLecciones->getCurrent())->DeleteAllEjercicios());
         itLecciones->next();
     }
     
+    //itero entre todos los estudiantes diciendoles que olviden sus inscripciones a este curso
+    //y luego borro la inscripcion
     IIterator* itInscripciones=(this->Inscripciones)->getIterator();
     while(itInscripciones->hasCurrent()){
         (((Inscripcion*)itInscripciones->getCurrent())->desligarEstudiante());
+        (((Inscripcion*)itInscripciones->getCurrent())->~Inscripcion());
         itInscripciones->next();
     }
-    //CONTINUAR
+    
+    //le digo al profesor que se olvide del curso
+    (this->profesor)->desligarProfesor(this);
+    
+    //itero entre las posteriores y les digo que olviden a este curso como previa
+    IIterator* itSoyPrevia=(this->SoyPreviaDe)->getIterator();
+    while(itSoyPrevia->hasCurrent()){
+        (((Curso*)itSoyPrevia->getCurrent())->desligarDePrevia(this));
+        itSoyPrevia->next();
+    }
+
+    //itero entre las previas de este curso y les digo que lo olviden como posterior 
+    IIterator* itMisPrevias=(this->MisPrevias)->getIterator();
+    while(itMisPrevias->hasCurrent()){
+        ((((Curso*)itMisPrevias->getCurrent())->SoyPreviaDe)->remove((ICollectible*)this));
+        itMisPrevias->next();
+    }
+
+    //borro todos los iteradores recien creados
+    delete itLecciones;
+    delete itInscripciones;
+    delete itSoyPrevia;
+    delete itMisPrevias;
 };
 
 
@@ -115,6 +147,51 @@ void Curso::AgregarEjercicio(std::string NomEj, std::string tipo,std::string des
     leccionNH->CrearEjer(NomEj,tipo,desc,frase,solucion);
 };//OK
 
+set<DataLeccion*> Curso::conseguirDataLeccion(){
+    set<DataLeccion*> setRetornar;
+    set<DataEjeCompletar*> setDTC;
+    set<DataEjeTraduccion*> setDTT;
+    std::string temaLec;
+    std::string objetivoLec;
+    IIterator* it=this->lecciones->getIterator();
+    while(it->hasCurrent()){
+        temaLec=((Lecciones*)it->getCurrent())->getTema();
+        objetivoLec=((Lecciones*)it->getCurrent())->getObjetivo();
+        setDTC = ((Lecciones*)it->getCurrent())->conseguirDataEjeComp();
+        setDTT = ((Lecciones*)it->getCurrent())->conseguirDataEjeTrad();
+        DataLeccion* datLec = new DataLeccion(temaLec,objetivoLec, setDTC, setDTT);
+        setRetornar.insert(datLec);
+        it->next();
+    }
+    delete it;
+    return setRetornar;
+};
+
+set<DataInscripciones2*> Curso::conseguirDataInsc2(){
+    set<DataInscripciones2*> setRetornar;
+    std::string nomEstu;
+    DTFecha* fechaInsc;
+    IIterator* it =this->Inscripciones->getIterator();
+    while (it->hasCurrent()){
+        nomEstu=((Inscripcion*)it->getCurrent())->devolverNomEstudiante();
+        fechaInsc=((Inscripcion*)it->getCurrent())->getfechaInscr();
+        DataInscripciones2* dataIncs = new DataInscripciones2(nomEstu,fechaInsc);
+        setRetornar.insert(dataIncs);
+        it->next();
+    }
+    delete it;
+    return setRetornar;
+};
+
+//cargar datos
+void Curso::aniadirInscripcionCurso(Inscripcion* insc){
+    //consigo key de la inscripcion
+    IKey* keyInsc = new String((insc->getestudiante())->getNickname().c_str());
+    //la aniado a la coleccion
+    this->Inscripciones->add(keyInsc, (ICollectible*)insc);
+
+    delete keyInsc;
+};
 //CU: Inscribirse Curse
 set<std::string> Curso::DamePrevias(){
     set<std::string> Previas;

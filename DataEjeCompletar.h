@@ -10,15 +10,15 @@ class DataEjeCompletar {
 		std::string nomEjercicio;
 		std::string descripcion;
 		std::string fraseC;
-		ICollection* faltante;
+		set<std::string> faltante;
 	public:
 		DataEjeCompletar(){};
-		DataEjeCompletar(std::string nomEjercicioC, std::string descripcionC, std::string fraseCC, ICollection* faltanteC);
+		DataEjeCompletar(std::string nomEjercicioC, std::string descripcionC, std::string fraseCC, set<std::string> faltanteC);
 		virtual ~DataEjeCompletar();
 		std::string getNomEjercicio();
 		std::string getDescripcion();
 		std::string getFraseC();
-		ICollection* getFaltante();
+		set<std::string> getFaltante();
 };
 
 #endif

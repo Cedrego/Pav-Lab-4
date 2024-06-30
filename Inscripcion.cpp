@@ -39,6 +39,26 @@ void Inscripcion::desligarEstudiante(){
     //dejo el puntero al estudiante en NULL
     this->estudiante=NULL;
 };
+
+//CU: Consultar Curso
+std::string Inscripcion::devolverNomEstudiante(){
+    return (this->estudiante)->getNombre();
+};
+
+
+//cargar datos
+void Inscripcion::aprobadoAutomatico(deTraducir* DT, deCompletar* DC){
+    if(DT!=NULL){
+        IKey* keyDT = new String((DT->getnomEjercicio()).c_str());
+        this->ejerCompletados->add(keyDT,(ICollectible*)DT);
+    } else{
+        IKey* keyDC = new String((DC->getnomEjercicio()).c_str());
+        this->ejerCompletados->add(keyDC,(ICollectible*)DC);
+    }
+};
+void Inscripcion::aprobarInsc(){
+    this->aprovado=true;
+};
 //CU: Inscribirse Curso
 bool Inscripcion::verificarInscripcion(std::string NomCurso){
     if(this->curso->getNomCurso() == NomCurso){
@@ -61,7 +81,7 @@ float Inscripcion::getPromedio(){
 }
 
 //CU:Realizar Ejercicio
-set<std::string>Inscripcion::conseguirEjerPendientes(){
+set<std::string> Inscripcion::conseguirEjerPendientes(){
     set<std::string> EjerPendientes;
     IIterator* ite = (this->UltimaLec->getdeCompletar())->getIterator();
     while(ite->hasCurrent()){
@@ -81,7 +101,7 @@ set<std::string>Inscripcion::conseguirEjerPendientes(){
     return EjerPendientes;
 };
 
-set<std::string>Inscripcion::PlantearProblemaI(std::string nomEjercicio){
+set<std::string> Inscripcion::PlantearProblemaI(std::string nomEjercicio){
     deCompletar* DC = NULL;
     DC =  (deCompletar*)this->UltimaLec->getdeCompletar()->find(new String(nomEjercicio.c_str()));
     set<std::string>sol;

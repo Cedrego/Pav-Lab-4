@@ -38,6 +38,9 @@ class Estudiante : public Usuario {
         //CU: Eliminar Curso
         void olvidarInscripcion(Inscripcion* insc);
 
+
+        //cargar datos
+        void aniadirInscripcion(Inscripcion* insc);
         //CU: Inscribirse a Curso
         bool haCursado(std::string nomCurso);
         bool estanDisponibles(set<std::string> Previas);

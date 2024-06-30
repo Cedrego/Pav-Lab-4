@@ -45,7 +45,22 @@ void Estudiante::olvidarInscripcion(Inscripcion* insc){
     IKey* keyInsc = new String((insc->getcurso())->getNomCurso().c_str());
     //la remuevo de la coleccion
     this->Inscripciones->remove(keyInsc);
+
+    delete keyInsc;
 };
+
+
+
+//cargar datos
+void Estudiante::aniadirInscripcion(Inscripcion* insc){
+    //consigo key de la inscripcion
+    IKey* keyInsc = new String((insc->getcurso())->getNomCurso().c_str());
+    //la aniado a la coleccion
+    this->Inscripciones->add(keyInsc, (ICollectible*)insc);
+
+    delete keyInsc;
+};
+
 //CU: Inscribirse a Curso
 bool Estudiante::haCursado(std::string nomCurso){//Verificar con Thiago
     //consigo todos las inscripciones en el Estuidante y consigo un iterador en base a eso

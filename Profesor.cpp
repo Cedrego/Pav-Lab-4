@@ -52,6 +52,10 @@ set<std::string> Profesor::buscarIdioma(Profesor* prof){
     return idiomas;
 };
 
+//CU: Eliminar Curso
+void Profesor::desligarProfesor(Curso* cursoBorrar){
+    (this->cursos)->remove((ICollectible*)cursoBorrar);
+};
 //CU: Consultar Estadistica
 set<DataCursoP*>Profesor::cursosProfesor(){
     IIterator* itc = this->cursos->getIterator();

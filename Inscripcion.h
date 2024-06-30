@@ -36,6 +36,14 @@ class Inscripcion : public ICollectible {
 		
 		//CU: Eliminar Curso
 		void desligarEstudiante();
+
+		//CU: Consultar Curso
+		std::string devolverNomEstudiante();
+
+		//cargar datos
+		void aprobadoAutomatico(deTraducir* DT, deCompletar* DC);
+		void aprobarInsc();
+
 		//CU: Inscribirse Curso
 		bool verificarInscripcion(std::string NomCurso);
 
@@ -46,6 +54,6 @@ class Inscripcion : public ICollectible {
 		set<std::string>conseguirEjerPendientes();
 		set<std::string>PlantearProblemaI(std::string nomEjercicio);
 		bool IngresarSolucionI(std::string solucionDeUsuario,std::string nomEjercicio);
-};	
+};
 
 #endif

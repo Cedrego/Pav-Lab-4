@@ -1,8 +1,10 @@
 #include"DataLeccion.h"
-DataLeccion::DataLeccion(std::string temaDT, std::string objetivoDT){
+DataLeccion::DataLeccion(std::string temaDT, std::string objetivoDT, set<DataEjeCompletar*> DataEjeCompDT, set<DataEjeTraduccion*> DataEjeTradDT){
     this->tema=temaDT;
     this->objetivo=objetivoDT;
-};
+    this->DataEjeComp=DataEjeCompDT;
+    this->DataEjeTrad=DataEjeCompDT;
+}
 
 DataLeccion::DataLeccion(){};
 

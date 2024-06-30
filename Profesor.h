@@ -26,6 +26,8 @@ class Profesor : public Usuario{
 	void asignarCursoAProfesor(Curso* cursoNuevo);
 	set<std::string> buscarIdioma(Profesor* prof);
 
+	//CU: Eliminar Curso
+	void desligarProfesor(Curso* cursoBorrar);
 	//CU: Consultar Estadistica
 	set<DataCursoP*>cursosProfesor();
 	

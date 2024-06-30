@@ -13,6 +13,8 @@ enum DIFICULTAD{
 #include "DataCurso.h"
 #include "DataCurso3.h"
 class Profesor;
+#include "DataLeccion.h"
+#include "DataInscripciones2.h"
 #include "Inscripcion.h"
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/interfaces/ICollection.h"
@@ -55,7 +57,7 @@ class Curso : public ICollectible{
 
 		//CU: Eliminar Curso
 		void DeleteALLforCurso();
-
+		void desligarDePrevia(Curso* cursoBorrar);
 		//CU: Agregar Ejercico
 		set<std::string> conseguirLecciones();
 
@@ -66,6 +68,12 @@ class Curso : public ICollectible{
 		Lecciones* CrearLeccion(string NomTema, string Objetivo);//OK
 		void AgregarEjercicio(std::string NomEj, std::string tipo,std::string desc,std::string frase,std::string solucion, Lecciones* leccionNH);//OK
 
+		//CU: Consultar Curso
+		set<DataLeccion*> conseguirDataLeccion();
+		set<DataInscripciones2*> conseguirDataInsc2();
+		
+		//cargar datos
+		void aniadirInscripcionCurso(Inscripcion* insc);
 		//CU: Inscribirse Curse
 		set<std::string> DamePrevias();
 		DataCurso3* getDataCurso3();
