@@ -24,6 +24,9 @@ IDictionary* Ctrl::getCursos(){
 IDictionary* Ctrl::getEstudiantes(){
     return this->estudiantes;
 };
+IDictionary* Ctrl::getIdiomas(){
+    return this->idiomas;
+};
 
 void Ctrl::clearSys(){
     system("clear");

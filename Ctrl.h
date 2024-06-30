@@ -42,6 +42,7 @@ class Ctrl: public ICtrl{
         IDictionary* getCursos();
         IDictionary* getProfesores();
         IDictionary* getEstudiantes();
+        IDictionary* getIdiomas();
         void clearSys():
         //CU: Alta de Curso
         set<std::string> ListarProfesores();

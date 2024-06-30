@@ -32,6 +32,7 @@ class ICtrl{
         virtual IDictionary* getCursos() = 0;
         virtual IDictionary* getProfesores() = 0;
         virtual IDictionary* getEstudiantes() = 0;
+        virtual IDictionary* getIdiomas() = 0;
         virtual void clearSys() = 0;
         //CU: Alta de Curso
         virtual set<std::string> ListarProfesores() = 0;
