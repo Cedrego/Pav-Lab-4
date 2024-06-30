@@ -38,3 +38,9 @@ bool DataCurso2::getHabilitado(){
     return this->habilitado;
 };
 
+set<DataLeccion*> DataCurso2::getLeccion(){
+	return this->Leccion;
+};
+set<DataInscripciones2*> DataCurso2::getInscrip(){
+	return this->Inscrip;
+};

@@ -30,6 +30,8 @@ class DataCurso2 {
 		std::string getNomIdioma();
 		std::string getNomProf();
 		bool getHabilitado();
+		set<DataLeccion*> getLeccion();
+		set<DataInscripciones2*> getInscrip();
 };
 
 

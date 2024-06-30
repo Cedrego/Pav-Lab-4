@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "ICtrl.h"
 #include "Factory.h"
 
@@ -48,6 +49,119 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 1:{
+                //variables
+                std::string tipoUsu;
+                DTFecha* fecNac;
+                std::string fecha;
+                int dia, mes, anio;
+                std::string nickUsu;
+                std::string passUsu;
+                std::string nomUsu;
+                std::string descUsu;
+                std::string paisEst;
+                std::string institutoProf;
+                set<std::string> listaIdiomas;
+                std::string idiomaProf;
+                bool esta;
+
+
+                std::cout<<"Que tipo de usuario desea ingresar?"<<endl;
+                std::cout<<"Estudiante|Profesor"<<endl;
+                std::getline(std::cin,tipoUsu);
+                if((tipoUsu.compare("Estudiante")==0)||(tipoUsu.compare("estudiante")==0)){
+                    std::cout<<"Ingrese el nombre del Estudiante: "<<endl;
+                    std::getline(std::cin,nomUsu);
+
+                    std::cout<<"Ingrese la fecha de nacimiento del Estudiante "<<endl;
+                    std::cout<<"DD/MM/YYYY"<<endl;
+                    std::getline(std::cin,fecha);
+                    //kilombo para guardar la fecha
+                    std::stringstream ss(fecha);
+                    std::string token;
+                    std::getline(ss, token, '/');
+                    dia = std::stoi(token);
+                    std::getline(ss, token, '/');
+                    mes = std::stoi(token);
+                    std::getline(ss, token, '/');
+                    anio = std::stoi(token);
+                    fecNac = new DTFecha(dia, mes, anio);
+
+                    do{
+                        std::cout<<"Ingrese el nick del Estudiante: "<<endl;
+                        std::getline(std::cin,nickUsu);
+                        IKey* keyEst = new String(nickUsu.c_str());
+                        esta =(ctrl->getEstudiantes())->member(keyEst);
+                        if(esta==true){
+                            std::cout<<"Error, nickname ya esta en uso"<<endl;
+                            std::cout<<"Vuelva a intentar"<<endl;
+                            getchar();
+                        };
+                    } while(esta==true);
+
+                    std::cout<<"Ingrese la contrasenia del Estudiante:"<<endl;
+                    std::getline(std::cin,passUsu);
+
+                    std::cout<<"Ingrese una descripcion para el Estudiante:"<<endl;
+                    std::getline(std::cin,descUsu);
+                    
+                    std::cout<<"Ingrese el pais del Estudiante:"<<endl;
+                    std::getline(std::cin,paisEst);
+                    
+                    ctrl->IngresoE(fecNac,nickUsu,passUsu,nomUsu,descUsu,paisEst);
+                    std::cout<<"Estudiante creado"<<endl;
+                    std::cout<<"Volviendo al menu principal, presione enter para continuar"<<endl;
+                    getchar();
+                }
+                if((tipoUsu.compare("Profesor")==0)||(tipoUsu.compare("profesor")==0)){
+                    
+                    std::cout<<"Ingrese el nombre del Profesor: "<<endl;
+                    std::getline(std::cin,nomUsu);
+
+                    do{
+                        std::cout<<"Ingrese el nick del Profesor: "<<endl;
+                        std::getline(std::cin,nickUsu);
+                        IKey* keyProf = new String(nickUsu.c_str());
+                        esta =(ctrl->getProfesores())->member(keyProf);
+                        if(esta==true){
+                            std::cout<<"Error, nickname ya esta en uso"<<endl;
+                            std::cout<<"Vuelva a intentar"<<endl;
+                            getchar();
+                        };
+                    } while(esta==true);
+
+                    std::cout<<"Ingrese la contrasenia del Profesor:"<<endl;
+                    std::getline(std::cin,passUsu);
+
+                    std::cout<<"Ingrese una descripcion para el Profesor:"<<endl;
+                    std::getline(std::cin,descUsu);
+
+                    std::cout<<"Ingrese el instituto del Profesor:"<<endl;
+                    std::getline(std::cin,institutoProf);
+
+                    Profesor* profNuevo = ctrl->IngresoP(nickUsu,passUsu,nomUsu,descUsu,institutoProf);
+
+                    std::cout<<"Estos son los Idiomas disponibles para el Profesor"<<endl;
+                    listaIdiomas=ctrl->LisIdioma();
+                    for(const auto& idi:listaIdiomas){
+                        std::cout<<idi<<endl;
+                    }
+
+                    do{
+                        std::cout<<"Seleccione un Idioma:"<<endl;
+                        std::getline(std::cin,idiomaProf);
+                        IKey* keyIdioma = new String(idiomaProf.c_str());
+                        esta =ctrl->getIdiomas()->member(keyIdioma);
+                        if(esta!=true){
+                            std::cout<<"Error, no existe un Idioma con ese nombre" <<endl;
+                            std::cout<<"Vuelva a intentar"<<endl;
+                            getchar();
+                        };
+                    }while(esta!=true);
+                    ctrl->SelecIdioma(idiomaProf,profNuevo);
+                    std::cout<<"Profesor creado"<<endl;
+                    std::cout<<"Volviendo al menu principal, presione enter para continuar"<<endl;
+                    getchar();
+                }
                 break;
             }
             case 2:{
@@ -219,6 +333,36 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 6:{
+                //variables
+                set<std::string> listCNH;
+                std::string nomCurso;
+                bool esta;
+                char hab;
+
+                std::cout<<"Estos son los Cursos no habilitados del Sistema:"<<endl;
+                listCNH=ctrl->ListarCursosNoHabilitados();
+                for(const auto& curs:listCNH){
+                    std::cout<<curs<<endl;
+                }
+                do{
+                    std::cout<<"Seleccione el Curso que desea habilitar: ";
+                    std::getline(std::cin,nomCurso);
+                    IKey* keyCurso = new String(nomCurso.c_str());
+                    esta =ctrl->getCursos()->member(keyCurso);
+                    if(esta!=true){
+                        std::cout<<"Error, no existe un Curso con ese nombre"<<endl;
+                        std::cout<<"Vuelva a intentar"<<endl;
+                        getchar();
+                    };
+                }while(esta!=true);
+                std::cout<<"Seguro que desea habilitar este Curso?   Y|N"<<endl;
+                cin>>hab;
+                if(hab=='Y'||hab=='y'){
+                ctrl->HabilitarCurso(nomCurso);
+                std::cout<<"El Curso ha sido habilitado"<<endl;
+                std::cout<<"Presione enter para continuar"<<endl;
+                getchar();
+                }
                 break;
             }
             case 7:{
@@ -234,12 +378,172 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 11:{
+                std::string nickUsu;
+                set<std::string> listaUsuarios;
+                bool esta;
+
+                std::cout<<"Estos son los Usuarios guardados en el Sistema:"<<endl;
+                listaUsuarios=ctrl->ListNickUsuarios();
+                for(const auto& usu:listaUsuarios){
+                    std::cout<<usu<<endl;
+                }
+                do{
+                    std::cout<<"Seleccione un Usuario para consultar informacion:"<<endl;
+                    std::getline(std::cin,nickUsu);
+                    IKey* keyUsu = new String(nickUsu.c_str());
+                    if((ctrl->getEstudiantes()->member(keyUsu))!=true){
+                        if((ctrl->getProfesores()->member(keyUsu))!=true){
+                            esta=false;
+                            std::cout<<"Error, no existe un Usuario con ese nombre"<<endl;
+                            std::cout<<"Vuelva a intentar"<<endl;
+                            getchar();
+                        }
+                    };
+                }while(esta!=true);
+
+                DataUsuario* dataUsu = ctrl->DatosUser(nickUsu);
+                
+                std::cout<<"Nombre: "<<dataUsu->getnombre()<<endl;
+                std::cout<<"Descripcion: "<<dataUsu->getdescripcion()<<endl;
+                std::cout<<"Nickname: "<<dataUsu->getnickname()<<endl;
+                std::cout<<"Contrasenia: "<<dataUsu->getcontrasenia()<<endl;
+                if(dataUsu->getEstudiante()!=NULL){
+                    std::cout<<"Fecha de Nacimiento: "<<dataUsu->getEstudiante()->getFecNac()->getdia()<<"/"<<dataUsu->getEstudiante()->getFecNac()->getmes()<<"/"<<dataUsu->getEstudiante()->getFecNac()->getanio()<<endl;
+                    std::cout<<"Pais: "<<dataUsu->getEstudiante()->getPais();
+                }
+                if(dataUsu->getProfesor()!=NULL){
+                    std::cout<<"Instituto: "<<dataUsu->getProfesor()->getinstituto();
+                    IIterator* it=dataUsu->getProfesor()->getnomIdioma()->getIterator();
+                    std::cout<<"Lista de Idiomas: "<<endl;
+                    while(it->hasCurrent()){
+                        std::cout<<((Idiomas*)it->getCurrent())->getNomIdioma()<<endl;
+                        it->next();
+                    }
+                }
+
+                std::cout<<endl<<endl<<"Operacion completada"<<endl;
+                std::cout<<"Presione enter para continuar"<<endl;
+                getchar();
                 break;
             }
             case 12:{
+                std::string nomCurso;
+                set<std::string> listaCursos;
+                bool esta;
+
+
+                std::cout<<"Estos son los Cursos guardados en el Sistema:"<<endl;
+                listaCursos=ctrl->ListCurso();
+                for(const auto& curs:listaCursos){
+                    std::cout<<curs<<endl;
+                }
+                do{
+                    std::cout<<"Seleccione un Curso para consultar informacion:"<<endl;
+                    std::getline(std::cin,nomCurso);
+                    IKey* keyCurso = new String(nomCurso.c_str());
+                    esta=ctrl->getCursos()->member(keyCurso);
+                    if(esta!=true){
+                        std::cout<<"Error, no existe un Curso con ese nombre"<<endl;
+                        std::cout<<"Vuelva a intentar"<<endl;
+                        getchar();
+                    }
+                }while(esta!=true);
+
+                DataCurso2* dataCurso = ctrl->listarInfoCurso(nomCurso);
+                std::cout<<"Nombre: "<<dataCurso->getNomCurso()<<endl;
+                std::cout<<"Dificultad: ";
+                switch(dataCurso->getDificultad()){
+                    case 0:{
+                        cout<<"principiante"<<endl;
+                        break;
+                        }
+                    case 1:{
+                            cout<<"medio"<<endl;
+                            break;
+                        }
+                    default:{
+                            cout<<"avanzado"<<endl;
+                        }
+                }
+                std::cout<<"Descripcion: "<<dataCurso->getDesCurso()<<endl;
+                std::cout<<"Idioma: "<<dataCurso->getNomIdioma()<<endl;
+                std::cout<<"Profesor: "<<dataCurso->getNomProf()<<endl;
+                std::cout<<"Habilitado: ";
+                if(dataCurso->getHabilitado()){
+                    std::cout<<"Si"<<endl;
+                } else{
+                    std::cout<<"No"<<endl;
+                }
+                std::cout<<"Lista de Lecciones:"<<endl;
+                set<DataLeccion*> dataLec=(dataCurso->getLeccion());
+                for (DataLeccion* lec: dataLec) {
+                    std::cout <<"Tema: "<< lec->gettema() << std::endl;
+                    std::cout <<"Objetivo: "<< lec->getobjetivo() << std::endl;
+                    std::cout<<"Ejercicios de Completar de esta Leccion: "<<endl;
+                    set<DataEjeCompletar*> dataComp = lec->getDataEjeComp();
+                        for(DataEjeCompletar* comp: dataComp){
+                            std::cout<<"Nombre: "<<comp->getNomEjercicio()<<endl;
+                            std::cout<<"Descripcion: "<<comp->getDescripcion()<<endl;
+                            std::cout<<"Problema: "<<comp->getFraseC()<<endl;
+                            std::cout<<"Solucion: ";
+                            set<std::string> faltantes=comp->getFaltante();
+                            for(std::string falta:faltantes){
+                                std::cout<<falta<<" ";
+                            }
+                            std::cout<<endl<<endl;
+                        }
+                    std::cout<<"Ejercicios de Traduccion de esta Leccion: "<<endl;
+                    set<DataEjeTraduccion*> dataTrad = lec->getDataEjeTrad();
+                        for(DataEjeTraduccion* trad: dataTrad){
+                         std::cout<<"Nombre: "<<trad->getNomEjercicio()<<endl;
+                         std::cout<<"Descripcion: "<<trad->getDescripcion()<<endl;
+                         std::cout<<"Problema: "<<trad->getFraseT()<<endl;
+                         std::cout<<"Solucion: "<<trad->getTraduccion()<<endl<<endl;   
+                        }
+                    }
+                std::cout<<"Lista de Inscripciones: "<<endl;
+                set<DataInscripciones2*> dataInsc=(dataCurso->getInscrip());
+                for(DataInscripciones2* insc: dataInsc){
+                    std::cout<<"Fecha Inscripcion: "<<insc->getfechaInsc()->getdia()<<"/"<<insc->getfechaInsc()->getmes()<<"/"<<insc->getfechaInsc()->getanio()<<endl;
+                    std::cout<<"Nombre Estudiante"<<insc->getnomEstu()<<endl<<endl;
+                }
+                std::cout<<"Operacion completada"<<endl;
+                std::cout<<"Presione enter para continuar"<<endl;
+                getchar();
                 break;
             }
             case 13:{
+                //variables
+                set<std::string> listaCursos;
+                std::string nomCurso;
+                bool esta;
+                char kil;
+
+                std::cout<<"Estos son los Cursos del Sistema:"<<endl;
+                listaCursos=ctrl->ListCurso();
+                for(const auto& curs:listaCursos){
+                    std::cout<<curs<<endl;
+                }
+                do{
+                std::cout<<"Seleccione el Curso que desea eliminar: ";
+                std::getline(std::cin,nomCurso);
+                IKey* keyCurso = new String(nomCurso.c_str());
+                esta =ctrl->getCursos()->member(keyCurso);
+                if(esta!=true){
+                    std::cout<<"Error, no existe un Curso con ese nombre"<<endl;
+                    std::cout<<"Vuelva a intentar"<<endl;
+                    getchar();
+                };
+                }while(esta!=true);
+                
+                std::cout<<"Seguro que desea eliminar este Curso?   Y|N"<<endl;
+                cin>>kil;
+                if(kil=='Y'||kil=='y'){
+                ctrl->EliminarCurso(nomCurso);
+                std::cout<<"El Curso ha sido eliminado"<<endl;
+                std::cout<<"Presione enter para continuar"<<endl;
+                getchar();
+                }
                 break;
             }
             case 14:{

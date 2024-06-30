@@ -17,3 +17,11 @@ string DataLeccion::gettema(){
 string DataLeccion::getobjetivo(){
     return this->objetivo;
 };
+
+set<DataEjeCompletar*> DataLeccion::getDataEjeComp(){
+    return this->DataEjeComp;
+};
+
+set<DataEjeTraduccion*> DataLeccion::getDataEjeTrad(){
+    return this->DataEjeTrad;
+};
