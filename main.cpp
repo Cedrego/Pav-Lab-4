@@ -197,6 +197,23 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 2:{
+                std::string nomIdioma; 
+                bool esta;
+                do{
+                std::cout<<"Ingrese el nuevo Idioma"<<endl;
+                cin>>nomIdioma;
+                IKey* IKI=new String(nomIdioma.c_str());
+                esta= ctrl->getIdiomas()->member(IKI);
+                if(esta==true){
+                    std::cout<<"Error, el Idioma ingresado ya existe"<<endl;
+                    std::cout<<"Vuelva a Intentarlo"<<endl;
+                    getchar();
+                }
+                }while(esta==true);
+                ctrl->IngresaIdioma(nomIdioma);
+                std::cout<<"Idioma ingresado correctamente"<<endl;
+                std::cout<<"Precione enter para continuar"<<endl;
+                getchar();
                 break;
             }
             case 3:{
@@ -359,6 +376,79 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 4:{
+                set<std::string> cursoNH= ctrl->ListarCursosNoHabilitados();
+                std::cout << "Cursos no Habilitados"<< endl;
+                for (const auto& curso : cursoNH) {
+                    std::cout << curso <<endl;
+                }
+                std::string nomCurso;
+                bool esta;
+                do{
+                    std::cout << "Selecione un Curso"<< endl;
+                    cin>>nomCurso;
+                    esta=false;
+                    for (const auto& curso : cursoNH){ 
+                        if (curso == nomCurso){
+                                esta=true;
+                                break;
+                        }
+                    }
+                    if(esta!=true){
+                        std::cout<<"Error, el Nombre del Curso ingresado no es correcto"<<endl;
+                        std::cout<<"Vuelva a Intentarlo"<<endl;
+                        getchar();
+                    }
+                }while(esta!=true);
+                Curso* C=ctrl->SeleccionarCursoNoHabilitado(nomCurso);
+                std::string nomTema;
+                std::cout<<"Ingrese el Nombre del tema de la Leccion"<<endl;
+                cin>>nomTema;
+                std::string objetivo;
+                std::cout<<"Ingrese el Objetivo de la Leccion"<<endl;
+                cin>>objetivo;
+                Lecciones* L= ctrl->ingresarLeccion(nomTema,objetivo,C);
+                std::string nomEj;
+                std::string tipoEj;
+                std::string descEj;
+                std::string fraseEj;
+                std::string solEj;
+                char opcion;
+                char masEjer;                
+                        std::cout<<"Desea agregar un Ejercicio para esta Leccion?   Y|N"<<endl;
+                        cin>>opcion;
+                        if(opcion=='Y'||opcion=='y'){
+                            do{
+                                std::cout<<"Ingrese el nombre del Ejercicio"<<endl;
+                                std::getline(std::cin,nomEj);
+                                do{
+                                    std::cout<<"Ingrese el tipo del Ejercicio"<<endl;
+                                    std::cout<<"(Traducir|Completar)  MAYUS IMPORTANTE"<<endl;
+                                    std::getline(std::cin,tipoEj);
+                                    
+                                    if(tipoEj.compare("Traducir")!=0||tipoEj.compare("Completar")!=0){
+                                        std::cout<<"Error, tipo invalido"<<endl;
+                                        std::cout<<"Vuelva a intentar"<<endl;
+                                        getchar();
+                                    };
+                                }while(tipoEj.compare("Traducir")!=0||tipoEj.compare("Completar")!=0);
+
+                                std::cout<<"Ingresar una descripcion:"<<endl;
+                                std::getline(std::cin,descEj);
+                                
+                                std::cout<<"Ingrese el problema a solucionar:"<<endl;
+                                std::cout<<"(En caso de ser de Completar, utilice --- en las secciones a completar)"<<endl;
+                                std::getline(std::cin,fraseEj);
+                            
+                                std::cout<<"Ingrese la solucion"<<endl;
+                                std::cout<<"(En caso de ser de Completar, separe las palabras con ---)"<<endl;
+                                std::getline(std::cin,solEj);
+                                ctrl->CrearEjercicio(nomEj,tipoEj,descEj,fraseEj,solEj,C,L);
+                                std::cout<<"Desea agregar otro Ejercicio a esta Leccion?  Y|N"<<endl;
+                                cin>>masEjer;
+                            }while(masEjer=='Y'||masEjer=='y');
+                        }
+                        
+
                 break;
             }
             case 5:{
@@ -453,6 +543,47 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 7:{
+                string nick;
+                bool esta;
+                do{
+                std::cout<<"Ingrese el Nickname del Estudiante"<<endl;
+                cin>>nick;
+                IKey* IKN=new String(nick.c_str());
+                esta= ctrl->getEstudiantes()->member(IKN);
+                if(esta!=true){
+                    std::cout<<"Error, el Nickname ingresado no existe"<<endl;
+                    std::cout<<"Vuelva a Intentarlo"<<endl;
+                    getchar();
+                }
+                }while(esta!=true);
+                Estudiante* E=nullptr;
+                set<DataCurso3*> DT= ctrl->ListarCursosDisponibles(nick,E);
+                std::cout << "Cursos disponibles:"<<endl;
+                for (const auto& curso : DT) {
+                   std::cout << "Nombre del Curso: " << curso->getNomCurso() << ", Dificultad: " << curso->getDificultad()<<",Descripcion"<<curso->getDesCurso()<<",Cantidad de Lecciones"<<curso->getLecciones()<<",Cantidad de Ejercicios"<<curso->getEjercicios() <<endl;
+                }
+                string nomCurso;
+                do{
+                std::cout<<"Ingrese el Nombre del Curso al cual e desea inscribir: "<<endl;
+                cin>>nomCurso;
+                esta=false;
+                for (const auto& curso : DT){ 
+                   if (curso->getNomCurso() == nomCurso){
+                        esta=true;
+                        break;
+                   }
+                }
+                if(esta!=true){
+                    std::cout<<"Error, el Nombre del Curso ingresado no existe"<<endl;
+                    std::cout<<"Vuelva a Intentarlo"<<endl;
+                    getchar();
+                }
+                }while(esta!=true);
+                ctrl->SeleccionarCurso(nomCurso,E);
+                std::cout<<"Estudian Inscripto correctamente"<<endl;
+                std::cout<<"Precione enter para continuar"<<endl;
+                getchar();
+                
                 break;
             }
             case 8:{
@@ -502,6 +633,13 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 9:{
+                set<std::string> Idiomas= ctrl->muestroIdioma();
+                std::cout << "Idiomas"<< endl;
+                for (const auto& idioma : Idiomas) {
+                    std::cout << idioma <<endl;
+                }
+                std::cout<<"Precione enter para continuar"<<endl;
+                getchar();
                 break;
             }
             case 10:{
