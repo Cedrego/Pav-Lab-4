@@ -58,8 +58,10 @@ class Curso : public ICollectible{
 		//CU: Eliminar Curso
 		void DeleteALLforCurso();
 		void desligarDePrevia(Curso* cursoBorrar);
+
 		//CU: Agregar Ejercico
 		set<std::string> conseguirLecciones();
+		bool ExisteLecC(std::string nomLec);
 
 		//CU: Habilitar Curso
 		void habilitar();
@@ -81,6 +83,7 @@ class Curso : public ICollectible{
 		//CU: Consultar Estadisticas
 		float getPromedioT();
 		DataCurso* getDataCurso();
+		Lecciones* GetLeccion(std::string nomLec);
 };
 
 #endif

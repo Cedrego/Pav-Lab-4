@@ -235,6 +235,15 @@ set<std::string> Ctrl::ListarCursosNoHabilitados(){
     return CursosNH;
 };
 
+Lecciones* Ctrl::SeleccionarLeccion(std::string nCurso,std::string nomLec){
+    Curso* c = (Curso*)this->Cursos->find(new String(nCurso.c_str()));
+    return c->GetLeccion(nomLec);
+}
+
+bool Ctrl::ExisteLec(std::string nCurso,std::string nomLec){
+    return ((Curso*)this->Cursos->find(new String(nCurso.c_str())))->ExisteLecC(nomLec);
+}
+
 set<std::string> Ctrl::listarLecciones(std::string nCurso){
     //creo una lista para retornar
     set<std::string> Lecciones;

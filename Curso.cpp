@@ -1,5 +1,6 @@
 #include "Curso.h"
 #include "Profesor.h"
+#include <cstring>
 
 //constructor y getters
 Curso::Curso(std::string nomCursoC, std::string desCursoC, DIFICULTAD dificultadC, bool habilitadoC, Idiomas* IdiomaC, Profesor* profesorC){
@@ -129,6 +130,28 @@ set<std::string> Curso::conseguirLecciones(){
     };
     return leccionesCurso;
 };
+
+Lecciones* Curso::GetLeccion(std::string nomLec){
+    IIterator* it=this->lecciones->getIterator();
+    while(it->hasCurrent()){
+        if(((Lecciones*)it->getCurrent())->getTema() == nomLec){
+            return (Lecciones*)it->getCurrent();
+        }
+        it->next();
+    };
+    return NULL;
+}
+
+bool Curso::ExisteLecC(std::string nomLec){
+    IIterator* it=this->lecciones->getIterator();
+    while(it->hasCurrent()){
+        if(((Lecciones*)it->getCurrent())->getTema() == nomLec){
+            return true;
+        }
+        it->next();
+    };
+    return false;
+}
 
 //CU: Habilitar Curso
 

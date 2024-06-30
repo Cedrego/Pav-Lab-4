@@ -63,6 +63,8 @@ class ICtrl{
         
         //CU: Agregar Ejercicio
         virtual set<std::string> ListarCursosNoHabilitados() = 0;
+        virtual Lecciones* SeleccionarLeccion(std::string nCurso,std::string nomLec) = 0;
+        virtual bool ExisteLec(std::string nCurso,std::string nomLec) = 0;
 
         //CU: Habilitar Curso
         virtual void HabilitarCurso(std::string nCurso) = 0;

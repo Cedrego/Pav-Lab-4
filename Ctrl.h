@@ -43,7 +43,7 @@ class Ctrl: public ICtrl{
         IDictionary* getProfesores();
         IDictionary* getEstudiantes();
         IDictionary* getIdiomas();
-        void clearSys():
+        void clearSys();
         //CU: Alta de Curso
         set<std::string> ListarProfesores();
         Curso* IngresoCurso(std::string nickP , std::string nomCurso, std::string descCurso, DIFICULTAD difCurso);
@@ -60,7 +60,10 @@ class Ctrl: public ICtrl{
         void SelecIdioma(std::string idioma, Profesor* profesorNuevo);
 
         //CU: Agregar Ejercicio
-        set<std::string> listarLecciones(std::string nCurso); 
+        set<std::string> listarLecciones(std::string nCurso);
+        Lecciones* SeleccionarLeccion(std::string nCurso,std::string nomLec);
+        set<std::string> ListarCursosNoHabilitados();
+        bool ExisteLec(std::string nCurso,std::string nomLec);
 
         //Agregar Leccion
         Lecciones* ingresarLeccion(string NomTema, string Objetivo, Curso* c);//OK
@@ -71,9 +74,6 @@ class Ctrl: public ICtrl{
         set<std::string> ListCurso();
         void EliminarCurso(std::string NomCurso);
         
-        //CU: Agregar Ejercicio
-        set<std::string> ListarCursosNoHabilitados();
-
         //CU: Habilitar Curso
         void HabilitarCurso(std::string nCurso);
 

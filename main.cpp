@@ -220,6 +220,61 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 5:{
+                std::string nomEj;
+                std::string tipoEj;
+                std::string descEj;
+                std::string fraseEj;
+                std::string solEj;
+                std::string nCurso;
+                std::string nomLec;
+                cout<<"Cursos No Habilitados: "<<endl;
+                set<std::string>CursosNH = ctrl->ListarCursosNoHabilitados();
+                for(std::string c : CursosNH){
+                    cout<<c<<endl;
+                }
+                cout<<"Ingrese el Curso seleccionado: "<<endl<<"> ";
+                getline(std::cin,nCurso);
+                if(ctrl->getCursos()->member(new String(nCurso.c_str()))){
+                    set<std::string> Lecs = ctrl->listarLecciones(nCurso);
+                    for(std::string lec : Lecs){
+                        cout<<lec<<endl;
+                    }
+                    cout<<"Ingrese nombre/tema de leccion"<<endl,
+                    getline(std::cin,nomLec);
+                    if(((Curso*)ctrl->getCursos()->find(new String(nCurso.c_str())))->ExisteLecC(nomLec)){
+                        Lecciones* l = ctrl->SeleccionarLeccion(nCurso,nomLec);
+
+                        std::cout<<"Ingrese el nombre del Ejercicio"<<endl;
+                        std::getline(std::cin,nomEj);
+
+                        std::cout<<"Ingrese el tipo del Ejercicio"<<endl;
+                        std::cout<<"(Traducir|Completar)  MAYUS IMPORTANTE"<<endl;
+                        std::getline(std::cin,tipoEj);
+                        do{
+                        if(tipoEj.compare("Traducir")!=0||tipoEj.compare("Completar")!=0){
+                            std::cout<<"Error, tipo invalido"<<endl;
+                            std::cout<<"Vuelva a intentar"<<endl;
+                            getchar();
+                        };
+                        }while(tipoEj.compare("Traducir")!=0||tipoEj.compare("Completar")!=0);
+
+                        std::cout<<"Ingresar una descripcion:"<<endl;
+                        std::getline(std::cin,descEj);
+                        
+                        std::cout<<"Ingrese el problema a solucionar:"<<endl;
+                        std::cout<<"(En caso de ser de Completar, utilice --- en las secciones a completar)"<<endl;
+                        std::getline(std::cin,fraseEj);
+                    
+                        std::cout<<"Ingrese la solucion"<<endl;
+                        std::cout<<"(En caso de ser de Completar, separe las palabras con ---)"<<endl;
+                        std::getline(std::cin,solEj);
+                        l->CrearEjer(nomEj,tipoEj,descEj,fraseEj,solEj);
+                    }
+                }
+                else{
+                    cout<<"Datos Ingresados no validos"<<endl;
+                    getchar();
+                }
                 break;
             }
             case 6:{
