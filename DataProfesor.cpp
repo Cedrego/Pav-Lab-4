@@ -13,6 +13,6 @@ string DataProfesor::getinstituto(){
     return this->instituto;
 };
 
-string DataProfesor::getnomIdioma(){
+ICollection* DataProfesor::getnomIdioma(){
     return this->nomIdioma;
 };

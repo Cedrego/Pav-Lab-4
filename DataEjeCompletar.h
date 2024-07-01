@@ -2,6 +2,7 @@
 #ifndef DATAEJECOMPLETAR_H
 #define DATAEJECOMPLETAR_H
 #include <string>
+#include <set>
 #include "ICollection/interfaces/ICollection.h"
 using namespace std;
 

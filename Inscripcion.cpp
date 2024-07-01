@@ -1,4 +1,4 @@
-#include"Inscripcion.h"
+#include "Inscripcion.h"
 #include "Curso.h"
 #include <sstream> 
 #include <vector>
@@ -8,6 +8,8 @@ Inscripcion::Inscripcion(DTFecha* fechaInscrI, bool aprovadoI, Estudiante* estud
     this->aprovado=aprovadoI;
     this->estudiante=estudianteI;
     this->curso=cursoI;
+    this->UltimaLec = nullptr;
+	this->EjerCompletados = new OrderedDictionary();
 };
 // Implementación del setter para UltimaLec
 void Inscripcion::asignarUltimaLec(Lecciones* leccion) {
@@ -37,7 +39,7 @@ void Inscripcion::desligarEstudiante(){
     //llamo a esta funcion para que el estudiante quite la inscripcion de su diccionario
     this->estudiante->olvidarInscripcion(this);
     //dejo el puntero al estudiante en NULL
-    this->estudiante=NULL;
+    this->estudiante=nullptr;
 };
 
 //CU: Consultar Curso
@@ -48,12 +50,12 @@ std::string Inscripcion::devolverNomEstudiante(){
 
 //cargar datos
 void Inscripcion::aprobadoAutomatico(deTraducir* DT, deCompletar* DC){
-    if(DT!=NULL){
+    if(DT!=nullptr){
         IKey* keyDT = new String((DT->getnomEjercicio()).c_str());
-        this->ejerCompletados->add(keyDT,(ICollectible*)DT);
+        this->EjerCompletados->add(keyDT,(ICollectible*)DT);
     } else{
         IKey* keyDC = new String((DC->getnomEjercicio()).c_str());
-        this->ejerCompletados->add(keyDC,(ICollectible*)DC);
+        this->EjerCompletados->add(keyDC,(ICollectible*)DC);
     }
 };
 void Inscripcion::aprobarInsc(){

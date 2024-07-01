@@ -1,5 +1,7 @@
 #include "Curso.h"
 #include "Profesor.h"
+#include "DataCurso.h"
+#include "DataCurso3.h"
 #include <cstring>
 
 //constructor y getters
@@ -10,6 +12,10 @@ Curso::Curso(std::string nomCursoC, std::string desCursoC, DIFICULTAD dificultad
     this->habilitado=habilitadoC;
     this->Idioma=IdiomaC;
     this->profesor=profesorC;
+    this->MisPrevias= new List();
+	this->SoyPreviaDe= new List();
+	this->lecciones= new List();
+	this->Inscripciones = new OrderedDictionary();
 };
 
 Curso::~Curso(){
@@ -161,7 +167,7 @@ void Curso::habilitar(){
 //Agregar Leccion
 Lecciones* Curso::CrearLeccion(string NomTema, string Objetivo){
     //Creamos la leccion
-   Lecciones* leccion=new Lecciones( NomTema, Objetivo,NULL,NULL);//MIRARARARARRARAR
+   Lecciones* leccion=new Lecciones( NomTema, Objetivo);//MIRARARARARRARAR
    //La leccion creada se agrega a la coleccion
     this->lecciones->add((ICollectible*) leccion);
     return leccion;
@@ -209,7 +215,8 @@ set<DataInscripciones2*> Curso::conseguirDataInsc2(){
 //cargar datos
 void Curso::aniadirInscripcionCurso(Inscripcion* insc){
     //consigo key de la inscripcion
-    IKey* keyInsc = new String((insc->getestudiante())->getNickname().c_str());
+    std::string nickEst = (insc->getestudiante())->getNickname();
+    OrderedKey* keyInsc = new String(nickEst.c_str());
     //la aniado a la coleccion
     this->Inscripciones->add(keyInsc, (ICollectible*)insc);
 

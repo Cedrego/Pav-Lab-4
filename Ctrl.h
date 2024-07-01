@@ -16,6 +16,7 @@
 #include "Lecciones.h"
 #include <string>
 #include <set>
+#include <iostream>
 #include "ICollection/interfaces/IDictionary.h"
 #include "ICollection/interfaces/ICollection.h"
 #include "ICollection/collections/OrderedDictionary.h"

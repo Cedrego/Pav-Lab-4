@@ -12,7 +12,13 @@ ICtrl* Ctrl::getInstance() {
     return instance;
 };
 
-Ctrl::Ctrl() {};
+Ctrl::Ctrl() {
+    this->Profesores=new OrderedDictionary();
+    this->Cursos=new OrderedDictionary();
+    this->estudiantes=new OrderedDictionary();
+    this->idiomas=new OrderedDictionary();
+};
+
 Ctrl::~Ctrl() {};
 IDictionary* Ctrl::getProfesores(){
     return this->Profesores;
@@ -29,7 +35,7 @@ IDictionary* Ctrl::getIdiomas(){
 };
 
 void Ctrl::clearSys(){
-    system("clear");
+    system("cls");
 }
 
 //Agregar Leccion
@@ -60,6 +66,7 @@ set<std::string> Ctrl::ListarProfesores(){
     while(it->hasCurrent()){
         //casteo el iterador a profesor por cada instancia y guardo el nickname en la lista
         Profesores.insert(((Profesor*)it->getCurrent())->getNickname());
+        it->next();
     };
     //saco la basura
     delete it;
@@ -471,7 +478,7 @@ DataUsuario* Ctrl::DatosUser(std::string nick){
     // Buscar el estudiantes
     IKey* IKE=new String(nick.c_str());
     Estudiante* E=(Estudiante*)(estudiantes->find(IKE));
-    if(E!=NULL){
+    if(E!=nullptr){
         DataEst* dataE= new DataEst(E->getfecNac(),E->getPais());
         DataUsuario* newDataUser=new DataUsuario(E->getNickname(), E->getDescripcion(), E->getNombre(), E->getContrasenia(), nullptr, dataE);
         delete IKE;
@@ -479,7 +486,7 @@ DataUsuario* Ctrl::DatosUser(std::string nick){
     }else{
         IKey* IKP=new String(nick.c_str());
         Profesor* P=(Profesor*)(Profesores->find(IKP));
-         if(P!=NULL){
+         if(P!=nullptr){
             DataProfesor* dataP= new DataProfesor(P->getinstituto(), P->getIdiomas());
             DataUsuario* newDataUser=new DataUsuario(P->getNickname(), P->getDescripcion(), P->getNombre(), P->getContrasenia(), dataP, nullptr);
             delete IKP;
@@ -491,8 +498,10 @@ DataUsuario* Ctrl::DatosUser(std::string nick){
 
 //cargar datos
 void Ctrl::UnlimitedVoid(){
-
+    std::string nada;
     std::string nombreIdioma;
+    std::cout<<"Cargando Idiomas..."<<endl;
+    getchar();
     Idiomas* I1 = new Idiomas(nombreIdioma="Ingles");
     IKey* KeyI1 = new String(nombreIdioma.c_str());
     (this->idiomas)->add(KeyI1,(ICollectible*) I1);
@@ -515,6 +524,9 @@ void Ctrl::UnlimitedVoid(){
     std::string descUsuario;
     std::string paisEstudiante;
     std::string institutoProfesor;
+
+    std::cout<<"Cargando Estudiantes..."<<endl;
+    getchar();
 
     Estudiante* U1 = new Estudiante(nickUsuario="jpidiom", descUsuario="Soy un apasionado del aprendizaje de idiomas.", nombreUsuario="Juan Perez", passUsuario="1234", new DTFecha(15,7,1995), paisEstudiante="Argentina");
     IKey* KeyU1 = new String(nickUsuario.c_str());
@@ -556,7 +568,8 @@ void Ctrl::UnlimitedVoid(){
     IKey* KeyU10 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU10,(ICollectible*)U10);
 
-
+    std::cout<<"Cargando Profesores..."<<endl;
+    getchar();
     Profesor* U11 = new Profesor(nickUsuario="langMaster", descUsuario="Soy una profesora apasionada por los idiomas.", nombreUsuario="Marta Grecia", passUsuario="1234", institutoProfesor="Instituto de Idiomas Moderno");
     U11->aniadirIdioma(I1);
     U11->aniadirIdioma(I3);
@@ -579,6 +592,9 @@ void Ctrl::UnlimitedVoid(){
     std::string nombreCurso;
     std::string descCurso;
     
+    std::cout<<"Cargando Cursos..."<<endl;
+    getchar();
+
     Curso* C1 = new Curso(nombreCurso="Ingles para principiantes",descCurso="Curso para personas con poco o ningun conocimiento de ingles. Se enfoca en vocabulario basico, gramatica y habilidades de conversacion.", principiante, true, I1, U11);
     IKey* KeyC1 = new String(nombreCurso.c_str());
     this->Cursos->add(KeyC1,(ICollectible*)C1);
@@ -603,6 +619,9 @@ void Ctrl::UnlimitedVoid(){
     IKey* KeyC6 = new String(nombreCurso.c_str());
     this->Cursos->add(KeyC6,(ICollectible*)C6);
 
+    std::cout<<"Asignando Previas..."<<endl;
+    getchar();
+
     //las previas y posteriores estan en privado, asi que uso esta funcion
     C3->esPrevia(C1); //C1 es previa de C3
     C1->miPrevia(C3); //C3 es posterior de C1
@@ -618,6 +637,9 @@ void Ctrl::UnlimitedVoid(){
 
     std::string temaLec;
     std::string objLec;
+
+    std::cout<<"Cargando Lecciones..."<<endl;
+    getchar();
     Lecciones* L1 = C1->CrearLeccion(temaLec="Saludos y Presentaciones", objLec="Aprender a saludar y despedirse");
    
     Lecciones* L2 = C1->CrearLeccion(temaLec="Artículos y Plurales", objLec="Comprender y utilizar los articulos definidos e indefinidos, Aprender a formar los plurales regulares e irregulares de sustantivos");
@@ -625,7 +647,8 @@ void Ctrl::UnlimitedVoid(){
     Lecciones* L3 = C2->CrearLeccion(temaLec="Actividades Cotidianas ", objLec="Comprender y utilizar los articulos definidos e indefinidos, Aprender a formar los plurales regulares e irregulares de sustantivos");
     
     Lecciones* L4 = C2->CrearLeccion(temaLec="Presente Simple", objLec="Aprender el uso del presente simple");
-    
+    nada=L4->getTema();
+
     Lecciones* L5 = C3->CrearLeccion(temaLec="Conversaciones cotidianas", objLec="Aprender a hacer preguntas y respuestas en situaciones comunes");
 
     Lecciones* L6 = C4->CrearLeccion(temaLec="Uso de modales avanzados", objLec="Explorar el uso de los modales complejos");
@@ -638,6 +661,9 @@ void Ctrl::UnlimitedVoid(){
     std::string descEjer;
     std::string fraseEjer;
     std::string solEjer;
+    
+    std::cout<<"Cargando Ejercicios..."<<endl;
+    getchar();
 
     L1->CrearEjer(nomEjer="E1",tipoEjer="Traducir",descEjer="Presentaciones", fraseEjer="Mucho gusto en conocerte", solEjer="Nice to meet you");
     IKey* keyE1 = new String(nomEjer.c_str());
@@ -658,6 +684,7 @@ void Ctrl::UnlimitedVoid(){
     L3->CrearEjer(nomEjer="E5",tipoEjer="Completar",descEjer="Actividades diarias", fraseEjer="Wake ---", solEjer="Wake");
     IKey* keyE5 = new String(nomEjer.c_str());
     deCompletar* E5 = L3->conseguirDC(keyE5);
+    nada=E5->getdescripcion();
 
     L5->CrearEjer(nomEjer="E6",tipoEjer="Completar",descEjer="Consultas de la hora", fraseEjer="Q: Do you --- the time?, A: Yes, it is half --- 4", solEjer="have --- past");
     IKey* keyE6 = new String(nomEjer.c_str());
@@ -666,12 +693,15 @@ void Ctrl::UnlimitedVoid(){
     L6->CrearEjer(nomEjer="E7",tipoEjer="Traducir",descEjer="Dar consejos o expresar obligacion", fraseEjer="You should visit that museum", solEjer="Deberias visitar ese museo");
     IKey* keyE7 = new String(nomEjer.c_str());
     deTraducir* E7 = L6->conseguirDT(keyE7);
+    nada=E7->getdescripcion();
 
     L7->CrearEjer(nomEjer="E8",tipoEjer="Traducir",descEjer="Imperativo", fraseEjer="Fale comigo", solEjer="Habla conmigo");
     IKey* keyE8 = new String(nomEjer.c_str());
     deTraducir* E8 = L7->conseguirDT(keyE8);
+    nada=E8->getdescripcion();
 
-
+    std::cout<<"Cargando Inscripciones..."<<endl;
+    getchar();
 
     Inscripcion* N1 = new Inscripcion(new DTFecha (01,01,2022), false, U1, C1);
     U1->aniadirInscripcion(N1);
@@ -754,4 +784,4 @@ void Ctrl::UnlimitedVoid(){
     delete keyE6;
     delete keyE7;
     delete keyE8;
-}
+};

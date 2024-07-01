@@ -8,8 +8,8 @@ Profesor::Profesor(std::string nicknameP, std::string descripcionP, std::string 
     this->nombre=nombreP;
     this->contrasenia=contraseniaP;
     this->instituto=institutoP;
-    this->idiomas=NULL;
-    this->cursos=NULL;
+    this->idiomas= new List();
+    this->cursos=new List();
 };
 
 Profesor::Profesor(){};

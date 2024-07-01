@@ -10,8 +10,8 @@ enum DIFICULTAD{
 #define CURSO_H
 #include "Lecciones.h"
 #include "Idiomas.h"
-#include "DataCurso.h"
-#include "DataCurso3.h"
+class DataCurso;
+class DataCurso3;
 class Profesor;
 #include "DataLeccion.h"
 #include "DataInscripciones2.h"

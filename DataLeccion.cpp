@@ -3,7 +3,7 @@ DataLeccion::DataLeccion(std::string temaDT, std::string objetivoDT, set<DataEje
     this->tema=temaDT;
     this->objetivo=objetivoDT;
     this->DataEjeComp=DataEjeCompDT;
-    this->DataEjeTrad=DataEjeCompDT;
+    this->DataEjeTrad=DataEjeTradDT;
 }
 
 DataLeccion::DataLeccion(){};

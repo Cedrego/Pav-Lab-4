@@ -634,7 +634,7 @@ int main(int argc, char *argv[]){
             }
             case 9:{
                 set<std::string> Idiomas= ctrl->muestroIdioma();
-                std::cout << "Idiomas"<< endl;
+                std::cout << "Idiomas: "<< endl;
                 for (const auto& idioma : Idiomas) {
                     std::cout << idioma <<endl;
                 }
@@ -724,26 +724,42 @@ int main(int argc, char *argv[]){
             }
             case 11:{
                 std::string nickUsu;
-                set<std::string> listaUsuarios;
-                bool esta;
+                set<std::string> listaEstudiantes;
+                set<std::string> listaProfesores;
+                bool esta=true;
 
                 std::cout<<"Estos son los Usuarios guardados en el Sistema:"<<endl;
-                listaUsuarios=ctrl->ListNickUsuarios();
-                for(const auto& usu:listaUsuarios){
+                if(!(ctrl->getEstudiantes()->isEmpty())){
+                listaEstudiantes=ctrl->ListEstudiantes();
+                for(const auto& usu:listaEstudiantes){
                     std::cout<<usu<<endl;
                 }
+                }
+
+                if(!(ctrl->getProfesores()->isEmpty())){
+                listaProfesores=ctrl->ListarProfesores();
+                for(const auto& usu:listaProfesores){
+                    std::cout<<usu<<endl;
+                }
+                }
+                
                 do{
                     std::cout<<"Seleccione un Usuario para consultar informacion:"<<endl;
                     std::getline(std::cin,nickUsu);
                     IKey* keyUsu = new String(nickUsu.c_str());
-                    if((ctrl->getEstudiantes()->member(keyUsu))!=true){
-                        if((ctrl->getProfesores()->member(keyUsu))!=true){
-                            esta=false;
-                            std::cout<<"Error, no existe un Usuario con ese nombre"<<endl;
-                            std::cout<<"Vuelva a intentar"<<endl;
-                            getchar();
-                        }
+                    // Verificar si el usuario es estudiante o profesor
+                    if (ctrl->getEstudiantes()->member(keyUsu)) {
+                        esta = true; // Usuario encontrado como estudiante
+                    } 
+                    if (ctrl->getProfesores()->member(keyUsu)) {
+                        esta = true; // Usuario encontrado como profesor
+                    } else {
+                        esta = false; // Usuario no encontrado
+                        std::cout << "Error, no existe un Usuario con ese nombre" <<endl;
+                        std::cout << "Vuelva a intentar" <<endl;
+                        getchar();
                     };
+                    delete keyUsu;
                 }while(esta!=true);
 
                 DataUsuario* dataUsu = ctrl->DatosUser(nickUsu);

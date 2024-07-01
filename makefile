@@ -5,21 +5,18 @@ CFLAGS = -Wall -g
 
 # ###Ejecutable###
 
-main: DataCursoE.o DataCursoP.o DataCurso3.o DataCurso2.o DataCurso.o DataInscripciones2.o DataEjeTraduccion.o DataEjeCompletar.o DataLeccion.o DataEst.o DataProfesor.o DataUsuario.o DTFecha.o Inscripcion.o Idiomas.o deTraducir.o deCompletar.o Ejercicio.o Lecciones.o Curso.o Estudiante.o Profesor.o Usuario.o Ctrl.o Factory.o ICtrl.o main.o
-	$(CC) $(CFLAGS) DataCursoE.o DataCursoP.o DataCurso3.o DataCurso2.o DataCurso.o DataInscripciones2.o DataEjeTraduccion.o DataEjeCompletar.o DataLeccion.o DataEst.o DataProfesor.o DataUsuario.o DTFecha.o Inscripcion.o Idiomas.o deTraducir.o deCompletar.o Ejercicio.o Lecciones.o Curso.o Estudiante.o Profesor.o Usuario.o Ctrl.o Factory.o ICtrl.o main.o -o programa
+main: DataCursoE.o DataCursoP.o DataCurso3.o DataCurso2.o DataCurso.o DataInscripciones2.o DataEjeTraduccion.o DataEjeCompletar.o DataLeccion.o DataEst.o DataProfesor.o DataUsuario.o DTFecha.o Inscripcion.o Idiomas.o deTraducir.o deCompletar.o Ejercicio.o Lecciones.o Curso.o Estudiante.o Profesor.o Usuario.o Ctrl.o Factory.o main.o
+	$(CC) $(CFLAGS) DataCursoE.o DataCursoP.o DataCurso3.o DataCurso2.o DataCurso.o DataInscripciones2.o DataEjeTraduccion.o DataEjeCompletar.o DataLeccion.o DataEst.o DataProfesor.o DataUsuario.o DTFecha.o Inscripcion.o Idiomas.o deTraducir.o deCompletar.o Ejercicio.o Lecciones.o Curso.o Estudiante.o Profesor.o Usuario.o Ctrl.o Factory.o main.o -o programa
 
 # ###Linkedicion de cada archivo necesario###
 main.o: main.cpp ICtrl.h Factory.h DataCursoE.h DataCursoP.h DataCurso.h
 	$(CC) $(CFLAGS) -c main.cpp
 
-ICtrl.o: ICtrl.h Curso.o Usuario.o Profesor.o Estudiante.o Lecciones.o Idiomas.o DataCurso2.o DataLeccion.o DataCurso3.o DataCursoE.o DataCursoP.o DataCurso.o DataUsuario.o
-	$(CC) $(CFLAGS) -c ICtrl.cpp Curso.cpp Usuario.cpp Profesor.cpp Estudiante.cpp Lecciones.cpp Idiomas.cpp DataCurso2.cpp DataLeccion.cpp DataCurso3.cpp DataCursoE.cpp DataCursoP.cpp DataCurso.cpp DataUsuario.cpp 
-
 Factory.o: Factory.h ICtrl.o
-	$(CC) $(CFLAGS) -c Factory.cpp ICtrl.cpp
+	$(CC) $(CFLAGS) -c Factory.cpp
 
-Ctrl.o: Ctrl.h ICtrl.o Curso.o Usuario.o Profesor.o Estudiante.o Lecciones.o Idiomas.o DataCurso2.o DataLeccion.o DataCurso3.o DataCursoE.o DataCursoP.o DataCurso.o DataUsuario.o 
-	$(CC) $(CFLAGS) -c Ctrl.cpp ICtrl.cpp Curso.cpp Usuario.cpp Profesor.cpp Estudiante.cpp Lecciones.cpp Idiomas.cpp DataCurso2.cpp DataLeccion.cpp DataCurso3.cpp DataCursoE.cpp DataCursoP.cpp DataCurso.cpp DataUsuario.cpp 
+Ctrl.o: Ctrl.h ICtrl.h Curso.o Usuario.o Profesor.o Estudiante.o Lecciones.o Idiomas.o DataCurso2.o DataLeccion.o DataCurso3.o DataCursoE.o DataCursoP.o DataCurso.o DataUsuario.o 
+	$(CC) $(CFLAGS) -c Ctrl.cpp Curso.cpp Usuario.cpp Profesor.cpp Estudiante.cpp Lecciones.cpp Idiomas.cpp DataCurso2.cpp DataLeccion.cpp DataCurso3.cpp DataCursoE.cpp DataCursoP.cpp DataCurso.cpp DataUsuario.cpp 
 
 Usuario.o: Usuario.h
 	$(CC) $(CFLAGS) -c Usuario.cpp 
@@ -30,8 +27,8 @@ Profesor.o: Profesor.h Usuario.o Curso.o DataCursoP.o
 Estudiante.o: Estudiante.h Usuario.o Lecciones.o DTFecha.o DataCursoE.o
 	$(CC) $(CFLAGS) -c Estudiante.cpp Usuario.cpp Lecciones.cpp DTFecha.cpp DataCursoE.cpp
 
-Curso.o: Curso.h Lecciones.o Idiomas. Inscripcion.o DataCurso.o DataLeccion.o DataInscripciones2.o 
-	$(CC) $(CFLAGS) -c Curso.cpp Lecciones.cpp Idiomas.cpp Inscripcion.cpp DataCurso.cpp DataLeccion.cpp DataInscripciones2.cpp 
+Curso.o: Curso.h Lecciones.o Idiomas.o DataCurso.o DataLeccion.o DataInscripciones2.o 
+	$(CC) $(CFLAGS) -c Curso.cpp Lecciones.cpp Idiomas.cpp DataCurso.cpp DataLeccion.cpp DataInscripciones2.cpp 
 
 Lecciones.o: Lecciones.h deCompletar.o deTraducir.o DataEjeCompletar.o DataEjeTraduccion.o
 	$(CC) $(CFLAGS) -c Lecciones.cpp deCompletar.cpp deTraducir.cpp DataEjeCompletar.cpp DataEjeTraduccion.cpp
@@ -60,8 +57,8 @@ DataUsuario.o: DataUsuario.h DataProfesor.o DataEst.o
 DataProfesor.o: DataProfesor.h
 	$(CC) $(CFLAGS) -c DataProfesor.cpp
 
-DataEst.o: DataEst.h DataFecha.o
-	$(CC) $(CFLAGS) -c DataEst.cpp DataFecha.cpp
+DataEst.o: DataEst.h DTFecha.o
+	$(CC) $(CFLAGS) -c DataEst.cpp DTFecha.cpp
 
 DataLeccion.o: DataLeccion.h DataEjeCompletar.o DataEjeTraduccion.o
 	$(CC) $(CFLAGS) -c DataLeccion.cpp DataEjeCompletar.cpp DataEjeTraduccion.cpp

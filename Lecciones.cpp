@@ -6,11 +6,11 @@
 #include "ICollection/collections/OrderedDictionary.h"
 #include <sstream> 
 #include <vector> 
-Lecciones::Lecciones(std::string temaI, std::string objetivoI, IDictionary* deCompletarI, IDictionary* deTraducirI){
+Lecciones::Lecciones(std::string temaI, std::string objetivoI){
     this->tema=temaI;
     this->objetivo=objetivoI;
-    this->DeCompletar=deCompletarI;
-    this->DeTraducir=deTraducirI;
+    this->DeCompletar= new OrderedDictionary();
+    this->DeTraducir= new OrderedDictionary();
 };
 
 Lecciones::Lecciones(){};

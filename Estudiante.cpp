@@ -9,9 +9,9 @@ Estudiante::Estudiante(string nicknameE, string descripcionE, string nombreE, st
     this->contrasenia=contraseniaE;
     this->fecNac=fecNacE;
     this->Pais=PaisE;
-    this->Inscripciones=NULL;
-    this->UltimaLeccion=NULL;
-    this->EjerciciosAprov=NULL;
+    this->Inscripciones=new OrderedDictionary();
+    this->UltimaLeccion=nullptr;
+    this->EjerciciosAprov=new List();
 };
 
 Estudiante::Estudiante(){};
@@ -54,7 +54,8 @@ void Estudiante::olvidarInscripcion(Inscripcion* insc){
 //cargar datos
 void Estudiante::aniadirInscripcion(Inscripcion* insc){
     //consigo key de la inscripcion
-    IKey* keyInsc = new String((insc->getcurso())->getNomCurso().c_str());
+    std::string nomCurso= ((insc->getcurso())->getNomCurso());
+    OrderedKey* keyInsc = new String(nomCurso.c_str());
     //la aniado a la coleccion
     this->Inscripciones->add(keyInsc, (ICollectible*)insc);
 

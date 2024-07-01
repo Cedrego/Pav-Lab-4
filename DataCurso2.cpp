@@ -2,7 +2,7 @@
 
 DataCurso2::DataCurso2(std::string nomCursoDT, DIFICULTAD dificultadDT, std::string desCursoDT,std::string nomIdiomaDT, std::string nomProfDT, bool habilitadoDT, set<DataLeccion*> LeccionDT, set<DataInscripciones2*> InscripDT){
     this->nomCurso=nomCursoDT;
-	this->ificultad=dificultadDT;
+	this->dificultad=dificultadDT;
 	this->desCurso=desCursoDT;
 	this->nomIdioma=nomIdiomaDT;
 	this->nomProf=nomProfDT;

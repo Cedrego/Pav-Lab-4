@@ -1,6 +1,6 @@
 #include "DataEjeCompletar.h"
 
-DataEjeCompletar::DataEjeCompletar(std::string nomEjercicioC, std::string descripcionC, std::string fraseCC, ICollection* faltanteC){
+DataEjeCompletar::DataEjeCompletar(std::string nomEjercicioC, std::string descripcionC, std::string fraseCC, set<std::string> faltanteC){
     this->nomEjercicio=nomEjercicioC;
     this->descripcion=descripcionC;
     this->fraseC=fraseCC;
