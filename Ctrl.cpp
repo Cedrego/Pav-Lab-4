@@ -1,5 +1,5 @@
 #include "Ctrl.h"
-#include "Inscripcion.h"
+
  
 using namespace std;
 
