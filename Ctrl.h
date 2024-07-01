@@ -4,6 +4,8 @@
 #include "Curso.h"
 #include "Profesor.h"
 #include "Estudiante.h"
+#include "Inscripcion.h"
+//algo
 #include "Idiomas.h"
 #include "DataCurso2.h"
 #include "DataLeccion.h"

@@ -11,6 +11,7 @@
 #include "DataCursoE.h"
 #include "DataCursoP.h"
 #include "DataCurso.h"
+#include "Inscripcion.h"
 #include "DataUsuario.h"
 #include "Usuario.h"
 #include "Lecciones.h"
