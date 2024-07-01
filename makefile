@@ -5,15 +5,54 @@ CFLAGS = -Wall -g
 
 # ###Ejecutable###
 
-main: DataCursoE.o DataCursoP.o DataCurso3.o DataCurso2.o DataCurso.o DataInscripciones2.o DataEjeTraduccion.o DataEjeCompletar.o DataLeccion.o DataEst.o DataProfesor.o DataUsuario.o DTFecha.o Inscripcion.o Idiomas.o deTraducir.o deCompletar.o Ejercicio.o Lecciones.o Curso.o Estudiante.o Profesor.o Usuario.o Ctrl.o Factory.o main.o
-	$(CC) $(CFLAGS) DataCursoE.o DataCursoP.o DataCurso3.o DataCurso2.o DataCurso.o DataInscripciones2.o DataEjeTraduccion.o DataEjeCompletar.o DataLeccion.o DataEst.o DataProfesor.o DataUsuario.o DTFecha.o Inscripcion.o Idiomas.o deTraducir.o deCompletar.o Ejercicio.o Lecciones.o Curso.o Estudiante.o Profesor.o Usuario.o Ctrl.o Factory.o main.o -o programa
+main: OrderedDictionaryEntry.o ListNode.o String.o Integer.o ListIterator.o List.o IIterator.o OrderedKey.o OrderedDictionary.o IKey.o ICollectible.o ICollection.o IDictionary.o DataCursoE.o DataCursoP.o DataCurso3.o DataCurso2.o DataCurso.o DataInscripciones2.o DataEjeTraduccion.o DataEjeCompletar.o DataLeccion.o DataEst.o DataProfesor.o DataUsuario.o DTFecha.o Inscripcion.o Idiomas.o deTraducir.o deCompletar.o Ejercicio.o Lecciones.o Curso.o Estudiante.o Profesor.o Usuario.o Ctrl.o Factory.o main.o
+	$(CC) $(CFLAGS) OrderedDictionaryEntry.o ListNode.o String.o Integer.o ListIterator.o List.o IIterator.o OrderedKey.o OrderedDictionary.o IKey.o ICollectible.o ICollection.o IDictionary.o DataCursoE.o DataCursoP.o DataCurso3.o DataCurso2.o DataCurso.o DataInscripciones2.o DataEjeTraduccion.o DataEjeCompletar.o DataLeccion.o DataEst.o DataProfesor.o DataUsuario.o DTFecha.o Inscripcion.o Idiomas.o deTraducir.o deCompletar.o Ejercicio.o Lecciones.o Curso.o Estudiante.o Profesor.o Usuario.o Ctrl.o Factory.o main.o -o programa
 
 # ###Linkedicion de cada archivo necesario###
 main.o: main.cpp ICtrl.h Factory.h DataCursoE.h DataCursoP.h DataCurso.h
 	$(CC) $(CFLAGS) -c main.cpp
 
-Factory.o: Factory.h ICtrl.o
+Factory.o: Factory.h ICtrl.h
 	$(CC) $(CFLAGS) -c Factory.cpp
+
+OrderedDictionaryEntry.o: ICollection/collections/OrderedDictionaryEntry.h
+	$(CC) $(CFLAGS) -c ICollection/collections/OrderedDictionaryEntry.cpp
+
+ListNode.o: ICollection/collections/ListNode.h
+	$(CC) $(CFLAGS) -c ICollection/collections/ListNode.cpp
+
+ListIterator.o: ICollection/collections/ListIterator.h
+	$(CC) $(CFLAGS) -c ICollection/collections/ListIterator.cpp
+
+List.o: ICollection/collections/List.h
+	$(CC) $(CFLAGS) -c ICollection/collections/List.cpp
+
+IIterator.o: ICollection/interfaces/IIterator.h
+	$(CC) $(CFLAGS) -c ICollection/interfaces/IIterator.cpp
+
+String.o: ICollection/String.h
+	$(CC) $(CFLAGS) -c ICollection/String.cpp
+
+Integer.o: ICollection/Integer.h
+	$(CC) $(CFLAGS) -c ICollection/Integer.cpp
+
+OrderedDictionary.o: ICollection/collections/OrderedDictionary.h
+	$(CC) $(CFLAGS) -c ICollection/collections/OrderedDictionary.cpp
+
+OrderedKey.o: ICollection/interfaces/OrderedKey.h
+	$(CC) $(CFLAGS) -c ICollection/interfaces/OrderedKey.cpp
+
+IKey.o: ICollection/interfaces/IKey.h
+	$(CC) $(CFLAGS) -c ICollection/interfaces/IKey.cpp
+
+ICollectible.o: ICollection/interfaces/ICollectible.h
+	$(CC) $(CFLAGS) -c ICollection/interfaces/ICollectible.cpp
+
+ICollection.o: ICollection/interfaces/ICollection.h
+	$(CC) $(CFLAGS) -c ICollection/interfaces/ICollection.cpp
+
+IDictionary.o: ICollection/interfaces/IDictionary.h
+	$(CC) $(CFLAGS) -c ICollection/interfaces/IDictionary.cpp
 
 Ctrl.o: Ctrl.h ICtrl.h Curso.o Usuario.o Profesor.o Estudiante.o Lecciones.o Idiomas.o DataCurso2.o DataLeccion.o DataCurso3.o DataCursoE.o DataCursoP.o DataCurso.o DataUsuario.o 
 	$(CC) $(CFLAGS) -c Ctrl.cpp Curso.cpp Usuario.cpp Profesor.cpp Estudiante.cpp Lecciones.cpp Idiomas.cpp DataCurso2.cpp DataLeccion.cpp DataCurso3.cpp DataCursoE.cpp DataCursoP.cpp DataCurso.cpp DataUsuario.cpp 
@@ -27,8 +66,8 @@ Profesor.o: Profesor.h Usuario.o Curso.o DataCursoP.o
 Estudiante.o: Estudiante.h Usuario.o Lecciones.o DTFecha.o DataCursoE.o
 	$(CC) $(CFLAGS) -c Estudiante.cpp Usuario.cpp Lecciones.cpp DTFecha.cpp DataCursoE.cpp
 
-Curso.o: Curso.h Lecciones.o Idiomas.o DataCurso.o DataLeccion.o DataInscripciones2.o 
-	$(CC) $(CFLAGS) -c Curso.cpp Lecciones.cpp Idiomas.cpp DataCurso.cpp DataLeccion.cpp DataInscripciones2.cpp 
+Curso.o: Curso.h Lecciones.o Idiomas.o DataLeccion.o DataInscripciones2.o 
+	$(CC) $(CFLAGS) -c Curso.cpp Lecciones.cpp Idiomas.cpp DataLeccion.cpp DataInscripciones2.cpp 
 
 Lecciones.o: Lecciones.h deCompletar.o deTraducir.o DataEjeCompletar.o DataEjeTraduccion.o
 	$(CC) $(CFLAGS) -c Lecciones.cpp deCompletar.cpp deTraducir.cpp DataEjeCompletar.cpp DataEjeTraduccion.cpp
