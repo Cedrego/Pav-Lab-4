@@ -1,5 +1,5 @@
 #include "Ctrl.h"
-
+#include "Inscripcion.h"
  
 using namespace std;
 
@@ -703,35 +703,35 @@ void Ctrl::UnlimitedVoid(){
     std::cout<<"Cargando Inscripciones..."<<endl;
     getchar();
 
-    Inscripcion* N1 = new Inscripcion(new DTFecha (01,01,2022), false, U1, C1);
+    Inscripcion* N1 = new Inscripcion(new DTFecha (1,1,2022), false, U1, C1);
     U1->aniadirInscripcion(N1);
     C1->aniadirInscripcionCurso(N1);
 
-    Inscripcion* N2 = new Inscripcion(new DTFecha (12,06,2022), false, U1, C3);
+    Inscripcion* N2 = new Inscripcion(new DTFecha (12,6,2022), false, U1, C3);
     U1->aniadirInscripcion(N2);
     C3->aniadirInscripcionCurso(N2);
 
-    Inscripcion* N3 = new Inscripcion(new DTFecha (02,03,2023), false, U1, C4);
+    Inscripcion* N3 = new Inscripcion(new DTFecha (2,3,2023), false, U1, C4);
     U1->aniadirInscripcion(N3);
     C4->aniadirInscripcionCurso(N3);
 
-    Inscripcion* N4 = new Inscripcion(new DTFecha (02,01,2022), false, U2, C1);
+    Inscripcion* N4 = new Inscripcion(new DTFecha (2,1,2022), false, U2, C1);
     U2->aniadirInscripcion(N4);
     C1->aniadirInscripcionCurso(N4);
 
-    Inscripcion* N5 = new Inscripcion(new DTFecha (02,01,2022), false, U3, C1);
+    Inscripcion* N5 = new Inscripcion(new DTFecha (2,1,2022), false, U3, C1);
     U3->aniadirInscripcion(N5);
     C1->aniadirInscripcionCurso(N5);
 
-    Inscripcion* N6 = new Inscripcion(new DTFecha (03,01,2023), false, U4, C1);
+    Inscripcion* N6 = new Inscripcion(new DTFecha (3,1,2023), false, U4, C1);
     U4->aniadirInscripcion(N6);
     C1->aniadirInscripcionCurso(N6);
 
-    Inscripcion* N7 = new Inscripcion(new DTFecha (03,01,2023), false, U4, C5);
+    Inscripcion* N7 = new Inscripcion(new DTFecha (3,1,2023), false, U4, C5);
     U4->aniadirInscripcion(N7);
     C5->aniadirInscripcionCurso(N7);
 
-    Inscripcion* N8 = new Inscripcion(new DTFecha (05,01,2023), false, U5, C5);
+    Inscripcion* N8 = new Inscripcion(new DTFecha (5,1,2023), false, U5, C5);
     U5->aniadirInscripcion(N8);
     C5->aniadirInscripcionCurso(N8);
 
