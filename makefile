@@ -54,8 +54,8 @@ ICollection.o: ICollection/interfaces/ICollection.h
 IDictionary.o: ICollection/interfaces/IDictionary.h
 	$(CC) $(CFLAGS) -c ICollection/interfaces/IDictionary.cpp
 
-Ctrl.o: Ctrl.h ICtrl.h Curso.o Usuario.o Profesor.o Estudiante.o Lecciones.o Idiomas.o DataCurso2.o DataLeccion.o DataCurso3.o DataCursoE.o DataCursoP.o DataCurso.o DataUsuario.o 
-	$(CC) $(CFLAGS) -c Ctrl.cpp Curso.cpp Usuario.cpp Profesor.cpp Estudiante.cpp Lecciones.cpp Idiomas.cpp DataCurso2.cpp DataLeccion.cpp DataCurso3.cpp DataCursoE.cpp DataCursoP.cpp DataCurso.cpp DataUsuario.cpp 
+Ctrl.o: Ctrl.h ICtrl.h Curso.o Usuario.o Profesor.o Estudiante.o Lecciones.o Idiomas.o DataCurso2.o DataLeccion.o DataCurso3.o DataCursoE.o DataCursoP.o DataCurso.o DataUsuario.o Inscripcion.o
+	$(CC) $(CFLAGS) -c Ctrl.cpp Curso.cpp Usuario.cpp Profesor.cpp Estudiante.cpp Lecciones.cpp Idiomas.cpp DataCurso2.cpp DataLeccion.cpp DataCurso3.cpp DataCursoE.cpp DataCursoP.cpp DataCurso.cpp DataUsuario.cpp Inscripcion.cpp
 
 Usuario.o: Usuario.h
 	$(CC) $(CFLAGS) -c Usuario.cpp 
@@ -125,3 +125,6 @@ DataCursoP.o: DataCursoP.h
 
 DataCursoE.o: DataCursoE.h 
 	$(CC) $(CFLAGS) -c DataCursoE.cpp 
+
+clean:
+	rm -f *.o programa

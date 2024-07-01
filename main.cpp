@@ -257,7 +257,7 @@ int main(int argc, char *argv[]){
                     do{
                     std::cout<<"Ingrese el nickname del Profesor"<<endl;
                     std::getline(std::cin,nickProf);
-                    OrderedKey* keyProf = new String(nickProf.c_str());
+                    IKey* keyProf = new String(nickProf.c_str());
                     esta =ctrl->getProfesores()->member(keyProf);
                     if(esta!=true){
                         std::cout<<"Error, ingrese un nickname valido"<<endl;
@@ -285,7 +285,7 @@ int main(int argc, char *argv[]){
                     std::cout<<"Ingrese la dificultad del Curso a crear"<<endl;
                     std::cout<<"(0-principiante,1-medio,2-avanzado)"<<endl;
                     cin>>difC;
-                    if(difC<0||difC>2){
+                    if(difC>=0||difC<=2){
                     difCurso = static_cast<DIFICULTAD>(difC);
                     }else{
                         std::cout<<"Error, dificultad invalida"<<endl;
