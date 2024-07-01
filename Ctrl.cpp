@@ -498,7 +498,7 @@ DataUsuario* Ctrl::DatosUser(std::string nick){
 
 //cargar datos
 void Ctrl::UnlimitedVoid(){
-    std::string nada;
+   /* std::string nada;
     std::string nombreIdioma;
     std::cout<<"Cargando Idiomas..."<<endl;
     getchar();
@@ -783,5 +783,5 @@ void Ctrl::UnlimitedVoid(){
     delete keyE5;
     delete keyE6;
     delete keyE7;
-    delete keyE8;
+    delete keyE8;*/
 };
