@@ -28,5 +28,6 @@ DTFecha*  DTFecha::obtenerFechaActual() {
     int mes = tiempoLocal->tm_mon + 1; // tm_mon devuelve los meses desde 0 a 11
     int anio = tiempoLocal->tm_year + 1900; // tm_year devuelve años desde 1900
 
-    return DTFecha(dia, mes, anio);
+    DTFecha* fecha = new DTFecha(dia,mes,anio);
+    return fecha;
 }
