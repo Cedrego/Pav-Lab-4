@@ -220,7 +220,6 @@ void Curso::aniadirInscripcionCurso(Inscripcion* insc){
     //la aniado a la coleccion
     this->Inscripciones->add(keyInsc, (ICollectible*)insc);
 
-    delete keyInsc;
 };
 //CU: Inscribirse Curse
 set<std::string> Curso::DamePrevias(){
@@ -255,7 +254,6 @@ void Curso::agregarInscripcionCurso(Inscripcion* I){
     Lecciones* PL=(Lecciones*)itL->getCurrent();//PL es la primera Leccion
     I->asignarUltimaLec(PL);
     delete itL;
-    delete IKE;
     delete PL;
 };
 

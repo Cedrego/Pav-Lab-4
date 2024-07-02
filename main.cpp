@@ -758,7 +758,6 @@ int main(int argc, char *argv[]){
                             getchar();
                         }
                     } 
-                    delete keyUsu;
                 }while(esta!=true);
 
                 DataUsuario* dataUsu = ctrl->DatosUser(nickUsu);

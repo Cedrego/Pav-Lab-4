@@ -58,6 +58,7 @@ void Inscripcion::aprobadoAutomatico(deTraducir* DT, deCompletar* DC){
         this->EjerCompletados->add(keyDC,(ICollectible*)DC);
     }
 };
+
 void Inscripcion::aprobarInsc(){
     this->aprovado=true;
 };

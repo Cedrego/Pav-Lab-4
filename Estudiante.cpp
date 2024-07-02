@@ -45,8 +45,6 @@ void Estudiante::olvidarInscripcion(Inscripcion* insc){
     IKey* keyInsc = new String((insc->getcurso())->getNomCurso().c_str());
     //la remuevo de la coleccion
     this->Inscripciones->remove(keyInsc);
-
-    delete keyInsc;
 };
 
 
@@ -59,7 +57,6 @@ void Estudiante::aniadirInscripcion(Inscripcion* insc){
     //la aniado a la coleccion
     this->Inscripciones->add(keyInsc, (ICollectible*)insc);
 
-    delete keyInsc;
 };
 
 //CU: Inscribirse a Curso

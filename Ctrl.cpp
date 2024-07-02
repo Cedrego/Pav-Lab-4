@@ -214,7 +214,6 @@ void Ctrl::EliminarCurso(std::string NomCurso){
     //esta operacion desliga/borra todo lo relacionado al curso
     curso->DeleteALLforCurso();
 
-    delete KeyCurso;
     //destruyo el curso
     curso->~Curso();
 };
@@ -363,7 +362,6 @@ set<DataCurso3*> Ctrl::ListarCursosDisponibles(std::string Nickname,Estudiante* 
         }
         itC->next();
     }
-    delete IKE;
    return dataCursos;
 
 }
@@ -394,14 +392,12 @@ set<DataCursoE*>Ctrl::ListCursosE(std::string Nick){
     IKey* ike = new String(Nick.c_str());
     Estudiante* est = (Estudiante*)this->estudiantes->find(ike);
     set<DataCursoE*> listaCursos = est->cursosEstudiante();
-    delete ike;
     return listaCursos;
 };
 
 set<DataCursoP*>Ctrl::ListCursosP(std::string Nick){
     IKey* ikp = new String(Nick.c_str());
     Profesor* prof = (Profesor*)this->Profesores->find(ikp);
-    delete ikp;
     return prof->cursosProfesor();
 };
 
@@ -482,7 +478,6 @@ DataUsuario* Ctrl::DatosUser(std::string nick){
     if(E!=nullptr){
         DataEst* dataE= new DataEst(E->getfecNac(),E->getPais());
         DataUsuario* newDataUser=new DataUsuario(E->getNickname(), E->getDescripcion(), E->getNombre(), E->getContrasenia(), nullptr, dataE);
-        delete IKE;
         return newDataUser;
     }else{
         IKey* IKP=new String(nick.c_str());
@@ -490,7 +485,6 @@ DataUsuario* Ctrl::DatosUser(std::string nick){
          if(P!=nullptr){
             DataProfesor* dataP= new DataProfesor(P->getinstituto(), P->getIdiomas());
             DataUsuario* newDataUser=new DataUsuario(P->getNickname(), P->getDescripcion(), P->getNombre(), P->getContrasenia(), dataP, nullptr);
-            delete IKP;
             return newDataUser;
          }
     }
@@ -507,17 +501,14 @@ void Ctrl::UnlimitedVoid(){
     Idiomas* I1 = new Idiomas(nombreIdioma="Ingles");
     IKey* KeyI1 = new String(nombreIdioma.c_str());
     (this->idiomas)->add(KeyI1,(ICollectible*) I1);
-    delete KeyI1;
 
     Idiomas* I2 = new Idiomas(nombreIdioma="Aleman");
     IKey* KeyI2 = new String(nombreIdioma.c_str());
     (this->idiomas)->add(KeyI2,(ICollectible*) I2);
-    delete KeyI2;
     
     Idiomas* I3 = new Idiomas(nombreIdioma="Portugues");
     IKey* KeyI3 = new String(nombreIdioma.c_str());
     (this->idiomas)->add(KeyI3,(ICollectible*) I3);
-    delete KeyI3;
 
 
     std::string nickUsuario;
@@ -533,52 +524,42 @@ void Ctrl::UnlimitedVoid(){
     Estudiante* U1 = new Estudiante(nickUsuario="jpidiom", descUsuario="Soy un apasionado del aprendizaje de idiomas.", nombreUsuario="Juan Perez", passUsuario="1234", new DTFecha(15,7,1995), paisEstudiante="Argentina");
     IKey* KeyU1 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU1,(ICollectible*)U1);
-    delete KeyU1;
 
     Estudiante* U2 = new Estudiante(nickUsuario="marsilva", descUsuario="Como amante de los idiomas disfruto explorando nuevas formas de interactuar.", nombreUsuario="Maria Silva", passUsuario="1234", new DTFecha(28,2,1998), paisEstudiante="Ecuador");
     IKey* KeyU2 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU2,(ICollectible*)U2);
-    delete KeyU2;
 
     Estudiante* U3 = new Estudiante(nickUsuario="pero12", descUsuario="Soy un entusiasta del aprendizaje de idiomas.", nombreUsuario="Pedro Rodriguez ", passUsuario="1234", new DTFecha(10,11,1994), paisEstudiante="Peru");
     IKey* KeyU3 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU3,(ICollectible*)U3);
-    delete KeyU3;
 
     Estudiante* U4 = new Estudiante(nickUsuario="laugu", descUsuario="Estoy fascinada por la forma en que las palabras pueden unir a las personas", nombreUsuario="Laura Gutierrez", passUsuario="1234", new DTFecha(22,4,1997), paisEstudiante="Chile");
     IKey* KeyU4 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU4,(ICollectible*)U4);
-    delete KeyU4;
 
     Estudiante* U5 = new Estudiante(nickUsuario="carlo22", descUsuario="Emocionado por adquirir fluidez en diferentes lenguas.", nombreUsuario="Carlos Lopez", passUsuario="1234", new DTFecha(03,9,1996), paisEstudiante="Uruguay");
     IKey* KeyU5 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU5,(ICollectible*)U5);
-    delete KeyU5;
 
     Estudiante* U6 = new Estudiante(nickUsuario="anator", descUsuario="Disfruto de la belleza de las diferentes estructuras y sonidos.", nombreUsuario="Ana Torres", passUsuario="1234", new DTFecha(12,1,1999 ), paisEstudiante="Argentina");
     IKey* KeyU6 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU6,(ICollectible*)U6);
-    delete KeyU6;
 
     Estudiante* U7 = new Estudiante(nickUsuario="luher24", descUsuario="Emocionada en la riqueza cultural que cada idioma ofrece", nombreUsuario="Lucia Hernandez", passUsuario="1234", new DTFecha(25,6,1993), paisEstudiante="Colombia");
     IKey* KeyU7 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU7,(ICollectible*)U7);
-    delete KeyU7;
 
     Estudiante* U8 = new Estudiante(nickUsuario="dagon", descUsuario="Soy un apasionado del aprendizaje de idiomas.", nombreUsuario="David Gonzalez", passUsuario="1234", new DTFecha(15,7,1995), paisEstudiante="Argentina");
     IKey* KeyU8 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU8,(ICollectible*)U8);
-    delete KeyU8;
 
     Estudiante* U9 = new Estudiante(nickUsuario="carmor", descUsuario="El aprendizaje de idiomas y expandir mis habilidades comunicativas en diferentes lenguas.", nombreUsuario="Carmen Morales", passUsuario="1234", new DTFecha(17,3,1995), paisEstudiante="Chile");
     IKey* KeyU9 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU9,(ICollectible*)U9);
-    delete KeyU9;
 
     Estudiante* U10 = new Estudiante(nickUsuario="jose24", descUsuario="Disfruto del proceso de descubrir nuevas formas de comunicarme", nombreUsuario="Jose Fernandez", passUsuario="1234", new DTFecha(2,8,1998 ), paisEstudiante="Bolivia");
     IKey* KeyU10 = new String(nickUsuario.c_str());
     (this->estudiantes)->add(KeyU10,(ICollectible*)U10);
-    delete KeyU10;
 
     std::cout<<"Cargando Profesores..."<<endl;
     getchar();
@@ -587,7 +568,6 @@ void Ctrl::UnlimitedVoid(){
     (this->Profesores)->add(KeyU11,(ICollectible*)U11);
     U11->aniadirIdioma(I1);
     U11->aniadirIdioma(I3);
-    delete KeyU11;
     
     Profesor* U12 = new Profesor(nickUsuario="linguaPro", descUsuario="Mi objetivo es inspirar a mis estudiantes a explorar nuevas culturas e idiomas", nombreUsuario="Carlos Petro", passUsuario="1234", institutoProfesor="Centro Global");
     IKey* KeyU12 = new String(nickUsuario.c_str());
@@ -595,25 +575,21 @@ void Ctrl::UnlimitedVoid(){
     U12->aniadirIdioma(I1);
     U12->aniadirIdioma(I2);
     U12->aniadirIdioma(I3);
-    delete KeyU12;
 
     Profesor* U13 = new Profesor(nickUsuario="talkExpert", descUsuario="Soy una profesora entusiasta del aprendizaje de idiomas", nombreUsuario="Laura Perez", passUsuario="1234", institutoProfesor="Instituto de Idiomas Vanguardia");
     IKey* KeyU13 = new String(nickUsuario.c_str());
     (this->Profesores)->add(KeyU13,(ICollectible*)U13);
     U13->aniadirIdioma(I2);
-    delete KeyU13;
 
     Profesor* U14 = new Profesor(nickUsuario="lingoSensei", descUsuario="Apasionada en guiar a mis estudiantes en su viaje por nuevos horizontes idiomaticos", nombreUsuario="Franco Lopez", passUsuario="1234", institutoProfesor="Centro de Idiomas");
     IKey* KeyU14 = new String(nickUsuario.c_str());
     (this->Profesores)->add(KeyU14,(ICollectible*)U14);
     U14->aniadirIdioma(I3);
-    delete KeyU14;
 
     Profesor* U15 = new Profesor(nickUsuario="wordMaestro", descUsuario="Soy una profesora comprometida en desarrollo de habilidades idiomaticas", nombreUsuario="Ana Morales", passUsuario="1234", institutoProfesor="Instituto de Idiomas Progreso");
     IKey* KeyU15 = new String(nickUsuario.c_str());
     (this->Profesores)->add(KeyU15,(ICollectible*)U15);
     U15->aniadirIdioma(I1);
-    delete KeyU15;
 
     std::string nombreCurso;
     std::string descCurso;
@@ -624,32 +600,26 @@ void Ctrl::UnlimitedVoid(){
     Curso* C1 = new Curso(nombreCurso="Ingles para principiantes",descCurso="Curso para personas con poco o ningun conocimiento de ingles. Se enfoca en vocabulario basico, gramatica y habilidades de conversacion.", principiante, true, I1, U11);
     IKey* KeyC1 = new String(nombreCurso.c_str());
     this->Cursos->add(KeyC1,(ICollectible*)C1);
-    delete KeyC1;
 
     Curso* C2 = new Curso(nombreCurso="Curso de Ingles basico",descCurso="Construye una base solida en el idioma. Cubre gramatica, vocabulario, comprension auditiva y expresion oral", principiante, false, I1, U11);
     IKey* KeyC2 = new String(nombreCurso.c_str());
     this->Cursos->add(KeyC2,(ICollectible*)C2);
-    delete KeyC2;
 
     Curso* C3 = new Curso(nombreCurso="Ingles intermedio: mejora tu nivel",descCurso="Para estudiantes con conocimientos basicos de ingles que desean avanzar en su habilidad comunicativa. Se centra en lafluidez oral, lectura comprensiva y escritura.", medio, true, I1, U12);
     IKey* KeyC3 = new String(nombreCurso.c_str());
     this->Cursos->add(KeyC3,(ICollectible*)C3);
-    delete KeyC3;
 
     Curso* C4 = new Curso(nombreCurso="Curso avanzado de ingles",descCurso="Dirigido a personas con un nivel intermedio-alto que desean perfeccionar sus habilidades en todos los aspectos del idioma. Incluye gramatica avanzada, vocabulario y comprension escrita y auditiva.", avanzado, true, I1, U12);
     IKey* KeyC4 = new String(nombreCurso.c_str());
     this->Cursos->add(KeyC4,(ICollectible*)C4);
-    delete KeyC4;
 
     Curso* C5 = new Curso(nombreCurso="Portugues intermedio",descCurso="Curso para aquellos que tienen conocimientos basicos de portugues y desean mejorar su nivel. Incluye practica de lectura, escritura y comprension auditiva", medio, true, I3, U12);
     IKey* KeyC5 = new String(nombreCurso.c_str());
     this->Cursos->add(KeyC5,(ICollectible*)C5);
-    delete KeyC5;
 
     Curso* C6 = new Curso(nombreCurso="Portugues avanzado",descCurso="Curso avanzado para personas con un nivel intermedio-alto de portugues que desean perfeccionar su fluidez y dominio del idioma. Se trabaja en la gramatica avanzada y la expresion oral.", avanzado, false, I3, U14);
     IKey* KeyC6 = new String(nombreCurso.c_str());
     this->Cursos->add(KeyC6,(ICollectible*)C6);
-    delete KeyC6;
 
     std::cout<<"Asignando Previas..."<<endl;
     getchar();
@@ -700,45 +670,37 @@ void Ctrl::UnlimitedVoid(){
     L1->CrearEjer(nomEjer="E1",tipoEjer="Traducir",descEjer="Presentaciones", fraseEjer="Mucho gusto en conocerte", solEjer="Nice to meet you");
     IKey* keyE1 = new String(nomEjer.c_str());
     deTraducir* E1 = L1->conseguirDT(keyE1);
-    delete keyE1;
 
     L1->CrearEjer(nomEjer="E2",tipoEjer="Completar",descEjer="Presentaciones formales", fraseEjer="Please --- me to introduce ---", solEjer="allow --- myself");
     IKey* keyE2 = new String(nomEjer.c_str());
     deCompletar* E2 = L1->conseguirDC(keyE2);
-    delete keyE2;
 
     L2->CrearEjer(nomEjer="E3",tipoEjer="Traducir",descEjer="Plurales regulares", fraseEjer="I have two brothers and three sisters", solEjer="Tengo dos hermanos y tres hermanas");
     IKey* keyE3 = new String(nomEjer.c_str());
     deTraducir* E3 = L2->conseguirDT(keyE3);
-    delete keyE3;
 
     L2->CrearEjer(nomEjer="E4",tipoEjer="Completar",descEjer="Sustantivos contables en plural", fraseEjer="Can I have --- water, please?", solEjer="some");
     IKey* keyE4 = new String(nomEjer.c_str());
     deCompletar* E4 = L2->conseguirDC(keyE4);
-    delete keyE4;
 
     L3->CrearEjer(nomEjer="E5",tipoEjer="Completar",descEjer="Actividades diarias", fraseEjer="Wake ---", solEjer="Wake");
     IKey* keyE5 = new String(nomEjer.c_str());
     deCompletar* E5 = L3->conseguirDC(keyE5);
     nada=E5->getdescripcion();
-    delete keyE5;
 
     L5->CrearEjer(nomEjer="E6",tipoEjer="Completar",descEjer="Consultas de la hora", fraseEjer="Q: Do you --- the time?, A: Yes, it is half --- 4", solEjer="have --- past");
     IKey* keyE6 = new String(nomEjer.c_str());
     deCompletar* E6 = L5->conseguirDC(keyE6);
-    delete keyE6;
 
     L6->CrearEjer(nomEjer="E7",tipoEjer="Traducir",descEjer="Dar consejos o expresar obligacion", fraseEjer="You should visit that museum", solEjer="Deberias visitar ese museo");
     IKey* keyE7 = new String(nomEjer.c_str());
     deTraducir* E7 = L6->conseguirDT(keyE7);
     nada=E7->getdescripcion();
-    delete keyE7;
 
     L7->CrearEjer(nomEjer="E8",tipoEjer="Traducir",descEjer="Imperativo", fraseEjer="Fale comigo", solEjer="Habla conmigo");
     IKey* keyE8 = new String(nomEjer.c_str());
     deTraducir* E8 = L7->conseguirDT(keyE8);
     nada=E8->getdescripcion();
-    delete keyE8;
 
     std::cout<<"Cargando Inscripciones..."<<endl;
     getchar();
