@@ -371,7 +371,8 @@ void Ctrl::SeleccionarCurso(std::string nomCurso,Estudiante* E){
     IKey* IKC=new String(nomCurso.c_str());
     IDictionary* cursos=this->getCursos();
     Curso* C=(Curso*)(cursos->find(IKC));
-    Inscripcion* I=new Inscripcion(NULL,NULL,E,C);
+    DTFecha* Fecha= new DTFecha();
+    Inscripcion* I=new Inscripcion(Fecha->obtenerFechaActual(),false,E,C);
 
     C->agregarInscripcionCurso(I);//Listo
     E->agregarInscripcionEstudiante(I);

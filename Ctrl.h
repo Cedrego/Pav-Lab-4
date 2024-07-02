@@ -14,6 +14,7 @@
 #include "DataCursoP.h"
 #include "DataCurso.h"
 #include "DataUsuario.h"
+#include "DTFecha.h"
 #include "Usuario.h"
 #include "Lecciones.h"
 #include <string>

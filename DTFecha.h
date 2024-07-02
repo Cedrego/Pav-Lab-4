@@ -1,7 +1,7 @@
 
 #ifndef DTFECHA_H
 #define DTFECHA_H
-
+#include <ctime>
 class DTFecha {
 	private:
 		int dia;
@@ -14,6 +14,7 @@ class DTFecha {
 	int getdia();
 	int getmes();
 	int getanio();
+	DTFecha* obtenerFechaActual();
 };
 
 #endif

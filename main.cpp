@@ -241,7 +241,6 @@ int main(int argc, char *argv[]){
                 char masEjer;
                 char masLec;
                 
-<<<<<<< HEAD
 
                 std::cout<<"Estos son los profesores disponibles:"<<endl<<endl;
                 listaProfesores=ctrl->ListarProfesores();
@@ -301,20 +300,6 @@ int main(int argc, char *argv[]){
                     std::getline(std::cin,idiomaCurso);
                     IKey* keyIdioma = new String(idiomaCurso.c_str());
                     esta =ctrl->getIdiomas()->member(keyIdioma);
-=======
-                if(!ctrl->getProfesores()->isEmpty()){
-                    std::cout<<"Estos son los profesores disponibles:"<<endl<<endl;
-                    listaProfesores=ctrl->ListarProfesores();
-                    for(const auto& prof:listaProfesores){
-                        std::cout<<prof<<endl;
-                    }
-                    
-                    do{
-                    std::cout<<"Ingrese el nickname del Profesor"<<endl;
-                    std::getline(std::cin,nickProf);
-                    IKey* keyProf = new String(nickProf.c_str());
-                    esta =ctrl->getProfesores()->member(keyProf);
->>>>>>> eb927aab1d7ac89a4c1a0eb586185357877fb333
                     if(esta!=true){
                         std::cout<<"Error, no existe un Idioma con ese nombre" <<endl;
                         std::cout<<"Vuelva a intentar"<<endl;
@@ -343,75 +328,12 @@ int main(int argc, char *argv[]){
                 cin>>opcion;
                 if(opcion=='Y'||opcion=='y'){
                     do{
-<<<<<<< HEAD
                         std::cout<<"Ingrese un tema para la Leccion"<<endl;
                         std::getline(std::cin,temaLeccion);
                         std::cout<<"Ingrese un objetivo para la Leccion"<<endl;
                         std::getline(std::cin,objetivoLeccion);
                         Lecciones* leccionNueva = cursoNuevo->CrearLeccion(temaLeccion,objetivoLeccion);
                         std::cout<<"Desea agregar un Ejercicio para esta Leccion?   Y|N"<<endl;
-=======
-                    std::cout<<"Ingrese el nombre del Curso a crear"<<endl;
-                    std::getline(std::cin,nomCurso);
-                    IKey* keyCurso = new String(nomCurso.c_str());
-                    esta =ctrl->getCursos()->member(keyCurso);
-                    if(esta==true){
-                        std::cout<<"Error, ya existe un Curso con ese nombre"<<endl;
-                        std::cout<<"Vuelva a intentar"<<endl;
-                        getchar();
-                    };
-                    }while(esta==true);
-
-                    std::cout<<"Ingrese la descripcion del Curso a crear"<<endl;
-                    std::getline(std::cin,descCurso);
-
-                    do{
-                    std::cout<<"Ingrese la dificultad del Curso a crear"<<endl;
-                    std::cout<<"(0-principiante,1-medio,2-avanzado)"<<endl;
-                    cin>>difC;
-                    if(difC>=0||difC<=2){
-                    difCurso = static_cast<DIFICULTAD>(difC);
-                    }else{
-                        std::cout<<"Error, dificultad invalida"<<endl;
-                        std::cout<<"Vuelva a intentar"<<endl;
-                        getchar();
-                    }
-                    }while(difC<0||difC>2);
-                    Curso* cursoNuevo = ctrl->IngresoCurso(nickProf,nomCurso,descCurso,difCurso);
-
-                    std::cout<<"Estos son los Idiomas disponibles para el Curso"<<endl;
-                    listaIdiomas=ctrl->ListarIdiomas(cursoNuevo);
-                    for(const auto& idi:listaIdiomas){
-                        std::cout<<idi<<endl;
-                    }
-
-                    do{
-                        std::cout<<"Seleccione un Idioma para el Curso"<<endl;
-                        std::getline(std::cin,idiomaCurso);
-                        IKey* keyIdioma = new String(idiomaCurso.c_str());
-                        esta =ctrl->getIdiomas()->member(keyIdioma);
-                        if(esta!=true){
-                            std::cout<<"Error, no existe un Idioma con ese nombre" <<endl;
-                            std::cout<<"Vuelva a intentar"<<endl;
-                            getchar();
-                        };
-                    }while(esta!=true);
-                    ctrl->SeleccionarIdiomaC(idiomaCurso,cursoNuevo);
-
-                    std::cout<<"Desea agregar previaturas a este Curso?   Y|N";
-                    cin>>opcion;
-                    if(opcion=='Y'||opcion=='y'){
-                        std::cout<<"Estos son los Cursos que se encuentran disponibles:"<<endl;
-                        listaCursosHabilitados=ctrl->ListarCursosHabilitados();
-                    for(const auto& ch:listaCursosHabilitados){
-                        std::cout<<ch<<endl;
-                    }
-                    do{
-                        std::cout<<"Seleccione un Curso:"<<endl;
-                        std::getline(std::cin,cursoPrevia);
-                        ctrl->SeleccionarPreviatura(cursoPrevia,cursoNuevo);
-                        std::cout<<"Desea agregar otra?   Y|N"<<endl;
->>>>>>> eb927aab1d7ac89a4c1a0eb586185357877fb333
                         cin>>quiere;
                         if(opcion=='Y'||opcion=='y'){
                             do{
@@ -825,7 +747,6 @@ int main(int argc, char *argv[]){
                     std::cout<<"Seleccione un Usuario para consultar informacion:"<<endl;
                     std::getline(std::cin,nickUsu);
                     IKey* keyUsu = new String(nickUsu.c_str());
-                    // Verificar si el usuario es estudiante o profesor
                     esta=ctrl->getEstudiantes()->member(keyUsu);
                     if (esta != true ){  
                         std::cout<<"No es estudiante"<<endl;
